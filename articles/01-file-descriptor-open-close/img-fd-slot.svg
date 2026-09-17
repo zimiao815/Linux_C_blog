@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 608" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+  <rect x="0" y="0" width="1080" height="608" fill="#ffffff"/>
+
+  <!-- 标题 -->
+  <text x="60" y="64" font-size="30" font-weight="700" fill="#202124">fd 只是打开文件表里的一个下标</text>
+  <text x="60" y="98" font-size="18" fill="#5f6368">open 取最小空位返回编号；close 清空该格，编号立即可复用</text>
+
+  <!-- 左面板：close(3) 之前 -->
+  <g>
+    <text x="120" y="150" font-size="21" font-weight="600" fill="#1a73e8">close(3) 之前</text>
+
+    <text x="60" y="196" font-size="17" fill="#5f6368">进程的打开文件表</text>
+
+    <!-- 表格框架 -->
+    <rect x="60" y="212" width="110" height="300" fill="none" stroke="#90a4ae" stroke-width="1.5"/>
+
+    <!-- slot 0 -->
+    <rect x="62" y="214" width="106" height="58" fill="#f5f7fa" stroke="#d0d7de"/>
+    <text x="115" y="238" font-size="18" font-weight="600" fill="#202124" text-anchor="middle">0</text>
+    <text x="115" y="260" font-size="14" fill="#5f6368" text-anchor="middle">标准输入</text>
+
+    <!-- slot 1 -->
+    <rect x="62" y="274" width="106" height="58" fill="#f5f7fa" stroke="#d0d7de"/>
+    <text x="115" y="298" font-size="18" font-weight="600" fill="#202124" text-anchor="middle">1</text>
+    <text x="115" y="320" font-size="14" fill="#5f6368" text-anchor="middle">标准输出</text>
+
+    <!-- slot 2 -->
+    <rect x="62" y="334" width="106" height="58" fill="#f5f7fa" stroke="#d0d7de"/>
+    <text x="115" y="358" font-size="18" font-weight="600" fill="#202124" text-anchor="middle">2</text>
+    <text x="115" y="380" font-size="14" fill="#5f6368" text-anchor="middle">标准错误</text>
+
+    <!-- slot 3 占用 -->
+    <rect x="62" y="394" width="106" height="58" fill="#e8f0fe" stroke="#1a73e8" stroke-width="2"/>
+    <text x="115" y="418" font-size="18" font-weight="700" fill="#1a73e8" text-anchor="middle">3</text>
+    <text x="115" y="440" font-size="14" fill="#1a73e8" text-anchor="middle">demo.txt</text>
+
+    <!-- slot 4 空 -->
+    <rect x="62" y="454" width="106" height="56" fill="#ffffff" stroke="#d0d7de" stroke-dasharray="4 3"/>
+    <text x="115" y="478" font-size="18" fill="#bdc1c6" text-anchor="middle">4</text>
+    <text x="115" y="498" font-size="13" fill="#bdc1c6" text-anchor="middle">空位</text>
+
+    <!-- open 注释 -->
+    <text x="200" y="428" font-size="17" fill="#202124">open("demo.txt")</text>
+    <text x="200" y="452" font-size="17" font-weight="600" fill="#1a73e8">→ 返回最小空位 3</text>
+  </g>
+
+  <!-- 中间箭头 -->
+  <g>
+    <line x1="425" y1="300" x2="645" y2="300" stroke="#5f6368" stroke-width="2"/>
+    <polygon points="645,300 631,293 631,307" fill="#5f6368"/>
+    <text x="535" y="286" font-size="17" font-weight="600" fill="#ef6c00" text-anchor="middle">close(3)</text>
+  </g>
+
+  <!-- 右面板：close(3) 之后 -->
+  <g>
+    <text x="720" y="150" font-size="21" font-weight="600" fill="#ef6c00">close(3) 之后</text>
+
+    <text x="660" y="196" font-size="17" fill="#5f6368">同一张表</text>
+
+    <rect x="660" y="212" width="110" height="300" fill="none" stroke="#90a4ae" stroke-width="1.5"/>
+
+    <!-- slot 0 -->
+    <rect x="662" y="214" width="106" height="58" fill="#f5f7fa" stroke="#d0d7de"/>
+    <text x="715" y="238" font-size="18" font-weight="600" fill="#202124" text-anchor="middle">0</text>
+    <text x="715" y="260" font-size="14" fill="#5f6368" text-anchor="middle">标准输入</text>
+
+    <!-- slot 1 -->
+    <rect x="662" y="274" width="106" height="58" fill="#f5f7fa" stroke="#d0d7de"/>
+    <text x="715" y="298" font-size="18" font-weight="600" fill="#202124" text-anchor="middle">1</text>
+    <text x="715" y="320" font-size="14" fill="#5f6368" text-anchor="middle">标准输出</text>
+
+    <!-- slot 2 -->
+    <rect x="662" y="334" width="106" height="58" fill="#f5f7fa" stroke="#d0d7de"/>
+    <text x="715" y="358" font-size="18" font-weight="600" fill="#202124" text-anchor="middle">2</text>
+    <text x="715" y="380" font-size="14" fill="#5f6368" text-anchor="middle">标准错误</text>
+
+    <!-- slot 3 已释放 -->
+    <rect x="662" y="394" width="106" height="58" fill="#fff8f1" stroke="#ef6c00" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="715" y="418" font-size="18" font-weight="700" fill="#ef6c00" text-anchor="middle">3</text>
+    <text x="715" y="440" font-size="14" fill="#ef6c00" text-anchor="middle">空位，可复用</text>
+
+    <!-- slot 4 空 -->
+    <rect x="662" y="454" width="106" height="56" fill="#ffffff" stroke="#d0d7de" stroke-dasharray="4 3"/>
+    <text x="715" y="478" font-size="18" fill="#bdc1c6" text-anchor="middle">4</text>
+    <text x="715" y="498" font-size="13" fill="#bdc1c6" text-anchor="middle">空位</text>
+
+    <!-- 再 open 注释 -->
+    <text x="800" y="428" font-size="17" fill="#202124">再 open 时</text>
+    <text x="800" y="452" font-size="17" font-weight="600" fill="#1a73e8">→ 又拿到 3</text>
+  </g>
+
+  <!-- 底部要点 -->
+  <rect x="60" y="540" width="960" height="40" fill="#f5f7fa" rx="6"/>
+  <text x="540" y="566" font-size="17" fill="#202124" text-anchor="middle">fd 不是「文件的身份证」，只是表里的位置号：关掉就回收，下次可能分给完全不同的文件</text>
+
+  <!-- 水印 -->
+  <text x="1052" y="592" font-size="14" fill="#9aa0a6" text-anchor="end">公众号·理解力笔记</text>
+</svg>

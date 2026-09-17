@@ -1,0 +1,49 @@
+<svg width="900" height="383" viewBox="0 0 900 383" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="383" fill="url(#bg)"/>
+
+  <!-- 标题区 -->
+  <text x="56" y="52" font-family="-apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="40" font-weight="700" fill="#ffffff">C语言 · Linux 系统编程专栏</text>
+  <text x="56" y="94" font-family="-apple-system, 'PingFang SC', sans-serif" font-size="24" font-weight="700" fill="#ffffff">读者的收益：最少的时间得到答案 · 看得懂原理 · 拿得走写法 · 接得住提问</text>
+
+  <!-- 分隔线 -->
+  <rect x="56" y="116" width="788" height="1" fill="#3d444d"/>
+
+  <!-- 表格：你是谁 / 看哪一章 / 会得到什么 -->
+  <g font-family="-apple-system, 'PingFang SC', sans-serif">
+    <!-- 表头行 -->
+    <rect x="56" y="132" width="788" height="44" rx="6" fill="#2a3038"/>
+    <text x="76" y="160" font-size="20" font-weight="700" fill="#9aa4b2">你是谁</text>
+    <text x="316" y="160" font-size="20" font-weight="700" fill="#9aa4b2">看哪一章</text>
+    <text x="596" y="160" font-size="20" font-weight="700" fill="#9aa4b2">会得到什么</text>
+
+    <!-- 行1 搜索者 -->
+    <rect x="56" y="182" width="788" height="46" rx="4" fill="#1b2128"/>
+    <text x="76" y="211" font-size="20" font-weight="700" fill="#58a6ff">搜索者 / 被推荐者</text>
+    <text x="316" y="211" font-size="20" fill="#f0f3f6">第一章 · 先解决问题</text>
+    <text x="596" y="211" font-size="20" fill="#f0f3f6">知其然：最快拿到答案</text>
+
+    <!-- 行2 学习者 -->
+    <rect x="56" y="234" width="788" height="46" rx="4" fill="#21282f"/>
+    <text x="76" y="263" font-size="20" font-weight="700" fill="#58a6ff">学习者</text>
+    <text x="316" y="263" font-size="20" fill="#f0f3f6">第二章 · 机制解释</text>
+    <text x="596" y="263" font-size="20" fill="#f0f3f6">知其所以然：看懂底层原理</text>
+
+    <!-- 行3 编程者 -->
+    <rect x="56" y="286" width="788" height="46" rx="4" fill="#1b2128"/>
+    <text x="76" y="315" font-size="20" font-weight="700" fill="#58a6ff">编程者</text>
+    <text x="316" y="315" font-size="20" fill="#f0f3f6">第三章 · 工程使用</text>
+    <text x="596" y="315" font-size="20" fill="#f0f3f6">正确写法：直接能用的代码</text>
+
+    <!-- 行4 求职者 -->
+    <rect x="56" y="338" width="788" height="46" rx="4" fill="#21282f"/>
+    <text x="76" y="367" font-size="20" font-weight="700" fill="#58a6ff">求职者</text>
+    <text x="316" y="367" font-size="20" fill="#f0f3f6">第四章 · 面试提炼</text>
+    <text x="596" y="367" font-size="20" fill="#f0f3f6">提问与回答：面试怎么答</text>
+  </g>
+</svg>

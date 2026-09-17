@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 608" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+  <rect x="0" y="0" width="1080" height="608" fill="#ffffff"/>
+
+  <!-- 标题 -->
+  <text x="60" y="64" font-size="30" font-weight="700" fill="#202124">fd 背后的三层结构</text>
+  <text x="60" y="98" font-size="18" fill="#5f6368">同一个文件 open 两次：两条独立的打开描述，偏移量互不影响</text>
+
+  <!-- 左：进程 fd 表 -->
+  <g>
+    <text x="150" y="160" font-size="19" font-weight="600" fill="#202124" text-anchor="middle">进程 fd 表</text>
+    <text x="150" y="184" font-size="14" fill="#5f6368" text-anchor="middle">每进程一份</text>
+
+    <rect x="95" y="204" width="110" height="330" fill="none" stroke="#90a4ae" stroke-width="1.5"/>
+
+    <rect x="97" y="206" width="106" height="56" fill="#f5f7fa" stroke="#d0d7de"/>
+    <text x="150" y="230" font-size="17" font-weight="600" fill="#202124" text-anchor="middle">0</text>
+    <text x="150" y="251" font-size="13" fill="#5f6368" text-anchor="middle">标准输入</text>
+
+    <rect x="97" y="264" width="106" height="56" fill="#f5f7fa" stroke="#d0d7de"/>
+    <text x="150" y="288" font-size="17" font-weight="600" fill="#202124" text-anchor="middle">1</text>
+    <text x="150" y="309" font-size="13" fill="#5f6368" text-anchor="middle">标准输出</text>
+
+    <rect x="97" y="322" width="106" height="56" fill="#f5f7fa" stroke="#d0d7de"/>
+    <text x="150" y="346" font-size="17" font-weight="600" fill="#202124" text-anchor="middle">2</text>
+    <text x="150" y="367" font-size="13" fill="#5f6368" text-anchor="middle">标准错误</text>
+
+    <rect x="97" y="380" width="106" height="70" fill="#e8f0fe" stroke="#1a73e8" stroke-width="2"/>
+    <text x="150" y="408" font-size="17" font-weight="700" fill="#1a73e8" text-anchor="middle">3</text>
+    <text x="150" y="430" font-size="13" fill="#1a73e8" text-anchor="middle">fd1</text>
+
+    <rect x="97" y="452" width="106" height="70" fill="#e8f0fe" stroke="#1a73e8" stroke-width="2"/>
+    <text x="150" y="480" font-size="17" font-weight="700" fill="#1a73e8" text-anchor="middle">4</text>
+    <text x="150" y="502" font-size="13" fill="#1a73e8" text-anchor="middle">fd2</text>
+
+    <text x="150" y="550" font-size="15" fill="#5f6368" text-anchor="middle">open("demo.txt") × 2</text>
+  </g>
+
+  <!-- fd → OFD 箭头 -->
+  <g stroke="#1a73e8" stroke-width="2" fill="none">
+    <line x1="205" y1="415" x2="395" y2="290"/>
+    <line x1="205" y1="487" x2="395" y2="400"/>
+  </g>
+  <polygon points="395,290 380,288 386,300" fill="#1a73e8"/>
+  <polygon points="395,400 380,394 378,407" fill="#1a73e8"/>
+
+  <!-- 中：两个打开文件描述 -->
+  <g>
+    <text x="540" y="160" font-size="19" font-weight="600" fill="#202124" text-anchor="middle">打开文件描述</text>
+    <text x="540" y="184" font-size="14" fill="#5f6368" text-anchor="middle">open file description，一次 open 一份</text>
+
+    <rect x="400" y="228" width="280" height="122" fill="#e8f0fe" stroke="#1a73e8" stroke-width="2" rx="8"/>
+    <text x="540" y="262" font-size="18" font-weight="700" fill="#1a73e8" text-anchor="middle">打开文件描述 A</text>
+    <text x="540" y="292" font-size="16" fill="#202124" text-anchor="middle">偏移量：1</text>
+    <text x="540" y="318" font-size="16" fill="#202124" text-anchor="middle">访问模式：只读</text>
+
+    <rect x="400" y="380" width="280" height="122" fill="#e8f0fe" stroke="#1a73e8" stroke-width="2" rx="8"/>
+    <text x="540" y="414" font-size="18" font-weight="700" fill="#1a73e8" text-anchor="middle">打开文件描述 B</text>
+    <text x="540" y="444" font-size="16" fill="#202124" text-anchor="middle">偏移量：0</text>
+    <text x="540" y="470" font-size="16" fill="#202124" text-anchor="middle">访问模式：只读</text>
+
+    <text x="540" y="546" font-size="15" fill="#5f6368" text-anchor="middle">A、B 各自独立：fd1 读 1 字节后偏移量 1，fd2 仍是 0</text>
+  </g>
+
+  <!-- OFD → inode 箭头 -->
+  <g stroke="#188038" stroke-width="2" fill="none">
+    <line x1="680" y1="289" x2="845" y2="330"/>
+    <line x1="680" y1="441" x2="845" y2="372"/>
+  </g>
+  <polygon points="845,330 831,326 832,339" fill="#188038"/>
+  <polygon points="845,372 833,366 829,379" fill="#188038"/>
+
+  <!-- 右：inode -->
+  <g>
+    <rect x="850" y="272" width="180" height="158" fill="#e6f4ea" stroke="#188038" stroke-width="2" rx="8"/>
+    <text x="940" y="316" font-size="18" font-weight="700" fill="#188038" text-anchor="middle">inode</text>
+    <text x="940" y="346" font-size="15" fill="#202124" text-anchor="middle">demo.txt 的数据</text>
+    <text x="940" y="370" font-size="15" fill="#202124" text-anchor="middle">abcdefghij</text>
+    <text x="940" y="402" font-size="13" fill="#5f6368" text-anchor="middle">磁盘上的真身</text>
+  </g>
+
+  <!-- 底部要点 -->
+  <rect x="60" y="556" width="960" height="36" fill="#f5f7fa" rx="6"/>
+  <text x="540" y="580" font-size="16" fill="#202124" text-anchor="middle">close 只删掉 fd → 打开文件描述 这一根线；最后一个引用关闭时，打开文件描述才真正销毁</text>
+
+  <!-- 水印 -->
+  <text x="1052" y="598" font-size="14" fill="#9aa0a6" text-anchor="end">公众号·理解力笔记</text>
+</svg>
