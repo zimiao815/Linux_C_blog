@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 640" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+  <rect x="0" y="0" width="1080" height="640" fill="#ffffff"/>
+
+  <!-- 标题 -->
+  <text x="60" y="64" font-size="30" font-weight="700" fill="#202124">为什么 read 会「短读」：内核有多少给多少</text>
+  <text x="60" y="98" font-size="18" fill="#5f6368">你请求读 4096 字节，但内核缓冲区此刻只有 5 字节，于是 read 立刻返回 5</text>
+
+  <!-- 上层：进程 -->
+  <rect x="60" y="140" width="960" height="130" rx="10" fill="#e8f0fe" stroke="#1a73e8" stroke-width="2"/>
+  <text x="90" y="178" font-size="20" font-weight="700" fill="#1a73e8">你的程序</text>
+  <text x="90" y="210" font-size="18" fill="#202124">char buf[4096];</text>
+  <text x="90" y="240" font-size="18" fill="#202124">read(fd, buf, 4096)   ← 请求读 4096 字节</text>
+
+  <!-- 请求箭头 -->
+  <line x1="400" y1="270" x2="400" y2="330" stroke="#5f6368" stroke-width="2" marker-end="url(#a)"/>
+  <text x="420" y="305" font-size="17" fill="#5f6368">系统调用：我要 4096 字节</text>
+
+  <!-- 中层：内核缓冲区 -->
+  <rect x="60" y="330" width="960" height="150" rx="10" fill="#f5f7fa" stroke="#90a4ae" stroke-width="2"/>
+  <text x="90" y="370" font-size="20" font-weight="700" fill="#5f6368">内核缓冲区（管道）</text>
+  <text x="90" y="404" font-size="17" fill="#5f6368">此刻里面只有 5 字节：</text>
+
+  <!-- 5 个字节块 -->
+  <g font-size="18" font-weight="700" text-anchor="middle">
+    <rect x="90" y="422" width="48" height="40" fill="#1a73e8"/>
+    <text x="114" y="448" fill="#ffffff">h</text>
+    <rect x="146" y="422" width="48" height="40" fill="#1a73e8"/>
+    <text x="170" y="448" fill="#ffffff">e</text>
+    <rect x="202" y="422" width="48" height="40" fill="#1a73e8"/>
+    <text x="226" y="448" fill="#ffffff">l</text>
+    <rect x="258" y="422" width="48" height="40" fill="#1a73e8"/>
+    <text x="282" y="448" fill="#ffffff">l</text>
+    <rect x="314" y="422" width="48" height="40" fill="#1a73e8"/>
+    <text x="338" y="448" fill="#ffffff">o</text>
+  </g>
+
+  <!-- 剩余空位 -->
+  <rect x="370" y="422" width="620" height="40" fill="#ffffff" stroke="#d0d7de" stroke-dasharray="5 4"/>
+  <text x="680" y="448" font-size="16" fill="#bdc1c6" text-anchor="middle">剩下的 4091 字节：空的，等对端继续写</text>
+
+  <!-- 返回箭头 -->
+  <line x1="400" y1="480" x2="400" y2="520" stroke="#ef6c00" stroke-width="2"/>
+  <polygon points="400,520 393,508 407,508" fill="#ef6c00"/>
+  <text x="420" y="505" font-size="17" font-weight="600" fill="#ef6c00">返回 5（不是 4096）</text>
+
+  <!-- 底部要点 -->
+  <rect x="60" y="560" width="960" height="52" rx="6" fill="#f5f7fa"/>
+  <text x="540" y="591" font-size="18" fill="#202124" text-anchor="middle">内核「有多少给多少」，不会为了凑齐你请求的字节数而阻塞等待</text>
+
+  <!-- 水印 -->
+  <text x="1052" y="628" font-size="14" fill="#9aa0a6" text-anchor="end">公众号·理解力笔记</text>
+</svg>

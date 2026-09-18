@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 640" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif">
+  <rect x="0" y="0" width="1080" height="640" fill="#ffffff"/>
+
+  <!-- 标题 -->
+  <text x="60" y="64" font-size="30" font-weight="700" fill="#202124">read 的返回值，一共四种结局</text>
+  <text x="60" y="98" font-size="18" fill="#5f6368">拿到返回值先判断是哪种，再决定下一步——别把短读和 EOF 都当成出错</text>
+
+  <!-- 起点 -->
+  <rect x="390" y="140" width="300" height="56" rx="28" fill="#1a73e8"/>
+  <text x="540" y="175" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">read(fd, buf, n) 返回 r</text>
+
+  <!-- 四个分支：每张卡 232 宽，从 x=60 起均匀分布 -->
+  <!-- 卡片中心：176, 418, 660, 902 -->
+  <line x1="460" y1="196" x2="176" y2="270" stroke="#90a4ae" stroke-width="2"/>
+  <line x1="500" y1="196" x2="418" y2="270" stroke="#90a4ae" stroke-width="2"/>
+  <line x1="580" y1="196" x2="660" y2="270" stroke="#90a4ae" stroke-width="2"/>
+  <line x1="620" y1="196" x2="902" y2="270" stroke="#90a4ae" stroke-width="2"/>
+
+  <!-- 卡1：短读 -->
+  <rect x="60" y="270" width="232" height="130" rx="10" fill="#e8f0fe" stroke="#1a73e8" stroke-width="2"/>
+  <text x="176" y="304" font-size="19" font-weight="700" fill="#1a73e8" text-anchor="middle">0 &lt; r &lt; n　短读</text>
+  <text x="176" y="334" font-size="16" fill="#202124" text-anchor="middle">只读到一部分，不是错误</text>
+  <text x="176" y="362" font-size="16" font-weight="600" fill="#1a73e8" text-anchor="middle">→ 继续循环读剩下的</text>
+
+  <!-- 卡2：恰好读完 -->
+  <rect x="302" y="270" width="232" height="130" rx="10" fill="#e6f4ea" stroke="#188038" stroke-width="2"/>
+  <text x="418" y="304" font-size="19" font-weight="700" fill="#188038" text-anchor="middle">r == n　恰好读完</text>
+  <text x="418" y="334" font-size="16" fill="#202124" text-anchor="middle">请求多少读到多少</text>
+  <text x="418" y="362" font-size="16" font-weight="600" fill="#188038" text-anchor="middle">→ 完成，收工</text>
+
+  <!-- 卡3：EOF -->
+  <rect x="544" y="270" width="232" height="130" rx="10" fill="#e6f4ea" stroke="#188038" stroke-width="2"/>
+  <text x="660" y="304" font-size="19" font-weight="700" fill="#188038" text-anchor="middle">r == 0　EOF</text>
+  <text x="660" y="334" font-size="16" fill="#202124" text-anchor="middle">文件到头 / 对端关闭</text>
+  <text x="660" y="362" font-size="16" font-weight="600" fill="#188038" text-anchor="middle">→ 正常结束，不是错误</text>
+
+  <!-- 卡4：出错 -->
+  <rect x="786" y="270" width="232" height="130" rx="10" fill="#fce8e6" stroke="#d93025" stroke-width="2"/>
+  <text x="902" y="304" font-size="19" font-weight="700" fill="#d93025" text-anchor="middle">r == -1　出错</text>
+  <text x="902" y="334" font-size="16" fill="#202124" text-anchor="middle">看 errno 分辨</text>
+  <text x="902" y="362" font-size="16" font-weight="600" fill="#d93025" text-anchor="middle">EINTR 可重试，其余真错</text>
+
+  <!-- 底部说明 -->
+  <rect x="60" y="460" width="960" height="110" rx="10" fill="#f5f7fa" stroke="#90a4ae" stroke-width="1.5"/>
+  <text x="90" y="498" font-size="19" font-weight="700" fill="#202124">最容易搞混的两个：</text>
+  <text x="90" y="532" font-size="17" fill="#202124">· r == 0 是「正常到头」，不是失败 —— 失败只有 r == -1 这一种。</text>
+  <text x="90" y="560" font-size="17" fill="#202124">· 短读（0 &lt; r &lt; n）是「部分完成」，要接着读，不是直接报错退出。</text>
+
+  <!-- 水印 -->
+  <text x="1052" y="628" font-size="14" fill="#9aa0a6" text-anchor="end">公众号·理解力笔记</text>
+</svg>
