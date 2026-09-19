@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="300" viewBox="0 0 900 300">
+  <rect width="900" height="300" fill="#121826" rx="16"/>
+  <style>text{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;fill:#e8eefc} .small{font-size:18px}.title{font-size:22px;font-weight:600}.box{fill:#1d2940;stroke:#6ea8fe;stroke-width:2}.arrow{stroke:#9fb8df;stroke-width:3;fill:none;marker-end:url(#a)}</style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#9fb8df"/></marker></defs>
+  <text x="36" y="42" class="title">lseek 修改的是“打开文件描述”里的偏移量</text>
+  <rect x="45" y="92" width="180" height="120" rx="10" class="box"/><text x="70" y="130" class="title">进程 fd 表</text><text x="70" y="164" class="small">fd 3 ─┐</text><text x="70" y="192" class="small">fd 4 ─┘</text>
+  <rect x="350" y="92" width="240" height="120" rx="10" class="box"/><text x="380" y="130" class="title">打开文件描述</text><text x="380" y="166" class="small">当前偏移：5</text><text x="380" y="194" class="small">状态标志：读写</text>
+  <rect x="700" y="92" width="150" height="120" rx="10" class="box"/><text x="730" y="130" class="title">文件</text><text x="730" y="166" class="small">abc··Z</text><text x="730" y="194" class="small">EOF = 6</text>
+  <path d="M225 132 C275 132 295 132 350 132" class="arrow"/><path d="M225 180 C275 180 295 180 350 180" class="arrow"/><path d="M590 152 L700 152" class="arrow"/>
+  <text x="48" y="260" class="small">dup 后两个 fd 指向同一偏移；再次 open 通常得到独立偏移</text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640">
+<rect width="1000" height="640" rx="16" fill="#121826"/>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;fill:#e8eefc}.h{font-size:24px;font-weight:600}.s{font-size:18px}.box{fill:#1d2940;stroke:#6ea8fe;stroke-width:2}.file{fill:#263752;stroke:#f0a45b;stroke-width:2}.inode{fill:#253b34;stroke:#7bd89c;stroke-width:2}.a{stroke:#f0a45b;stroke-width:3;fill:none;marker-end:url(#m)}.b{stroke:#9fb8df;stroke-width:2;fill:none;marker-end:url(#m2)}</style>
+<defs><marker id="m" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3z" fill="#f0a45b"/></marker><marker id="m2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0 0 L0 6 L9 3z" fill="#9fb8df"/></marker></defs>
+<text x="34" y="38" class="h">Linux 内核对象：fd 如何找到 f_pos 和 inode</text>
+<rect x="42" y="70" width="280" height="120" rx="12" class="box"/><text x="66" y="104" class="h">进程 task_struct</text><text x="66" y="138" class="s">files ──→ files_struct</text><text x="66" y="168" class="s">用户看到：fd = 3、4</text>
+<rect x="42" y="250" width="280" height="150" rx="12" class="box"/><text x="66" y="284" class="h">files_struct</text><text x="66" y="318" class="s">fdtable[3] ───────┐</text><text x="66" y="350" class="s">fdtable[4] ───────┘</text><text x="66" y="382" class="s">dup：两格指向同一 file</text>
+<rect x="410" y="150" width="300" height="190" rx="12" class="file"/><text x="438" y="188" class="h">struct file</text><text x="438" y="224" class="s">f_pos = 5</text><text x="438" y="256" class="s">f_flags = O_RDWR</text><text x="438" y="288" class="s">f_inode ───────────┐</text><text x="438" y="320" class="s">一个打开文件描述</text>
+<rect x="410" y="430" width="300" height="130" rx="12" class="file"/><text x="438" y="468" class="h">另一个 struct file</text><text x="438" y="504" class="s">f_pos = 独立位置</text><text x="438" y="536" class="s">再次 open 通常得到它</text>
+<rect x="790" y="215" width="165" height="150" rx="12" class="inode"/><text x="818" y="255" class="h">inode</text><text x="818" y="290" class="s">同一个文件</text><text x="818" y="322" class="s">元数据 / 数据</text>
+<path d="M182 190 L182 250" class="a"/><path d="M322 318 C360 318 370 245 410 245" class="a"/><path d="M322 350 C365 350 370 275 410 275" class="a"/><path d="M710 288 L790 288" class="a"/><path d="M560 340 L560 430" class="b"/>
+<text x="735" y="188" class="s">f_inode 指向</text><text x="580" y="392" class="s">独立 open</text>
+<text x="42" y="610" class="s">lseek(fd, …) 修改对应 struct file 的 f_pos；不是修改 inode，也不是修改另一个独立 open 的偏移。</text>
+</svg>
