@@ -1,0 +1,7 @@
+{
+  "success": true,
+  "title": "多进程写文件：O_APPEND、pwrite 与 rename",
+  "draft_id": "SJX3d8llAncCa7oc9Z2IAVvFN6dB4Dc8z-w2zm9cp4ZhYBS-lQYbkBW5znLeUHyD",
+  "preview_url": "https://mp.weixin.qq.com/cgi-bin/draft?action=preview&msg_id=SJX3d8llAncCa7oc9Z2IAVvFN6dB4Dc8z-w2zm9cp4ZhYBS-lQYbkBW5znLeUHyD",
+  "edit_url": "https://mp.weixin.qq.com/cgi-bin/draft?action=edit&msg_id=SJX3d8llAncCa7oc9Z2IAVvFN6dB4Dc8z-w2zm9cp4ZhYBS-lQYbkBW5znLeUHyD"
+}
