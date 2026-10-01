@@ -1,0 +1,5 @@
+target via stat: type=regular size=12 inode=65999465
+link via stat: type=regular size=12 inode=65999465
+link via lstat: type=symlink size=21 inode=65999466
+broken link via stat: stat errno=2 (No such file or directory)
+broken link via lstat: type=symlink size=21 inode=65999466

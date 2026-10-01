@@ -1,0 +1,2 @@
+{"job_id": "20261001-122229-e4c960", "status": "running", "op": "generate", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/10-opendir-readdir/img-readdir-buffer.png", "message": "Image API call in progress; may take 1–5+ minutes."}
+{"job_id": "20261001-122229-e4c960", "status": "done", "op": "generate", "name": "img-readdir-buffer", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/10-opendir-readdir/img-readdir-buffer.png"}

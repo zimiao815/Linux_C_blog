@@ -1,0 +1,52 @@
+{
+  "system": "macOS-14.8.8-x86_64-i386-64bit",
+  "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+  "flags": [
+    "-std=c17",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wconversion",
+    "-Wshadow",
+    "-O0",
+    "-g"
+  ],
+  "cases": [
+    {
+      "command": "./list_dir sample",
+      "stdout": ".hidden\nsubdir\nlink\na.txt\n",
+      "stderr": "",
+      "exit_status": 0
+    },
+    {
+      "command": "./list_dir empty",
+      "stdout": "",
+      "stderr": "",
+      "exit_status": 0
+    },
+    {
+      "command": "./list_dir missing",
+      "stdout": "",
+      "stderr": "opendir missing: No such file or directory\n",
+      "exit_status": 1
+    },
+    {
+      "command": "./list_dir sample/a.txt",
+      "stdout": "",
+      "stderr": "opendir sample/a.txt: Not a directory\n",
+      "exit_status": 1
+    },
+    {
+      "command": "./list_dir_fault sample",
+      "stdout": ".hidden\n",
+      "stderr": "readdir sample: Input/output error\n",
+      "exit_status": 1
+    },
+    {
+      "command": "READDIR_TEST_MODE=stale ./list_dir_fault sample",
+      "stdout": ".hidden\nsubdir\nlink\na.txt\n",
+      "stderr": "",
+      "exit_status": 0
+    }
+  ]
+}

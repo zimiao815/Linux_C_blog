@@ -1,0 +1,519 @@
+readdir
+<<<
+Previous
+Home
+Next
+>>>
+The Open Group Base Specifications Issue 8
+IEEE Std 1003.1-2024
+Copyright © 2001-2024 The IEEE and The Open Group
+NAME
+readdir, readdir_r — read a directory
+SYNOPSIS
+#include <
+dirent.h
+>
+struct dirent *readdir(DIR *
+dirp
+);
+[
+OB
+]
+int readdir_r(DIR *restrict
+dirp
+, struct dirent *restrict
+entry
+,
+struct dirent **restrict
+result
+);
+DESCRIPTION
+The type
+DIR
+, which is defined in the
+<dirent.h>
+header, represents
+a
+directory stream
+, which is an ordered sequence of all the directory entries in a particular directory. Directory entries
+represent files; files may be removed from a directory or added to a directory asynchronously to the operation of
+readdir
+().
+The
+readdir
+() function shall return a pointer to a structure representing the directory entry at the current position in
+the directory stream specified by the argument
+dirp
+, and position the directory stream at the next entry. It shall return a
+null pointer upon reaching the end of the directory stream. The structure
+dirent
+defined in the
+<dirent.h>
+header describes a directory entry. The value of the structure's
+d_ino
+member shall be set to the file serial number of the file named by the
+d_name
+member. If the
+d_name
+member names a symbolic link, the value of the
+d_ino
+member shall be set to the file serial number of the symbolic link
+itself. The
+d_name
+member shall be a filename string, and (if not dot or dot-dot) shall contain the same byte sequence as
+the last pathname component of the string used to create the directory entry, plus the terminating <NUL> byte.
+The
+readdir
+() function shall not return directory entries containing empty names. If entries for dot or dot-dot exist,
+one entry shall be returned for dot and one entry shall be returned for dot-dot; otherwise, they shall not be returned.
+The application shall not modify the structure to which the return value of
+readdir
+() points, nor any storage areas
+pointed to by pointers within the structure. The returned pointer, and pointers within the structure, might be invalidated or the
+structure or the storage areas might be overwritten by a subsequent call to
+readdir
+() on the same directory stream. They
+shall not be affected by a call to
+readdir
+() on a different directory stream. The returned pointer, and pointers within the
+structure, might also be invalidated if the calling thread is terminated.
+If a file is removed from or added to the directory after the most recent call to
+opendir
+()
+or
+rewinddir
+()
+, whether a
+subsequent call to
+readdir
+() returns an entry for that file is unspecified.
+The
+readdir
+() function may buffer several directory entries per actual read operation;
+readdir
+() shall mark for
+update the last data access timestamp of the directory each time the directory is actually read.
+After a call to
+fork
+()
+, either the parent or child (but not both) may continue
+processing the directory stream using
+readdir
+(),
+rewinddir
+()
+,
+[
+XSI
+]
+or
+seekdir
+()
+.
+If both the parent and child processes use these functions, the result is undefined.
+The
+readdir
+() function need not be thread-safe if concurrent calls are made for the same directory stream.
+Applications wishing to check for error situations should set
+errno
+to 0 before calling
+readdir
+(). If
+errno
+is set to non-zero on return, an error occurred.
+[
+OB
+]
+The
+readdir_r
+() function shall initialize the
+dirent
+structure referenced by
+entry
+to represent the directory
+entry at the current position in the directory stream referred to by
+dirp
+, store a pointer to this structure at the location
+referenced by
+result
+, and position the directory stream at the next entry.
+The storage pointed to by
+entry
+shall be large enough for a
+dirent
+with an array of
+char
+d_name
+members containing at least {NAME_MAX}+1 elements.
+Upon successful return, the pointer returned at *
+result
+shall have the same value as the argument
+entry
+. Upon
+reaching the end of the directory stream, this pointer shall have the value NULL.
+The
+readdir_r
+() function shall not return directory entries containing empty names.
+If a file is removed from or added to the directory after the most recent call to
+opendir
+()
+or
+rewinddir
+()
+, whether a
+subsequent call to
+readdir_r
+() returns an entry for that file is unspecified.
+The
+readdir_r
+() function may buffer several directory entries per actual read operation;
+readdir_r
+() shall mark
+for update the last data access timestamp of the directory each time the directory is actually read.
+RETURN VALUE
+Upon successful completion,
+readdir
+() shall return a pointer to an object of type
+struct dirent
+. When an error is
+encountered, a null pointer shall be returned and
+errno
+shall be set to indicate the error. When the end of the directory is
+encountered, a null pointer shall be returned and
+errno
+is not changed.
+[
+OB
+]
+If
+successful, the
+readdir_r
+() function shall return zero; otherwise, an error number shall be returned to indicate the error.
+ERRORS
+The
+readdir
+()
+[
+OB
+]
+and
+readdir_r
+()
+functions shall fail if:
+[EOVERFLOW]
+One of the values in the structure to be returned cannot be represented correctly.
+[ENOMEM]
+Insufficient memory is available.
+The
+readdir
+()
+[
+OB
+]
+and
+readdir_r
+()
+functions may fail if:
+[EBADF]
+The
+dirp
+argument does not refer to an open directory stream.
+[ENOENT]
+The current position of the directory stream is invalid.
+The following sections are informative.
+EXAMPLES
+The following sample program searches the current directory for each of the arguments supplied on the command line.
+#include <dirent.h>
+#include <errno.h>
+#include <stdio.h>
+#include <string.h>
+static void lookup(const char *arg)
+{
+    DIR *dirp;
+    struct dirent *dp;
+if ((dirp = opendir(".")) == NULL) {
+        perror("couldn't open '.'");
+        return;
+    }
+do {
+        errno = 0;
+        if ((dp = readdir(dirp)) != NULL) {
+            if (strcmp(dp->d_name, arg) != 0)
+                continue;
+(void) printf("found %s\n", arg);
+            (void) closedir(dirp);
+                return;
+}
+    } while (dp != NULL);
+if (errno != 0)
+        perror("error reading directory");
+    else
+        (void) printf("failed to find %s\n", arg);
+    (void) closedir(dirp);
+    return;
+}
+int main(int argc, char *argv[])
+{
+    int i;
+    for (i = 1; i < argc; i++)
+        lookup(argv[i]);
+    return (0);
+}
+APPLICATION USAGE
+The
+readdir
+() function should be used in conjunction with
+opendir
+()
+,
+closedir
+()
+, and
+rewinddir
+()
+to
+examine the contents of the directory.
+The
+readdir_r
+() function returns values in a user-supplied buffer, but does not allow the size of the buffer to be
+specified by the caller. If {NAME_MAX} is indeterminate, there is no way for an application to know how large the buffer needs to
+be and
+readdir_r
+() cannot safely be used.
+RATIONALE
+The returned value of
+readdir
+() merely
+represents
+a directory entry. No equivalence should be inferred.
+Historical implementations of
+readdir
+() obtain multiple directory entries on a single read operation, which permits
+subsequent
+readdir
+() operations to operate from the buffered information. Any wording that required each successful
+readdir
+() operation to mark the directory last data access timestamp for update would disallow such historical
+performance-oriented implementations.
+When returning a directory entry for the root of a mounted file system, some historical implementations of
+readdir
+()
+returned the file serial number of the underlying mount point, rather than of the root of the mounted file system. This behavior is
+considered to be a bug, since the underlying file serial number has no significance to applications.
+Since
+readdir
+() returns NULL when it detects an error and when the end of the directory is encountered, an application
+that needs to tell the difference must set
+errno
+to zero before the call and check it if NULL is returned. Since the
+function must not change
+errno
+in the second case and must set it to a non-zero value in the first case, a zero
+errno
+after a call returning NULL indicates end-of-directory; otherwise, an error.
+Routines to deal with this problem more directly were proposed:
+int derror (
+dirp
+)
+DIR *
+dirp
+;
+void clearderr (
+dirp
+)
+DIR *
+dirp
+;
+The first would indicate whether an error had occurred, and the second would clear the error indication. The simpler method
+involving
+errno
+was adopted instead by requiring that
+readdir
+() not change
+errno
+when end-of-directory is
+encountered.
+An error or signal indicating that a directory has changed while open was considered but rejected.
+Historically,
+readdir
+() returned a pointer to an internal static buffer that was overwritten by each call. The
+readdir_r
+() function was added as a thread-safe alternative that returns values in a user-supplied buffer. However, it does
+not allow the size of the buffer to be specified by the caller, and so is only usable if {NAME_MAX} is a compile-time constant or
+fpathconf
+()
+with _SC_NAME_MAX returns a value other than -1. If {NAME_MAX} is
+indeterminate (indicated by
+fpathconf
+()
+returning -1), there is no way to reliably
+allocate a buffer large enough to hold a filename being returned by
+readdir_r
+(). Therefore,
+readdir_r
+() has been
+marked obsolescent and
+readdir
+() is now required to be thread safe as long as there are no concurrent calls to it on a
+single directory stream.
+Conforming file systems are required to store filenames unaltered from how they were created (via
+open
+()
+,
+link
+()
+,
+mkdir
+()
+,
+mkfifo
+()
+,
+rename
+()
+, etc.). By definition, a filename string does not include a <slash>, even if a
+trailing <slash> was present in the pathname presented to
+mkdir
+()
+when creating
+a sub-directory.
+However, there are non-conforming file systems where filenames are converted to a canonical representation before a directory
+entry is created, such that it is possible to create a file using one string, then perform
+opendir
+()
+and a
+readdir
+() loop and not encounter the same string, because
+readdir
+() returns the canonical form of the string instead. Such non-conforming file systems also have the issue that
+multiple filenames can resolve to the same directory entry, with potentially confusing results. This standard cannot mandate the
+behavior of non-conforming file systems, and strictly conforming applications need not worry about dealing with such file systems,
+but it is a concern for developers of portable applications. Therefore, this standard recommends that file system implementations
+that perform canonicalization of filenames should reject attempts to create a directory entry with a non-canonical filename using
+the [EILSEQ] error. However, if a directory entry already exists, it is reasonable for a file system to permit accessing that file
+via a non-canonical filename.
+FUTURE DIRECTIONS
+The
+readdir_r
+() function may be removed in a future version.
+SEE ALSO
+closedir
+()
+,
+dirfd
+()
+,
+exec
+,
+fdopendir
+()
+,
+fstatat
+()
+,
+posix_getdents
+()
+,
+rewinddir
+()
+,
+symlink
+()
+XBD
+<dirent.h>
+,
+<sys/types.h>
+CHANGE HISTORY
+First released in Issue 2.
+Issue 5
+Large File Summit extensions are added.
+The
+readdir_r
+() function is included for alignment with the POSIX Threads Extension.
+A note indicating that the
+readdir
+() function need not be reentrant is added to the DESCRIPTION.
+Issue 6
+The
+readdir_r
+() function is marked as part of the Thread-Safe Functions option.
+The Open Group Corrigendum U026/7 is applied, correcting the prototype for
+readdir_r
+().
+The Open Group Corrigendum U026/8 is applied, clarifying the wording of the successful return for the
+readdir_r
+()
+function.
+The following new requirements on POSIX implementations derive from alignment with the Single UNIX Specification:
+The requirement to include
+<sys/types.h>
+has been removed. Although
+<sys/types.h>
+was required for conforming implementations of previous POSIX
+specifications, it was not required for UNIX applications.
+A statement is added to the DESCRIPTION indicating the disposition of certain fields in
+struct dirent
+when an entry
+refers to a symbolic link.
+The [EOVERFLOW] mandatory error condition is added. This change is to support large files.
+The [ENOENT] optional error condition is added.
+The APPLICATION USAGE section is updated to include a note on the thread-safe function and its avoidance of possibly using a
+static data area.
+The
+restrict
+keyword is added to the
+readdir_r
+() prototype for alignment with the ISO/IEC 9899:1999
+standard.
+IEEE Std 1003.1-2001/Cor 1-2002, item XSH/TC1/D6/50 is applied, replacing the EXAMPLES section with a new
+example.
+Issue 7
+Austin Group Interpretation 1003.1-2001 #059 is applied, updating the ERRORS section.
+Austin Group Interpretation 1003.1-2001 #156 is applied.
+The
+readdir_r
+() function is moved from the Thread-Safe Functions option to the Base.
+Changes are made related to support for finegrained timestamps.
+The value of the
+d_ino
+member is no longer unspecified for symbolic links.
+SD5-XSH-ERN-193 is applied.
+POSIX.1-2008, Technical Corrigendum 1, XSH/TC1-2008/0486 [75] is applied.
+POSIX.1-2008, Technical Corrigendum 2, XSH/TC2-2008/0304 [656] is applied.
+Issue 8
+Austin Group Defect 293 is applied, adding a requirement that
+d_name
+contains the same byte sequence as the last pathname
+component of the string used to create the directory entry.
+Austin Group Defects 696 and 1664 are applied, making
+readdir_r
+() obsolescent, requiring
+readdir
+() to be
+thread-safe except when concurrent calls are made for the same directory stream, and adding the [ENOMEM] error.
+Austin Group Defect 697 is applied, adding
+posix_getdents
+()
+to the SEE
+ALSO section.
+End of informative text.
+return to top of page
+UNIX® is a registered Trademark of The Open Group.
+POSIX™ is a Trademark of The IEEE.
+Copyright © 2001-2024 The IEEE and The Open Group, All Rights Reserved
+[
+Main Index
+|
+XBD
+|
+XSH
+|
+XCU
+|
+XRAT
+]
+<<<
+Previous
+Home
+Next
+>>>

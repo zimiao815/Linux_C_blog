@@ -1,0 +1,15 @@
+{
+  "readdir-man": "https://man7.org/linux/man-pages/man3/readdir.3.html",
+  "opendir-man": "https://man7.org/linux/man-pages/man3/opendir.3.html",
+  "closedir-man": "https://man7.org/linux/man-pages/man3/closedir.3.html",
+  "posix-readdir": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/readdir.html",
+  "glibc-readdir64": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/sysdeps/unix/sysv/linux/readdir64.c",
+  "glibc-dirstream": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/sysdeps/unix/sysv/linux/dirstream.h",
+  "glibc-opendir": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/sysdeps/unix/sysv/linux/opendir.c",
+  "kernel-readdir": "https://raw.githubusercontent.com/torvalds/linux/v6.6/fs/readdir.c",
+  "kernel-fs-h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fs.h",
+  "kernel-path-h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/path.h",
+  "kernel-dcache-h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/dcache.h",
+  "kernel-fdtable-h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fdtable.h",
+  "glibc-closedir": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/sysdeps/unix/sysv/linux/closedir.c"
+}

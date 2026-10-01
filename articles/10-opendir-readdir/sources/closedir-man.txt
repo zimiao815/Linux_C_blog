@@ -1,0 +1,177 @@
+closedir(3) - Linux manual page
+man7.org
+> Linux >
+man-pages
+Linux/UNIX system programming training
+closedir(3) — Linux manual page
+NAME
+|
+LIBRARY
+|
+SYNOPSIS
+|
+DESCRIPTION
+|
+RETURN VALUE
+|
+ERRORS
+|
+ATTRIBUTES
+|
+STANDARDS
+|
+HISTORY
+|
+SEE ALSO
+|
+COLOPHON
+closedir
+(3)              Library Functions Manual
+closedir
+(3)
+NAME
+top
+closedir - close a directory
+LIBRARY
+top
+Standard C library (
+libc
+,
+-lc
+)
+SYNOPSIS
+top
+#include <sys/types.h>
+#include <dirent.h>
+int closedir(DIR *
+dirp
+);
+DESCRIPTION
+top
+The
+closedir
+() function closes the directory stream associated
+       with
+dirp
+.  A successful call to
+closedir
+() also closes the
+       underlying file descriptor associated with
+dirp
+.  The directory
+       stream descriptor
+dirp
+is not available after this call.
+RETURN VALUE
+top
+The
+closedir
+() function returns 0 on success.  On error, -1 is
+       returned, and
+errno
+is set to indicate the error.
+ERRORS
+top
+EBADF
+Invalid directory stream descriptor
+dirp
+.
+ATTRIBUTES
+top
+For an explanation of the terms used in this section, see
+attributes(7)
+.
+       ââââââââââââââââââââââââââââââââââââââââ¬ââââââââââââââââ¬ââââââââââ
+       â
+Interface
+â
+Attribute
+â
+Value
+â
+       ââââââââââââââââââââââââââââââââââââââââ¼ââââââââââââââââ¼ââââââââââ¤
+       â
+closedir
+()                           â Thread safety â MT-Safe â
+       ââââââââââââââââââââââââââââââââââââââââ´ââââââââââââââââ´ââââââââââ
+STANDARDS
+top
+POSIX.1-2008.
+HISTORY
+top
+POSIX.1-2001, SVr4, 4.3BSD.
+SEE ALSO
+top
+close(2)
+,
+opendir(3)
+,
+readdir(3)
+,
+rewinddir(3)
+,
+scandir(3)
+,
+seekdir(3)
+,
+telldir(3)
+COLOPHON
+top
+This page is part of the
+man-pages
+(Linux kernel and C library
+       user-space interface documentation) project.  Information about
+       the project can be found at 
+       â¨
+https://www.kernel.org/doc/man-pages/
+â©.  If you have a bug report
+       for this manual page, see
+       â¨
+https://git.kernel.org/pub/scm/docs/man-pages/man-pages.git/tree/CONTRIBUTING
+â©.
+       This page was obtained from the tarball man-pages-6.19.tar.gz
+       fetched from
+       â¨
+https://mirrors.edge.kernel.org/pub/linux/docs/man-pages/
+â© on
+       2026-09-09.  If you discover any rendering problems in this HTML
+       version of the page, or you believe there is a better or more up-
+       to-date source for the page, or you have corrections or
+       improvements to the information in this COLOPHON (which is
+not
+part of the original manual page), send a mail to
+       man-pages@man7.org
+Linux man-pages 6.19            2026-02-08
+closedir
+(3)
+Pages that refer to this page:
+fanotify_mark(2)
+,
+dirfd(3)
+,
+opendir(3)
+,
+readdir(3)
+,
+rewinddir(3)
+,
+scandir(3)
+,
+seekdir(3)
+,
+telldir(3)
+HTML rendering created 2026-09-09
+            by
+Michael Kerrisk
+,
+            author of
+The Linux Programming Interface
+.
+For details of in-depth
+Linux/UNIX system programming training courses
+that I teach, look
+here
+.
+Hosting by
+jambit GmbH
+.
