@@ -1,0 +1,47 @@
+[compile-mkdir_once] exit=0
+stdout:
+stderr:
+
+[compile-mkdir_p] exit=0
+stdout:
+stderr:
+
+[single-missing-parent] exit=1
+stdout:
+stderr:
+mkdir one/two: No such file or directory
+
+[recursive-create] exit=0
+stdout:
+ok: one/two/three
+stderr:
+
+[recursive-repeat] exit=0
+stdout:
+ok: one/two/three
+stderr:
+
+[component-is-file] exit=1
+stdout:
+stderr:
+one/file/child: Not a directory
+
+[empty-path] exit=1
+stdout:
+stderr:
+: Invalid argument
+
+[absolute-path] exit=0
+stdout:
+ok: /var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/mkdir-verify-t44u_tuv/absolute/a/b
+stderr:
+
+[trailing-slash] exit=0
+stdout:
+ok: one/two/three/
+stderr:
+
+[usage] exit=1
+stdout:
+stderr:
+usage: ./mkdir_p DIRECTORY

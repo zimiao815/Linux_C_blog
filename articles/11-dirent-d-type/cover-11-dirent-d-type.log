@@ -1,0 +1,2 @@
+{"job_id": "20261002-021823-67e4e4", "status": "running", "op": "generate", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/11-dirent-d-type/cover-11-dirent-d-type.png", "message": "Image API call in progress; may take 1–5+ minutes."}
+{"job_id": "20261002-021823-67e4e4", "status": "done", "op": "generate", "name": "cover-11-dirent-d-type", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/11-dirent-d-type/cover-11-dirent-d-type.png"}

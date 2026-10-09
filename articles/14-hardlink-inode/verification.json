@@ -1,0 +1,76 @@
+{
+  "environment": "macOS-14.8.8-x86_64-i386-64bit",
+  "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+  "flags": [
+    "-std=c17",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wconversion",
+    "-Wshadow",
+    "-O0",
+    "-g"
+  ],
+  "records": [
+    {
+      "label": "compile-hardlink_demo",
+      "command": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g",
+        "hardlink_demo.c",
+        "-o",
+        "hardlink_demo"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "compile-link_errors",
+      "command": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g",
+        "link_errors.c",
+        "-o",
+        "link_errors"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "demo",
+      "command": [
+        "./hardlink_demo"
+      ],
+      "returncode": 0,
+      "stdout": "original: dev=16777222 ino=66399823 nlink=2 size=22\nsecond: dev=16777222 ino=66399823 nlink=2 size=22\nafter unlink original: second: dev=16777222 ino=66399823 nlink=1 size=22\ncontent: same inode, two names\n",
+      "stderr": ""
+    },
+    {
+      "label": "errors",
+      "command": [
+        "./link_errors"
+      ],
+      "returncode": 0,
+      "stdout": "existing destination: File exists\ndirectory source: Operation not permitted\n",
+      "stderr": ""
+    }
+  ],
+  "all_passed": true,
+  "limitations": "macOS host; Linux source review; no cross-filesystem or concurrent race run."
+}

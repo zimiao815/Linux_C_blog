@@ -1,0 +1,11 @@
+{
+  "posix-link.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/link.html",
+  "posix-stat.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/stat.html",
+  "linux-link.html": "https://man7.org/linux/man-pages/man2/link.2.html",
+  "linux-stat.html": "https://man7.org/linux/man-pages/man2/stat.2.html",
+  "linux-unlink.html": "https://man7.org/linux/man-pages/man2/unlink.2.html",
+  "linux-inode.html": "https://man7.org/linux/man-pages/man7/inode.7.html",
+  "kernel-namei.c": "https://raw.githubusercontent.com/torvalds/linux/v6.6/fs/namei.c",
+  "kernel-fs.h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fs.h",
+  "kernel-ext4-namei.c": "https://raw.githubusercontent.com/torvalds/linux/v6.6/fs/ext4/namei.c"
+}

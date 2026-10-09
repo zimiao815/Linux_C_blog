@@ -1,0 +1,19 @@
+from pathlib import Path
+import json, subprocess, concurrent.futures
+art=Path(__file__).resolve().parent
+style='为中文 Linux C 教程生成准确、清晰的技术示意图。白色或极浅灰背景，深蓝字，青色和橙色辅助，大字，移动端可读。只画指定关系，不添加无关箭头。所有文字由 AI 直接生成。右下角水印“公众号·理解力笔记”。'
+jobs=[
+('cover-11-dirent-d-type', '生成横向封面，宽高比900:383。主体居中：一个目录卡片中有文件、文件夹、符号链接三个简洁图标，旁边每行一个类型标签色块；其中一行标签为问号，该行沿一条清晰曲线通向元数据卡片，卡片里该行类型被补全，以表达目录条目缺少类型时单独查询。克制的蓝青色科技教学风格，无人物无装饰电路。文字只能有左下“文件与目录·第4期”和右下“公众号·理解力笔记”，不写文章标题或技术单词。'),
+('img-dtype-objects',style+'''横向4:3，标题“先分清：目录流、打开的目录、目录里的文件”。这是对象关系图，不是执行流程。上方用户态：应用变量“DIR *dir”箭头指向“glibc 目录流”框，框内两行“fd = 3”和“目录记录缓冲区”。缓冲区里画一条记录“d_name = note.txt | d_type”。下方内核态，清晰水平分界线。内核从左至右：框“files_struct”里字段“fdt”，箭头指向框“fdtable”内槽位“fd[3]”；槽位箭头指向框“struct file（打开的目录）”，框内“f_pos：遍历位置”和“f_inode”；f_inode箭头指向“inode（目录自身）”。用户态 fd=3 向 fdtable 的 fd[3] 画虚线，标“编号索引”。右下另放“note.txt 的 inode”框，与目录自身 inode 完全分开，二者不连指针。底部说明“d_type 描述 note.txt，不描述打开的目录”。不要从 d_type 画指针到 inode；不要把用户态指针画成内核指针。'''),
+('img-dtype-read',style+'''纵向4:5，标题“d_type 随目录记录一起返回”。四个水平层级，从上到下“应用”“glibc（用户态）”“系统调用边界”“Linux 内核”。画两条明确分开的有向线路：左侧向下为请求，右侧向上为结果，蓝色请求、橙色返回。
+左侧请求从应用“readdir(dir)”向下到 glibc“检查 DIR 缓冲区”；向下箭头标“缓冲区用完时”，越过边界到“getdents64(fd, buffer, size)”再向下到“iterate_dir → 文件系统遍历”。底部文件系统输出盒“名字 + inode 编号 + 类型（可为 DT_UNKNOWN）”。右侧返回从底部输出盒向上到内核“filldir64：写入用户缓冲区”，继续向上到glibc“DIR 缓冲区：一批目录记录”，继续向上到应用“struct dirent *：取出一条记录”。另在glibc层用一条短箭头从“检查 DIR 缓冲区”指向“取出一条记录”旁的说明“还有记录：直接返回”。底部备注“不会因 DT_UNKNOWN 自动调用 stat”。不要画每次 readdir 必然系统调用；不要画内核填用户缓冲后还要拷贝一次。'''),
+('img-dtype-fallback',style+'''纵向4:5，标题“类型未知：再查这一个名字”。使用分层流程，主要向下箭头，无交叉。应用层顶端“读取 entry->d_type”，分两路：左“已知类型”到“直接分类”；右“DT_UNKNOWN / 未处理值”向下到“fstatat(base, name, &st, AT_SYMLINK_NOFOLLOW)”。右路下方用户态库“glibc 包装函数”，再越过用户态内核态边界到“newfstatat（x86-64 示例）”。继续向下到内核“以目录 fd 为起点，查找 name”；再到“读取该名字对应对象的属性”，旁注“最后一段为符号链接：取链接自身”。底部结果向右再向上返回应用层一块独立结果框“成功：st.st_mode → S_ISREG / S_ISDIR / S_ISLNK”；另分支“失败：-1 与 errno → 报错，不猜类型”。图底说明“base = dirfd(dir)；name = entry->d_name”。布局留白充分，所有箭头端点明确；不画符号链接指向目标作为本次查询对象。''')]
+(art/'image-prompts.json').write_text(json.dumps([{'name':n,'prompt':p,'output':n+'.png'} for n,p in jobs],ensure_ascii=False,indent=2))
+def run(job):
+ n,p=job
+ cmd=['python3','/Users/zhaodan/.codex/skills/gpt-imagegen/scripts/image_api.py','generate','--json','--name',n,'--output',str(art/(n+'.png')),'--prompt',p]
+ with (art/(n+'.log')).open('w') as out:
+  r=subprocess.run(cmd,cwd=art.parents[2]/'linux_c_blog_workflow',stdout=out,stderr=subprocess.STDOUT)
+ return n,r.returncode
+with concurrent.futures.ThreadPoolExecutor(max_workers=4) as ex:
+ for result in ex.map(run,jobs):print(result,flush=True)

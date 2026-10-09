@@ -1,0 +1,184 @@
+{
+  "environment": "macOS-14.8.8-x86_64-i386-64bit",
+  "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+  "flags": [
+    "-std=c17",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wconversion",
+    "-Wshadow",
+    "-O0",
+    "-g"
+  ],
+  "records": [
+    {
+      "label": "compile",
+      "command": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g",
+        "entry_types.c",
+        "-o",
+        "entry_types"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "normal",
+      "command": [
+        "./entry_types",
+        "demo"
+      ],
+      "returncode": 0,
+      "stdout": "pipe  fifo  via=d_type\ndangling  symlink  via=d_type\nnote.txt  file  via=d_type\nsub  directory  via=d_type\nlink  symlink  via=d_type\nsock  socket  via=d_type\n",
+      "stderr": ""
+    },
+    {
+      "label": "forced-unknown",
+      "command": [
+        "./entry_types",
+        "demo",
+        "--unknown"
+      ],
+      "returncode": 0,
+      "stdout": "pipe  fifo  via=fstatat\ndangling  symlink  via=fstatat\nnote.txt  file  via=fstatat\nsub  directory  via=fstatat\nlink  symlink  via=fstatat\nsock  socket  via=fstatat\n",
+      "stderr": ""
+    },
+    {
+      "label": "empty",
+      "command": [
+        "./entry_types",
+        "empty"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "missing-dir",
+      "command": [
+        "./entry_types",
+        "missing"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "opendir: No such file or directory\n"
+    },
+    {
+      "label": "not-directory",
+      "command": [
+        "./entry_types",
+        "demo/note.txt"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "opendir: Not a directory\n"
+    },
+    {
+      "label": "usage",
+      "command": [
+        "./entry_types"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "usage: ./entry_types DIRECTORY [--unknown]\n"
+    },
+    {
+      "label": "compile-injection",
+      "command": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g",
+        "injected.c",
+        "-o",
+        "injected"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "eintr",
+      "command": [
+        "./injected",
+        "demo",
+        "--unknown"
+      ],
+      "returncode": 0,
+      "stdout": "pipe  fifo  via=fstatat\ndangling  symlink  via=fstatat\nnote.txt  file  via=fstatat\nsub  directory  via=fstatat\nlink  symlink  via=fstatat\nsock  socket  via=fstatat\n",
+      "stderr": "TEST: directory closed\n"
+    },
+    {
+      "label": "eacces",
+      "command": [
+        "./injected",
+        "demo",
+        "--unknown"
+      ],
+      "returncode": 1,
+      "stdout": "pipe  fifo  via=fstatat\ndangling  symlink  via=fstatat\nsub  directory  via=fstatat\nlink  symlink  via=fstatat\nsock  socket  via=fstatat\n",
+      "stderr": "note.txt: Permission denied\nTEST: directory closed\n"
+    },
+    {
+      "label": "read-error",
+      "command": [
+        "./injected",
+        "demo",
+        "--unknown"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "readdir: Input/output error\nTEST: directory closed\n"
+    },
+    {
+      "label": "fd-error",
+      "command": [
+        "./injected",
+        "demo",
+        "--unknown"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "dirfd: Bad file descriptor\nTEST: directory closed\n"
+    },
+    {
+      "label": "close-error",
+      "command": [
+        "./injected",
+        "demo",
+        "--unknown"
+      ],
+      "returncode": 1,
+      "stdout": "pipe  fifo  via=fstatat\ndangling  symlink  via=fstatat\nnote.txt  file  via=fstatat\nsub  directory  via=fstatat\nlink  symlink  via=fstatat\nsock  socket  via=fstatat\n",
+      "stderr": "TEST: directory closed\nclosedir: Input/output error\n"
+    },
+    {
+      "label": "removed",
+      "command": [
+        "./injected",
+        "demo",
+        "--unknown"
+      ],
+      "returncode": 1,
+      "stdout": "pipe  fifo  via=fstatat\ndangling  symlink  via=fstatat\nsub  directory  via=fstatat\nlink  symlink  via=fstatat\nsock  socket  via=fstatat\n",
+      "stderr": "note.txt: No such file or directory\nTEST: directory closed\n"
+    }
+  ],
+  "all_passed": true,
+  "limitations": "macOS host; Linux source review only. --unknown and injected failures are controlled tests, not observed filesystem behavior."
+}

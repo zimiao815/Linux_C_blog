@@ -1,0 +1,15 @@
+{
+  "readdir-man": "https://man7.org/linux/man-pages/man3/readdir.3.html",
+  "stat-man": "https://man7.org/linux/man-pages/man2/stat.2.html",
+  "posix-dirent": "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/dirent.h.html",
+  "posix-fstatat": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fstatat.html",
+  "kernel-readdir": "https://raw.githubusercontent.com/torvalds/linux/v6.6/fs/readdir.c",
+  "kernel-ext4-dir": "https://raw.githubusercontent.com/torvalds/linux/v6.6/fs/ext4/dir.c",
+  "kernel-ext4-h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/fs/ext4/ext4.h",
+  "kernel-stat": "https://raw.githubusercontent.com/torvalds/linux/v6.6/fs/stat.c",
+  "glibc-fstatat": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/sysdeps/unix/sysv/linux/fstatat64.c",
+  "glibc-readdir64": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/sysdeps/unix/sysv/linux/readdir64.c",
+  "glibc-dirstream": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/sysdeps/unix/sysv/linux/dirstream.h",
+  "kernel-fdtable-h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fdtable.h",
+  "kernel-fs-h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fs.h"
+}

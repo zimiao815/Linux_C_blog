@@ -1,0 +1,2 @@
+{"job_id": "20261003-152328-c18741", "status": "running", "op": "generate", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/12-mkdir-multilevel/img-mkdir-race.png", "message": "Image API call in progress; may take 1–5+ minutes."}
+{"job_id": "20261003-152328-c18741", "status": "done", "op": "generate", "name": "img-mkdir-race", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/12-mkdir-multilevel/img-mkdir-race.png"}

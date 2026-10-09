@@ -1,0 +1,93 @@
+[compile-delete_entry] exit=0
+stdout:
+stderr:
+
+[compile-unlink_open] exit=0
+stdout:
+stderr:
+
+[unlink-directory] exit=1
+stdout:
+stderr:
+unlink empty: Operation not permitted
+
+[rmdir-nonempty] exit=1
+stdout:
+stderr:
+rmdir full: Directory not empty
+
+[rmdir-link] exit=1
+stdout:
+stderr:
+rmdir dir-link: Not a directory
+
+[unlink-link] exit=0
+stdout:
+unlink dir-link: ok
+stderr:
+
+[unlink-open] exit=0
+stdout:
+after unlink: nlink=0
+hello after unlink
+stderr:
+
+[rmdir-empty] exit=0
+stdout:
+rmdir empty: ok
+stderr:
+
+[unlink-child] exit=0
+stdout:
+unlink full/child: ok
+stderr:
+
+[rmdir-now-empty] exit=0
+stdout:
+rmdir full: ok
+stderr:
+
+[unlink-missing] exit=1
+stdout:
+stderr:
+unlink missing: No such file or directory
+
+[rmdir-file] exit=1
+stdout:
+stderr:
+rmdir file: Not a directory
+
+[unlink-dangling] exit=0
+stdout:
+unlink dangling: ok
+stderr:
+
+[hidden-child] exit=1
+stdout:
+stderr:
+rmdir hidden-dir: Directory not empty
+
+[usage] exit=1
+stdout:
+stderr:
+usage: ./delete_entry unlink|rmdir PATH
+
+[open-missing] exit=1
+stdout:
+stderr:
+open: No such file or directory
+
+[unlink-open-directory] exit=1
+stdout:
+stderr:
+unlink: Operation not permitted
+
+[unlink-readonly-file] exit=0
+stdout:
+unlink readonly-file: ok
+stderr:
+
+[parent-no-write] exit=1
+stdout:
+stderr:
+unlink locked/child: Permission denied

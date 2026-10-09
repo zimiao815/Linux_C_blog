@@ -1,0 +1,21 @@
+[compile-hardlink_demo] exit=0
+stdout:
+stderr:
+
+[compile-link_errors] exit=0
+stdout:
+stderr:
+
+[demo] exit=0
+stdout:
+original: dev=16777222 ino=66399823 nlink=2 size=22
+second: dev=16777222 ino=66399823 nlink=2 size=22
+after unlink original: second: dev=16777222 ino=66399823 nlink=1 size=22
+content: same inode, two names
+stderr:
+
+[errors] exit=0
+stdout:
+existing destination: File exists
+directory source: Operation not permitted
+stderr:

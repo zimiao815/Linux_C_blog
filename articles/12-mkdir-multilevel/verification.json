@@ -1,0 +1,137 @@
+{
+  "environment": "macOS-14.8.8-x86_64-i386-64bit-Mach-O",
+  "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+  "flags": [
+    "-std=c17",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wconversion",
+    "-Wshadow",
+    "-O0",
+    "-g"
+  ],
+  "records": [
+    {
+      "label": "compile-mkdir_once",
+      "command": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g",
+        "mkdir_once.c",
+        "-o",
+        "mkdir_once"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "compile-mkdir_p",
+      "command": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g",
+        "mkdir_p.c",
+        "-o",
+        "mkdir_p"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "single-missing-parent",
+      "command": [
+        "./mkdir_once",
+        "one/two"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "mkdir one/two: No such file or directory\n"
+    },
+    {
+      "label": "recursive-create",
+      "command": [
+        "./mkdir_p",
+        "one/two/three"
+      ],
+      "returncode": 0,
+      "stdout": "ok: one/two/three\n",
+      "stderr": ""
+    },
+    {
+      "label": "recursive-repeat",
+      "command": [
+        "./mkdir_p",
+        "one/two/three"
+      ],
+      "returncode": 0,
+      "stdout": "ok: one/two/three\n",
+      "stderr": ""
+    },
+    {
+      "label": "component-is-file",
+      "command": [
+        "./mkdir_p",
+        "one/file/child"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "one/file/child: Not a directory\n"
+    },
+    {
+      "label": "empty-path",
+      "command": [
+        "./mkdir_p",
+        ""
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": ": Invalid argument\n"
+    },
+    {
+      "label": "absolute-path",
+      "command": [
+        "./mkdir_p",
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/mkdir-verify-t44u_tuv/absolute/a/b"
+      ],
+      "returncode": 0,
+      "stdout": "ok: /var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/mkdir-verify-t44u_tuv/absolute/a/b\n",
+      "stderr": ""
+    },
+    {
+      "label": "trailing-slash",
+      "command": [
+        "./mkdir_p",
+        "one/two/three/"
+      ],
+      "returncode": 0,
+      "stdout": "ok: one/two/three/\n",
+      "stderr": ""
+    },
+    {
+      "label": "usage",
+      "command": [
+        "./mkdir_p"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "usage: ./mkdir_p DIRECTORY\n"
+    }
+  ],
+  "all_passed": true,
+  "limitations": "macOS host; no concurrent race or Linux filesystem run."
+}

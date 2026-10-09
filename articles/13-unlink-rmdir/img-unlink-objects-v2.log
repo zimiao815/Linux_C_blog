@@ -1,0 +1,2 @@
+{"job_id": "20261005-142150-5a67c5", "status": "running", "op": "generate", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog_workflow/linux_c_blog/articles/13-unlink-rmdir/img-unlink-objects-v2.png", "message": "Image API call in progress; may take 1–5+ minutes."}
+{"job_id": "20261005-142150-5a67c5", "status": "done", "op": "generate", "name": "img-unlink-objects-v2", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog_workflow/linux_c_blog/articles/13-unlink-rmdir/img-unlink-objects-v2.png"}

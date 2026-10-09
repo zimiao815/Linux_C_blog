@@ -34,13 +34,13 @@ try:
         result['created_at']=datetime.now(timezone.utc).isoformat()
         existing.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
         r=requests.post('https://api.weixin.qq.com/cgi-bin/draft/get',params={'access_token':pub.get_access_token()},json={'media_id':result['draft_id']},timeout=30)
-        r.raise_for_status();data=r.json()
+        r.raise_for_status();data=json.loads(r.content.decode('utf-8'))
     item=data['news_item'][0];soup=BeautifulSoup(item['content'],'html.parser')
     checks={
         'title':item['title']==result['title'],
         'body_images':len(soup.find_all('img'))==4,
-        'remote_images':all(i.get('src','').startswith(('http://','https://')) for i in soup.find_all('img')),
-        'recap':bool(soup.find('a',href='https://mp.weixin.qq.com/s/gz_j5CZMWcnXFcqblTCtGw')),
+        'remote_images':all((i.get('src') or i.get('data-src','')).startswith(('http://','https://')) for i in soup.find_all('img')),
+        'recap':any('文件与目录 选题预告' in a.get_text() and a.get('href','').startswith('https://mp.weixin.qq.com/') for a in soup.find_all('a')),
         'guide':'这篇文章怎么读' in item['content'],
         'mechanism':'getdents64' in item['content'] and 'struct dirent' in soup.get_text(),
         'cover':bool(item.get('thumb_media_id')),

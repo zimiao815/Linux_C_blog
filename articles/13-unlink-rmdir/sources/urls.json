@@ -1,0 +1,12 @@
+{
+  "posix-unlink.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/unlink.html",
+  "posix-rmdir.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/rmdir.html",
+  "linux-unlink.html": "https://man7.org/linux/man-pages/man2/unlink.2.html",
+  "linux-rmdir.html": "https://man7.org/linux/man-pages/man2/rmdir.2.html",
+  "linux-remove.html": "https://man7.org/linux/man-pages/man3/remove.3.html",
+  "linux-path-resolution.html": "https://man7.org/linux/man-pages/man7/path_resolution.7.html",
+  "kernel-namei.c": "https://raw.githubusercontent.com/torvalds/linux/v6.6/fs/namei.c",
+  "kernel-ext4-namei.c": "https://raw.githubusercontent.com/torvalds/linux/v6.6/fs/ext4/namei.c",
+  "kernel-fs.h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fs.h",
+  "kernel-fdtable.h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fdtable.h"
+}

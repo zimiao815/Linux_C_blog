@@ -1,0 +1,244 @@
+{
+  "environment": "macOS-14.8.8-x86_64-i386-64bit",
+  "kernel": "23.6.0",
+  "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+  "flags": [
+    "-std=c17",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wconversion",
+    "-Wshadow",
+    "-O0",
+    "-g"
+  ],
+  "records": [
+    {
+      "label": "compile-delete_entry",
+      "command": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g",
+        "delete_entry.c",
+        "-o",
+        "delete_entry"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "compile-unlink_open",
+      "command": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g",
+        "unlink_open.c",
+        "-o",
+        "unlink_open"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "label": "unlink-directory",
+      "command": [
+        "./delete_entry",
+        "unlink",
+        "empty"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "unlink empty: Operation not permitted\n"
+    },
+    {
+      "label": "rmdir-nonempty",
+      "command": [
+        "./delete_entry",
+        "rmdir",
+        "full"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rmdir full: Directory not empty\n"
+    },
+    {
+      "label": "rmdir-link",
+      "command": [
+        "./delete_entry",
+        "rmdir",
+        "dir-link"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rmdir dir-link: Not a directory\n"
+    },
+    {
+      "label": "unlink-link",
+      "command": [
+        "./delete_entry",
+        "unlink",
+        "dir-link"
+      ],
+      "returncode": 0,
+      "stdout": "unlink dir-link: ok\n",
+      "stderr": ""
+    },
+    {
+      "label": "unlink-open",
+      "command": [
+        "./unlink_open",
+        "note.txt"
+      ],
+      "returncode": 0,
+      "stdout": "after unlink: nlink=0\nhello after unlink\n",
+      "stderr": ""
+    },
+    {
+      "label": "rmdir-empty",
+      "command": [
+        "./delete_entry",
+        "rmdir",
+        "empty"
+      ],
+      "returncode": 0,
+      "stdout": "rmdir empty: ok\n",
+      "stderr": ""
+    },
+    {
+      "label": "unlink-child",
+      "command": [
+        "./delete_entry",
+        "unlink",
+        "full/child"
+      ],
+      "returncode": 0,
+      "stdout": "unlink full/child: ok\n",
+      "stderr": ""
+    },
+    {
+      "label": "rmdir-now-empty",
+      "command": [
+        "./delete_entry",
+        "rmdir",
+        "full"
+      ],
+      "returncode": 0,
+      "stdout": "rmdir full: ok\n",
+      "stderr": ""
+    },
+    {
+      "label": "unlink-missing",
+      "command": [
+        "./delete_entry",
+        "unlink",
+        "missing"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "unlink missing: No such file or directory\n"
+    },
+    {
+      "label": "rmdir-file",
+      "command": [
+        "./delete_entry",
+        "rmdir",
+        "file"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rmdir file: Not a directory\n"
+    },
+    {
+      "label": "unlink-dangling",
+      "command": [
+        "./delete_entry",
+        "unlink",
+        "dangling"
+      ],
+      "returncode": 0,
+      "stdout": "unlink dangling: ok\n",
+      "stderr": ""
+    },
+    {
+      "label": "hidden-child",
+      "command": [
+        "./delete_entry",
+        "rmdir",
+        "hidden-dir"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "rmdir hidden-dir: Directory not empty\n"
+    },
+    {
+      "label": "usage",
+      "command": [
+        "./delete_entry",
+        "bad",
+        "file"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "usage: ./delete_entry unlink|rmdir PATH\n"
+    },
+    {
+      "label": "open-missing",
+      "command": [
+        "./unlink_open",
+        "missing"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "open: No such file or directory\n"
+    },
+    {
+      "label": "unlink-open-directory",
+      "command": [
+        "./unlink_open",
+        "hidden-dir"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "unlink: Operation not permitted\n"
+    },
+    {
+      "label": "unlink-readonly-file",
+      "command": [
+        "./delete_entry",
+        "unlink",
+        "readonly-file"
+      ],
+      "returncode": 0,
+      "stdout": "unlink readonly-file: ok\n",
+      "stderr": ""
+    },
+    {
+      "label": "parent-no-write",
+      "command": [
+        "./delete_entry",
+        "unlink",
+        "locked/child"
+      ],
+      "returncode": 1,
+      "stdout": "",
+      "stderr": "unlink locked/child: Permission denied\n"
+    }
+  ],
+  "permission_test": "passed: real directory mode 0555",
+  "all_passed": true,
+  "limitations": "macOS host; Linux 6.6 source review; no injected close/read/output errors, no malicious races or physical-space measurement."
+}

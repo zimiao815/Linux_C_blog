@@ -1,0 +1,109 @@
+Environment: macOS-14.8.8-x86_64-i386-64bit
+Compiler: Apple clang version 16.0.0 (clang-1600.0.26.6)
+Target: x86_64-apple-darwin23.6.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+
+[compile] exit=0
+stdout:
+stderr:
+
+[normal] exit=0
+stdout:
+pipe  fifo  via=d_type
+dangling  symlink  via=d_type
+note.txt  file  via=d_type
+sub  directory  via=d_type
+link  symlink  via=d_type
+sock  socket  via=d_type
+stderr:
+
+[forced-unknown] exit=0
+stdout:
+pipe  fifo  via=fstatat
+dangling  symlink  via=fstatat
+note.txt  file  via=fstatat
+sub  directory  via=fstatat
+link  symlink  via=fstatat
+sock  socket  via=fstatat
+stderr:
+
+[empty] exit=0
+stdout:
+stderr:
+
+[missing-dir] exit=1
+stdout:
+stderr:
+opendir: No such file or directory
+
+[not-directory] exit=1
+stdout:
+stderr:
+opendir: Not a directory
+
+[usage] exit=1
+stdout:
+stderr:
+usage: ./entry_types DIRECTORY [--unknown]
+
+[compile-injection] exit=0
+stdout:
+stderr:
+
+[eintr] exit=0
+stdout:
+pipe  fifo  via=fstatat
+dangling  symlink  via=fstatat
+note.txt  file  via=fstatat
+sub  directory  via=fstatat
+link  symlink  via=fstatat
+sock  socket  via=fstatat
+stderr:
+TEST: directory closed
+
+[eacces] exit=1
+stdout:
+pipe  fifo  via=fstatat
+dangling  symlink  via=fstatat
+sub  directory  via=fstatat
+link  symlink  via=fstatat
+sock  socket  via=fstatat
+stderr:
+note.txt: Permission denied
+TEST: directory closed
+
+[read-error] exit=1
+stdout:
+stderr:
+readdir: Input/output error
+TEST: directory closed
+
+[fd-error] exit=1
+stdout:
+stderr:
+dirfd: Bad file descriptor
+TEST: directory closed
+
+[close-error] exit=1
+stdout:
+pipe  fifo  via=fstatat
+dangling  symlink  via=fstatat
+note.txt  file  via=fstatat
+sub  directory  via=fstatat
+link  symlink  via=fstatat
+sock  socket  via=fstatat
+stderr:
+TEST: directory closed
+closedir: Input/output error
+
+[removed] exit=1
+stdout:
+pipe  fifo  via=fstatat
+dangling  symlink  via=fstatat
+sub  directory  via=fstatat
+link  symlink  via=fstatat
+sock  socket  via=fstatat
+stderr:
+note.txt: No such file or directory
+TEST: directory closed

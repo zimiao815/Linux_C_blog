@@ -1,0 +1,11 @@
+{
+  "article_code_matches": true,
+  "recorded_outputs_match": true,
+  "html_images": 3,
+  "cover_size": [
+    900,
+    383
+  ],
+  "footer_count": 1,
+  "runtime_environment": "macOS; Linux source review only"
+}

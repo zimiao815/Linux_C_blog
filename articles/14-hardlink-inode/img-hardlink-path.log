@@ -1,0 +1,2 @@
+{"job_id": "20261006-041018-97092f", "status": "running", "op": "generate", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/14-hardlink-inode/img-hardlink-path.png", "message": "Image API call in progress; may take 1–5+ minutes."}
+{"job_id": "20261006-041018-97092f", "status": "done", "op": "generate", "name": "img-hardlink-path", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/14-hardlink-inode/img-hardlink-path.png"}

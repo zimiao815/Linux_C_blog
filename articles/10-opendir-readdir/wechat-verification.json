@@ -1,0 +1,9 @@
+{
+  "title": true,
+  "body_images": true,
+  "remote_images": true,
+  "recap": true,
+  "guide": true,
+  "mechanism": true,
+  "cover": true
+}

@@ -1,0 +1,2 @@
+{"job_id": "20261002-021823-d43c6e", "status": "running", "op": "generate", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/11-dirent-d-type/img-dtype-read.png", "message": "Image API call in progress; may take 1–5+ minutes."}
+{"job_id": "20261002-021823-d43c6e", "status": "done", "op": "generate", "name": "img-dtype-read", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/11-dirent-d-type/img-dtype-read.png"}

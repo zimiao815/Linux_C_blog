@@ -1,8 +1,16 @@
 {
-  "status": "blocked",
-  "draft_created": false,
-  "reason": "WeChat rejected direct egress IP: not in whitelist",
-  "ip_to_allowlist": "223.96.237.220",
-  "local_article_ready": true,
-  "checked_at": "2026-10-01T12:36:24.727661+00:00"
+  "status": "uploaded",
+  "draft_created": true,
+  "draft_id": "SJX3d8llAncCa7oc9Z2IAXW5r-6XduKV51_D0FfWbi6gvkXqZ848lf351dY2db6b",
+  "verified_at": "2026-10-01T13:53:16.163567+00:00",
+  "verification": {
+    "title": true,
+    "body_images": true,
+    "remote_images": true,
+    "recap": true,
+    "guide": true,
+    "mechanism": true,
+    "cover": true
+  },
+  "note": "微信将图片 src 规范化为 data-src，并将往期回顾短链接转换为正式文章链接；回读按 UTF-8 解码。"
 }
