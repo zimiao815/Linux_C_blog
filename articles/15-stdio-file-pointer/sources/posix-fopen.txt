@@ -1,0 +1,716 @@
+fopen
+<<<
+Previous
+Home
+Next >>>
+The Open Group Base Specifications Issue 8
+IEEE Std 1003.1-2024
+Copyright © 2001-2024 The IEEE and The Open Group
+NAME
+fopen — open a stream
+SYNOPSIS
+#include <
+stdio.h
+>
+FILE *fopen(const char *restrict
+pathname
+, const char *restrict
+mode
+);
+DESCRIPTION
+[
+CX
+]
+Except for the "exclusive access" requirement (see below), the functionality described on this reference page is
+aligned with the ISO C standard. Any other conflict between the requirements described here and the ISO C standard is
+unintentional. This volume of POSIX.1-2024 defers to the ISO C standard for all
+fopen
+() functionality except in
+relation to "exclusive access".
+The
+fopen
+() function shall open the file whose pathname is the string pointed to by
+pathname
+, and associates a
+stream with it.
+The
+mode
+argument points to a character string. The behavior is unspecified if any character occurs more than once in the
+string. If the string begins with one of the following characters, then the file shall be opened in the indicated mode. Otherwise,
+the behavior is undefined.
+'r'
+Open file for reading.
+'w'
+Truncate to zero length or create file for writing.
+'a'
+Append; open or create file for writing at end-of-file.
+The remainder of the string can contain any of the following characters,
+[
+CX
+]
+in any order,
+and further affect how the file is opened:
+'b'
+[
+CX
+]
+This character shall have no effect, but is allowed for ISO C standard conformance.
+'e'
+[
+CX
+]
+The underlying file descriptor shall have the FD_CLOEXEC flag atomically set.
+'x'
+If the first character of
+mode
+is
+'w'
+[
+CX
+]
+or
+'a'
+,
+then the function shall fail if the file already exists, or cannot be created; if the file does not
+exist and can be created, it shall be created with
+[
+CX
+]
+an implementation-defined form of
+exclusive (also known as non-shared) access,
+[
+CX
+]
+if
+supported by the underlying file system, provided the resulting file permissions are the same as they would be without the
+'x'
+modifier. If the first character of mode is
+'r'
+, the effect is implementation-defined.
+Note:
+The ISO C standard requires exclusive access "to the extent that the underlying file system supports exclusive access",
+but does not define what it means by this. Taken at face value—that systems must do whatever they are capable of, at the file
+system level, in order to exclude access by others—this would require POSIX.1 systems to set the file permissions in a way that
+prevents access by other users and groups. Consequently, this volume of POSIX.1-2024 does not defer to the ISO C standard as
+regards the "exclusive access" requirement.
+'+'
+The file shall be opened for update (both reading and writing), rather than just reading or just writing.
+Opening a file with read mode (
+'r'
+as the first character in the
+mode
+argument) shall fail if the file does not
+exist or cannot be read.
+Opening a file with append mode (
+'a'
+as the first character in the
+mode
+argument) shall cause all subsequent
+writes to the file to be forced to the then current end-of-file, regardless of intervening calls to
+fseek
+()
+.
+When a file is opened with update mode (
+'+'
+in the
+mode
+argument), both input and output can be performed on the
+associated stream. However, the application shall ensure that output is not directly followed by input without an intervening call
+to
+fflush
+()
+or to a file positioning function (
+fseek
+()
+,
+fsetpos
+()
+, or
+rewind
+()
+), and input is not directly followed by output without an intervening call to a file
+positioning function, unless the input operation encounters end-of-file.
+When opened, a stream is fully buffered if and only if it can be determined not to refer to an interactive device. The error and
+end-of-file indicators for the stream shall be cleared.
+[
+CX
+]
+If
+the first character in
+mode
+is
+'w'
+or
+'a'
+and the file did not previously exist, upon successful
+completion,
+fopen
+() shall mark for update the last data access, last data modification, and last file status change
+timestamps of the file and the last file status change and last data modification timestamps of the parent directory.
+If the first character in
+mode
+is
+'w'
+or
+'a'
+and the file did not previously exist, the
+fopen
+()
+function shall create a file as if it called the
+open
+()
+function with a value
+appropriate for the
+path
+argument interpreted from
+pathname
+, a value for the
+oflag
+argument as specified
+below, and a value of S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH for the third argument.
+If the first character in
+mode
+is
+'w'
+and the file did previously exist, upon successful completion,
+fopen
+() shall mark for update the last data modification and last file status change timestamps of the file.
+After a successful call to the
+fopen
+() function, the orientation of the stream shall be cleared,
+[
+XSI
+]
+the encoding
+rule shall be cleared,
+and the associated
+mbstate_t
+object
+shall be set to describe an initial conversion state.
+[
+CX
+]
+The
+file descriptor associated with the opened stream shall be allocated and opened as if by a call to
+open
+()
+using the following flags:
+fopen() Mode First Character
+fopen() Mode Includes
+'+'
+Initial open() Flags
+'r'
+no
+O_RDONLY
+'w'
+no
+O_WRONLY|O_CREAT|O_TRUNC
+'a'
+no
+O_WRONLY|O_CREAT|O_APPEND
+'r'
+yes
+O_RDWR
+'w'
+yes
+O_RDWR|O_CREAT|O_TRUNC
+'a'
+yes
+O_RDWR|O_CREAT|O_APPEND
+If, and only if, the
+'e'
+mode
+string character is specified, the O_CLOEXEC flag shall be OR'ed into
+the initial
+open
+()
+flags specified in the above table.
+If, and only if, the
+'x'
+mode
+string character is specified together with either
+'w'
+or
+'a'
+, the O_EXCL flag shall be OR'ed into the initial
+open
+()
+flags specified in
+the above table.
+If
+mode
+includes
+'x'
+and the underlying file system supports exclusive access (see above) enabled
+by the use of implementation-specific flags to
+open
+()
+, then the behavior shall be as if
+those flags are also included.
+When using
+mode
+strings specified by this standard, the implementation shall behave as if no other flags had
+been passed to
+open
+()
+.
+RETURN VALUE
+Upon successful completion,
+fopen
+() shall return a pointer to the object controlling the stream. Otherwise, a null
+pointer shall be returned,
+[
+CX
+]
+and
+errno
+shall be set to indicate the error.
+ERRORS
+The
+fopen
+() function shall fail if:
+[EACCES]
+[
+CX
+]
+Search permission is denied on a component of the path prefix, or the file exists and the permissions specified by
+mode
+are
+denied, or the file does not exist and write permission is denied for the parent directory of the file to be created.
+[EEXIST]
+[
+CX
+]
+The
+mode
+argument begins with
+w
+or
+a
+and includes
+x
+, but the file already exists.
+[EILSEQ]
+[
+CX
+]
+The
+mode
+argument begins with
+w
+or
+a
+, the file did not previously exist, and the last pathname component is
+not a portable filename and cannot be created in the target directory.
+[EINTR]
+[
+CX
+]
+A
+signal was caught during
+fopen
+().
+[EISDIR]
+[
+CX
+]
+The named file is a directory and
+mode
+requires write access.
+[ELOOP]
+[
+CX
+]
+A
+loop exists in symbolic links encountered during resolution of the
+pathname
+argument.
+[EMFILE]
+[
+CX
+]
+All file descriptors available to the process are currently open.
+[EMFILE]
+[
+CX
+]
+{STREAM_MAX} streams are currently open in the calling process.
+[ENAMETOOLONG]
+[
+CX
+]
+The length of a pathname exceeds {PATH_MAX}, or pathname resolution of a symbolic link produced an intermediate result with a
+length that exceeds {PATH_MAX}.
+[ENFILE]
+[
+CX
+]
+The maximum allowable number of files is currently open in the system.
+[ENOENT]
+[
+CX
+]
+The
+mode
+string begins with
+'r'
+and a component of
+pathname
+does not name an existing file, or
+mode
+begins with
+'w'
+or
+'a'
+and a component of the path prefix of
+pathname
+does not name an existing file, or
+pathname
+is an empty string.
+[ENOENT] or [ENOTDIR]
+[
+CX
+]
+The
+pathname
+argument contains at least one non-<slash> character and ends with one or more trailing <slash>
+characters. If
+pathname
+without the trailing <slash> characters would name an existing file, an [ENOENT] error shall
+not occur.
+[ENOSPC]
+[
+CX
+]
+The directory or file system that would contain the new file cannot be expanded, the file does not exist, and the file was to be
+created.
+[ENOTDIR]
+[
+CX
+]
+A
+component of the path prefix names an existing file that is neither a directory nor a symbolic link to a directory, or the
+pathname
+argument contains at least one non-<slash> character and ends with one or more trailing <slash>
+characters and the last pathname component names an existing file that is neither a directory nor a symbolic link to a directory.
+[ENXIO]
+[
+CX
+]
+The named file is a character special or block special file, and the device associated with this special file does not exist.
+[EOVERFLOW]
+[
+CX
+]
+The named file is a regular file and the size of the file cannot be represented correctly in an object of type
+off_t
+.
+[EROFS]
+[
+CX
+]
+The named file resides on a read-only file system and
+mode
+requires write access.
+The
+fopen
+() function may fail if:
+[EINVAL]
+[
+CX
+]
+The value of the
+mode
+argument is not valid.
+[ELOOP]
+[
+CX
+]
+More than {SYMLOOP_MAX} symbolic links were encountered during resolution of the
+pathname
+argument.
+[EMFILE]
+[
+CX
+]
+{FOPEN_MAX} streams are currently open in the calling process.
+[ENAMETOOLONG]
+[
+CX
+]
+The length of a component of a pathname is longer than {NAME_MAX}.
+[ENOMEM]
+[
+CX
+]
+Insufficient storage space is available.
+[ETXTBSY]
+[
+CX
+]
+The file is a pure procedure (shared text) file that is being executed and
+mode
+requires write access.
+The following sections are informative.
+EXAMPLES
+Opening a File
+The following example tries to open the file named
+file
+for reading. The
+fopen
+() function returns a
+file pointer that is used in subsequent
+fgets
+()
+and
+fclose
+()
+calls. If the program cannot open the file, it just ignores it.
+#include <stdio.h>
+...
+FILE *fp;
+...
+void rgrep(const char *file)
+{
+...
+    if ((fp = fopen(file, "r")) == NULL)
+        return;
+...
+}
+APPLICATION USAGE
+If an application needs to create a file in a way that fails if the file already exists, and either requires that it does not
+have exclusive access to the file or does not need exclusive access, it should use
+open
+()
+with the O_CREAT and O_EXCL flags instead of using
+fopen
+() with an
+'x'
+in the mode. A stream can then be created, if needed, by calling
+fdopen
+()
+on the file
+descriptor returned by
+open
+()
+.
+RATIONALE
+The
+'e'
+mode character is provided as a convenience to avoid a data race in multi-threaded applications. Without it, a
+file descriptor is leaked into a child process created by one thread in the window between another thread creating a file
+descriptor with
+fopen
+() and then using
+fileno
+()
+and
+fcntl
+()
+to set the FD_CLOEXEC flag. It is also possible to avoid the race by using
+open
+()
+with O_CLOEXEC followed by
+fdopen
+()
+,
+however, there is no safe alternative for the
+freopen
+()
+function, and consistency
+dictates that the
+'e'
+modifier should be standardized for all functions that accept
+mode
+strings.
+The ISO C standard only recognizes the
+'+'
+,
+'b'
+, and
+'x'
+characters in certain
+positions of the
+mode
+string, leaving other arrangements as unspecified, and only permits
+'x'
+in
+mode
+strings beginning with
+'w'
+. This standard specifically requires support for all characters other than the first in the
+mode
+string to be recognized in any order. Thus,
+"wxe"
+and
+"wex"
+behave the same, and while
+"wx+"
+is unspecified in the ISO C standard, this standard requires it to have the same behavior as
+"w+x"
+. This standard
+also requires that
+'x'
+work for
+mode
+strings beginning with
+'a'
+, as well as having implementation-defined
+behavior for
+mode
+strings beginning with
+'r'
+. Therefore, while
+open
+()
+has undefined behavior if O_EXCL is specified without O_CREAT, the same is not true of
+fopen
+().
+When
+'x'
+is in mode, the ISO C standard requires that the file is created with exclusive access to
+the extent that the underlying system supports exclusive access. Although POSIX.1 does not specify any method of enabling exclusive
+access, it allows for the existence of an implementation-specific flag, or flags, that enable it. Note that they should be file
+creation flags if a file is being created, not file access mode flags (that is, ones that are included in O_ACCMODE) or file status
+flags, so that they do not affect the value returned by
+fcntl
+()
+with F_GETFL. On
+implementations that have such flags, if support for them is file system dependent and exclusive access is requested when using
+fopen
+() to create a file on a file system that does not support it, the flags must not be used if they would cause
+fopen
+() to fail.
+Some implementations support mandatory file locking as a means of enabling exclusive access to a file. Locks are
+set in the normal way, but instead of only preventing others from setting conflicting locks they prevent others from accessing the
+contents of the locked part of the file in a way that conflicts with the lock. However, unless the implementation has a way of
+setting a whole-file write lock on file creation, this does not satisfy the requirement in the ISO C standard that the file is
+"created with exclusive access to the extent that the underlying system supports exclusive access". (Having
+fopen
+() create
+the file and set a lock on the file as two separate operations is not the same, and it would introduce a race condition whereby
+another process could open the file and write to it (or set a lock) in between the two operations.) However, on all implementations
+that support mandatory file locking, its use is discouraged; therefore, it is recommended that implementations which support
+mandatory file locking do not add a means of creating a file with a whole-file exclusive lock set, so that
+fopen
+() is not
+required to enable mandatory file locking in order to conform to the ISO C standard. An implementation that has a means of
+creating a file with a whole-file exclusive lock set would need to provide a way to change the behavior of
+fopen
+() depending
+on whether the calling process is executing in a POSIX.1 conforming environment or an ISO C conforming environment.
+The typical implementation-defined behavior for mode
+"rx"
+is to ignore the
+'x'
+, but the standard
+developers did not wish to mandate this behavior. For example, an implementation could allow shared access for reading; that is,
+disallow a file that has been opened this way from also being opened for writing.
+Implementations are encouraged to have
+fopen
+() and
+freopen
+()
+report an [EILSEQ] error if
+mode
+begins with
+'w'
+or
+'a'
+, the file did not previously exist, and the last
+component of
+pathname
+contains any bytes that have the encoded value of a <newline> character.
+FUTURE DIRECTIONS
+None.
+SEE ALSO
+2.5 Standard I/O Streams
+,
+creat
+()
+,
+fclose
+()
+,
+fdopen
+()
+,
+fmemopen
+()
+,
+freopen
+()
+,
+open_memstream
+()
+XBD
+<stdio.h>
+CHANGE HISTORY
+First released in Issue 1. Derived from Issue 1 of the SVID.
+Issue 5
+Large File Summit extensions are added.
+Issue 6
+Extensions beyond the ISO C standard are marked.
+The following new requirements on POSIX implementations derive from alignment with the Single UNIX
+Specification:
+In the DESCRIPTION, text is added to indicate setting of the offset maximum in the open file description. This
+change is to support large files.
+In the ERRORS section, the [EOVERFLOW] condition is added. This change is to support large files.
+The [ELOOP] mandatory error condition is added.
+The [EINVAL], [EMFILE], [ENAMETOOLONG], [ENOMEM], and [ETXTBSY] optional error conditions are added.
+The normative text is updated to avoid use of the term "must" for application requirements.
+The following changes are made for alignment with the ISO/IEC 9899:1999 standard:
+The prototype for
+fopen
+() is updated.
+The DESCRIPTION is updated to note that if the argument
+mode
+points to a string other than those listed,
+then the behavior is undefined.
+The wording of the mandatory [ELOOP] error condition is updated, and a second optional [ELOOP] error condition is
+added.
+Issue 7
+Austin Group Interpretation 1003.1-2001 #025 is applied, clarifying the file creation mode.
+Austin Group Interpretation 1003.1-2001 #143 is applied.
+Austin Group Interpretation 1003.1-2001 #159 is applied, clarifying requirements for the flags set on the open file
+description.
+SD5-XBD-ERN-4 is applied, changing the definition of the [EMFILE] error.
+SD5-XSH-ERN-149 is applied, changing the {STREAM_MAX} [EMFILE] error condition from a "may fail" to a "shall
+fail".
+Changes are made related to support for finegrained timestamps.
+POSIX.1-2008, Technical Corrigendum 1, XSH/TC1-2008/0156 [291,433], XSH/TC1-2008/0157 [146,433], XSH/TC1-2008/0158
+[324], and XSH/TC1-2008/0159 [14] are applied.
+POSIX.1-2008, Technical Corrigendum 2, XSH/TC2-2008/0122 [822] is applied.
+Issue 8
+Austin Group Defect 251 is applied, encouraging implementations to disallow the creation of filenames containing any bytes that
+have the encoded value of a <newline> character.
+Austin Group Defect 293 is applied, adding the [EILSEQ] error.
+Austin Group Defects 411 and 1524 are applied, adding the
+'e'
+and
+'x'
+mode
+string
+characters.
+Austin Group Defect 1200 is applied, correcting the argument name in the [ELOOP] errors.
+Austin Group Defect 1302 is applied, aligning this function with the ISO/IEC 9899:2018 standard.
+End of informative text.
+return to top of page
+UNIX® is a registered Trademark of The Open Group.
+POSIX™ is a Trademark of The IEEE.
+Copyright © 2001-2024 The IEEE and The Open Group, All Rights Reserved
+[
+Main Index
+|
+XBD
+|
+XSH
+|
+XCU
+|
+XRAT
+]
+<<<
+Previous
+Home
+Next >>>

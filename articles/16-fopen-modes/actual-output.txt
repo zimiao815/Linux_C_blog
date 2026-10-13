@@ -1,0 +1,131 @@
+$ cc --version
+Apple clang version 16.0.0 (clang-1600.0.26.6)
+Target: x86_64-apple-darwin23.6.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+[exit=0]
+
+$ cc -std=c17 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -O0 -g mode_probe.c -o mode_probe
+[exit=0]
+
+$ ./mode_probe r sample.txt
+mode=r opened_size=3
+[exit=0]
+
+$ ./mode_probe r fresh-r
+fopen: No such file or directory
+[exit=1]
+
+$ ./mode_probe r+ sample.txt
+mode=r+ opened_size=3
+[exit=0]
+
+$ ./mode_probe r+ fresh-r+
+fopen: No such file or directory
+[exit=1]
+
+$ ./mode_probe w sample.txt
+mode=w opened_size=0
+[exit=0]
+
+$ ./mode_probe w fresh-w
+mode=w opened_size=0
+[exit=0]
+
+$ ./mode_probe w+ sample.txt
+mode=w+ opened_size=0
+[exit=0]
+
+$ ./mode_probe w+ fresh-w+
+mode=w+ opened_size=0
+[exit=0]
+
+$ ./mode_probe a sample.txt
+mode=a opened_size=3
+[exit=0]
+
+$ ./mode_probe a fresh-a
+mode=a opened_size=0
+[exit=0]
+
+$ ./mode_probe a+ sample.txt
+mode=a+ opened_size=3
+[exit=0]
+
+$ ./mode_probe a+ fresh-a+
+mode=a+ opened_size=0
+[exit=0]
+
+$ ./mode_probe r+ sample.txt X
+mode=r+ opened_size=3
+[exit=0]
+
+$ ./mode_probe w+ sample.txt X
+mode=w+ opened_size=0
+[exit=0]
+
+$ ./mode_probe a sample.txt X
+mode=a opened_size=3
+[exit=0]
+
+$ ./mode_probe a+ sample.txt X
+mode=a+ opened_size=3
+[exit=0]
+
+$ ./mode_probe wx sample.txt
+fopen: File exists
+[exit=1]
+
+$ ./mode_probe wx exclusive.txt X
+mode=wx opened_size=0
+[exit=0]
+
+$ ./mode_probe w no-parent/file
+fopen: No such file or directory
+[exit=1]
+
+$ ./mode_probe r .
+experiment requires a regular file
+[exit=1]
+
+$ ./mode_probe r sample.txt
+fflush stdout: Bad file descriptor
+[exit=1]
+
+$ ./mode_probe w limited.txt X
+mode=w opened_size=0
+fclose: File too large
+[exit=1]
+
+$ sh -eu -c for mode in r r+ w w+ a a+; do
+    printf OLD > sample.txt
+    ./mode_probe "$mode" sample.txt
+done
+
+mode=r opened_size=3
+mode=r+ opened_size=3
+mode=w opened_size=0
+mode=w+ opened_size=0
+mode=a opened_size=3
+mode=a+ opened_size=3
+[exit=0]
+
+$ sh -eu -c for mode in r+ w+ a+; do
+    printf OLD > sample.txt
+    ./mode_probe "$mode" sample.txt X
+    cat sample.txt
+    printf '\n'
+done
+
+mode=r+ opened_size=3
+XLD
+mode=w+ opened_size=0
+X
+mode=a+ opened_size=3
+OLDX
+[exit=0]
+
+$ ./mode_probe
+usage: ./mode_probe mode path [text]
+[exit=1]
+

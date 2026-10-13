@@ -1,0 +1,16 @@
+{
+  "source_matches_article": true,
+  "source_survives_html": true,
+  "actual_output_matches_article": true,
+  "five_h2": true,
+  "three_images": true,
+  "local_images_exist": true,
+  "no_placeholder": true,
+  "no_svg_refs": true,
+  "inline_highlighting": true,
+  "no_token_classes": true,
+  "no_style_tag": true,
+  "single_footer": true,
+  "experiment_limit_stated": true,
+  "cover_dimensions": true
+}

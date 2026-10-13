@@ -1,0 +1,52 @@
+[
+  {
+    "file": "posix-fopen.html",
+    "bytes": 33181,
+    "ok": true
+  },
+  {
+    "file": "posix-open.html",
+    "bytes": 40401,
+    "ok": true
+  },
+  {
+    "file": "posix-fclose.html",
+    "bytes": 14703,
+    "ok": true
+  },
+  {
+    "file": "posix-fputs.html",
+    "bytes": 9262,
+    "ok": true
+  },
+  {
+    "file": "glibc-fileops.c",
+    "bytes": 41630,
+    "ok": true
+  },
+  {
+    "file": "kernel-open.c",
+    "bytes": 41669,
+    "ok": true
+  },
+  {
+    "file": "kernel-namei.c",
+    "bytes": 141926,
+    "ok": true
+  },
+  {
+    "file": "kernel-fdtable.h",
+    "bytes": 3651,
+    "ok": true
+  },
+  {
+    "file": "kernel-fs.h",
+    "bytes": 114446,
+    "ok": true
+  },
+  {
+    "file": "linux-fopen.3",
+    "bytes": 11234,
+    "ok": true
+  }
+]

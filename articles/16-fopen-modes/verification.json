@@ -1,0 +1,364 @@
+{
+  "system": "macOS-14.8.8-x86_64-i386-64bit",
+  "mac_ver": "14.8.8",
+  "linux_runtime_tested": false,
+  "matrix": [
+    {
+      "mode": "r",
+      "existing_output": "mode=r opened_size=3\n",
+      "existing_content": "OLD",
+      "missing_exit": 1,
+      "missing_output": "fopen: No such file or directory\n",
+      "missing_created": false
+    },
+    {
+      "mode": "r+",
+      "existing_output": "mode=r+ opened_size=3\n",
+      "existing_content": "OLD",
+      "missing_exit": 1,
+      "missing_output": "fopen: No such file or directory\n",
+      "missing_created": false
+    },
+    {
+      "mode": "w",
+      "existing_output": "mode=w opened_size=0\n",
+      "existing_content": "",
+      "missing_exit": 0,
+      "missing_output": "mode=w opened_size=0\n",
+      "missing_created": true
+    },
+    {
+      "mode": "w+",
+      "existing_output": "mode=w+ opened_size=0\n",
+      "existing_content": "",
+      "missing_exit": 0,
+      "missing_output": "mode=w+ opened_size=0\n",
+      "missing_created": true
+    },
+    {
+      "mode": "a",
+      "existing_output": "mode=a opened_size=3\n",
+      "existing_content": "OLD",
+      "missing_exit": 0,
+      "missing_output": "mode=a opened_size=0\n",
+      "missing_created": true
+    },
+    {
+      "mode": "a+",
+      "existing_output": "mode=a+ opened_size=3\n",
+      "existing_content": "OLD",
+      "missing_exit": 0,
+      "missing_output": "mode=a+ opened_size=0\n",
+      "missing_created": true
+    }
+  ],
+  "writes": [
+    {
+      "mode": "r+",
+      "output": "mode=r+ opened_size=3\n",
+      "content": "XLD"
+    },
+    {
+      "mode": "w+",
+      "output": "mode=w+ opened_size=0\n",
+      "content": "X"
+    },
+    {
+      "mode": "a",
+      "output": "mode=a opened_size=3\n",
+      "content": "OLDX"
+    },
+    {
+      "mode": "a+",
+      "output": "mode=a+ opened_size=3\n",
+      "content": "OLDX"
+    }
+  ],
+  "records": [
+    {
+      "command": [
+        "cc",
+        "--version"
+      ],
+      "exit": 0,
+      "stdout": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g",
+        "mode_probe.c",
+        "-o",
+        "mode_probe"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "r",
+        "sample.txt"
+      ],
+      "exit": 0,
+      "stdout": "mode=r opened_size=3\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "r",
+        "fresh-r"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "fopen: No such file or directory\n"
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "r+",
+        "sample.txt"
+      ],
+      "exit": 0,
+      "stdout": "mode=r+ opened_size=3\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "r+",
+        "fresh-r+"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "fopen: No such file or directory\n"
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "w",
+        "sample.txt"
+      ],
+      "exit": 0,
+      "stdout": "mode=w opened_size=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "w",
+        "fresh-w"
+      ],
+      "exit": 0,
+      "stdout": "mode=w opened_size=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "w+",
+        "sample.txt"
+      ],
+      "exit": 0,
+      "stdout": "mode=w+ opened_size=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "w+",
+        "fresh-w+"
+      ],
+      "exit": 0,
+      "stdout": "mode=w+ opened_size=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "a",
+        "sample.txt"
+      ],
+      "exit": 0,
+      "stdout": "mode=a opened_size=3\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "a",
+        "fresh-a"
+      ],
+      "exit": 0,
+      "stdout": "mode=a opened_size=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "a+",
+        "sample.txt"
+      ],
+      "exit": 0,
+      "stdout": "mode=a+ opened_size=3\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "a+",
+        "fresh-a+"
+      ],
+      "exit": 0,
+      "stdout": "mode=a+ opened_size=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "r+",
+        "sample.txt",
+        "X"
+      ],
+      "exit": 0,
+      "stdout": "mode=r+ opened_size=3\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "w+",
+        "sample.txt",
+        "X"
+      ],
+      "exit": 0,
+      "stdout": "mode=w+ opened_size=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "a",
+        "sample.txt",
+        "X"
+      ],
+      "exit": 0,
+      "stdout": "mode=a opened_size=3\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "a+",
+        "sample.txt",
+        "X"
+      ],
+      "exit": 0,
+      "stdout": "mode=a+ opened_size=3\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "wx",
+        "sample.txt"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "fopen: File exists\n"
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "wx",
+        "exclusive.txt",
+        "X"
+      ],
+      "exit": 0,
+      "stdout": "mode=wx opened_size=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "w",
+        "no-parent/file"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "fopen: No such file or directory\n"
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "r",
+        "."
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "experiment requires a regular file\n"
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "r",
+        "sample.txt"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "fflush stdout: Bad file descriptor\n"
+    },
+    {
+      "command": [
+        "./mode_probe",
+        "w",
+        "limited.txt",
+        "X"
+      ],
+      "exit": 1,
+      "stdout": "mode=w opened_size=0\n",
+      "stderr": "fclose: File too large\n"
+    },
+    {
+      "command": [
+        "sh",
+        "-eu",
+        "-c",
+        "for mode in r r+ w w+ a a+; do\n    printf OLD > sample.txt\n    ./mode_probe \"$mode\" sample.txt\ndone\n"
+      ],
+      "exit": 0,
+      "stdout": "mode=r opened_size=3\nmode=r+ opened_size=3\nmode=w opened_size=0\nmode=w+ opened_size=0\nmode=a opened_size=3\nmode=a+ opened_size=3\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "sh",
+        "-eu",
+        "-c",
+        "for mode in r+ w+ a+; do\n    printf OLD > sample.txt\n    ./mode_probe \"$mode\" sample.txt X\n    cat sample.txt\n    printf '\\n'\ndone\n"
+      ],
+      "exit": 0,
+      "stdout": "mode=r+ opened_size=3\nXLD\nmode=w+ opened_size=0\nX\nmode=a+ opened_size=3\nOLDX\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./mode_probe"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "usage: ./mode_probe mode path [text]\n"
+    }
+  ],
+  "checks_passed": true
+}

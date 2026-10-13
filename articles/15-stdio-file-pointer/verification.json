@@ -1,0 +1,89 @@
+{
+  "system": "macOS-14.8.8-x86_64-i386-64bit",
+  "mac_ver": "14.8.8",
+  "linux_runtime_tested": false,
+  "records": [
+    {
+      "command": [
+        "cc",
+        "--version"
+      ],
+      "exit": 0,
+      "stdout": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g",
+        "stream_identity.c",
+        "-o",
+        "stream_identity"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./stream_identity",
+        "sample.txt"
+      ],
+      "exit": 0,
+      "stdout": "fp=0x7ff84e5a73c0, fd=3\ninitial: eof=0, error=0\nfirst=65, eof=0\nsecond_is_EOF=1, eof=1, error=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./stream_identity",
+        "empty.txt"
+      ],
+      "exit": 0,
+      "stdout": "fp=0x7ff84e5a73c0, fd=3\ninitial: eof=0, error=0\nfirst=-1, eof=1\nsecond_is_EOF=1, eof=1, error=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "./stream_identity",
+        "missing.txt"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "fopen: No such file or directory\n"
+    },
+    {
+      "command": [
+        "./stream_identity"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "usage: ./stream_identity input-file\n"
+    },
+    {
+      "command": [
+        "./stream_identity",
+        "."
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "first fgetc: Is a directory\n"
+    },
+    {
+      "command": [
+        "./stream_identity",
+        "sample.txt"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": "fflush stdout: Bad file descriptor\n"
+    }
+  ],
+  "checks_passed": true
+}

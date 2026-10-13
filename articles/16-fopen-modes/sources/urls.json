@@ -1,0 +1,12 @@
+{
+  "posix-fopen.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fopen.html",
+  "posix-open.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/open.html",
+  "posix-fclose.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fclose.html",
+  "posix-fputs.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fputs.html",
+  "glibc-fileops.c": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/fileops.c",
+  "kernel-open.c": "https://raw.githubusercontent.com/torvalds/linux/v6.6/fs/open.c",
+  "kernel-namei.c": "https://raw.githubusercontent.com/torvalds/linux/v6.6/fs/namei.c",
+  "kernel-fdtable.h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fdtable.h",
+  "kernel-fs.h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fs.h",
+  "linux-fopen.3": "https://raw.githubusercontent.com/mkerrisk/man-pages/master/man3/fopen.3"
+}

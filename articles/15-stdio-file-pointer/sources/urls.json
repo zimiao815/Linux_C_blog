@@ -1,0 +1,14 @@
+{
+  "posix-stdio.html": "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/stdio.h.html",
+  "posix-fopen.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fopen.html",
+  "posix-fileno.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fileno.html",
+  "posix-fgetc.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fgetc.html",
+  "posix-fclose.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fclose.html",
+  "glibc-struct_FILE.h": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/bits/types/struct_FILE.h",
+  "glibc-fileops.c": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/fileops.c",
+  "glibc-iofopen.c": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/iofopen.c",
+  "kernel-fdtable.h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fdtable.h",
+  "kernel-fs.h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fs.h",
+  "posix-fmemopen.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fmemopen.html",
+  "linux-fmemopen.3": "https://raw.githubusercontent.com/mkerrisk/man-pages/master/man3/fmemopen.3"
+}

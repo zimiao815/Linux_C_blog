@@ -1,0 +1,13 @@
+{
+  "title": true,
+  "title_expected": true,
+  "body_images": true,
+  "remote_images": true,
+  "guide": true,
+  "latest_note": true,
+  "mechanism": true,
+  "cover": true,
+  "code_preserved": true,
+  "environment_limit": true,
+  "single_footer": true
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "file": "posix-stdio.html",
+    "bytes": 21620,
+    "ok": true
+  },
+  {
+    "file": "posix-fopen.html",
+    "bytes": 33181,
+    "ok": true
+  },
+  {
+    "file": "posix-fileno.html",
+    "bytes": 6752,
+    "ok": true
+  },
+  {
+    "file": "posix-fgetc.html",
+    "bytes": 12554,
+    "ok": true
+  },
+  {
+    "file": "posix-fclose.html",
+    "bytes": 14703,
+    "ok": true
+  },
+  {
+    "file": "linux-fileno.html",
+    "ok": false,
+    "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1032)>"
+  },
+  {
+    "file": "glibc-struct_FILE.h",
+    "bytes": 4101,
+    "ok": true
+  },
+  {
+    "file": "glibc-fileops.c",
+    "bytes": 41630,
+    "ok": true
+  },
+  {
+    "file": "glibc-iofopen.c",
+    "bytes": 3175,
+    "ok": true
+  },
+  {
+    "file": "kernel-fdtable.h",
+    "bytes": 3651,
+    "ok": true
+  },
+  {
+    "file": "kernel-fs.h",
+    "bytes": 114446,
+    "ok": true
+  }
+]

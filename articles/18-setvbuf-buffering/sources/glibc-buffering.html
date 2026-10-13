@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This is
+The GNU C Library Reference Manual, for version
+2.40.
+
+Copyright © 1993-2024 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version
+1.3 or any later version published by the Free
+Software Foundation; with the Invariant Sections being "Free Software
+Needs Free Documentation" and "GNU Lesser General Public License",
+the Front-Cover texts being "A GNU Manual", and with the Back-Cover
+Texts as in (a) below.  A copy of the license is included in the
+section entitled "GNU Free Documentation License".
+
+(a) The FSF's Back-Cover Text is: "You have the freedom to
+copy and modify this GNU manual.  Buying copies from the FSF
+supports it in developing GNU and promoting software freedom." -->
+<title>Controlling Buffering (The GNU C Library)</title>
+
+<meta name="description" content="Controlling Buffering (The GNU C Library)">
+<meta name="keywords" content="Controlling Buffering (The GNU C Library)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="Stream-Buffering.html" rel="up" title="Stream Buffering">
+<link href="Flushing-Buffers.html" rel="prev" title="Flushing Buffers">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="subsection-level-extent" id="Controlling-Buffering">
+<div class="nav-panel">
+<p>
+Previous: <a href="Flushing-Buffers.html" accesskey="p" rel="prev">Flushing Buffers</a>, Up: <a href="Stream-Buffering.html" accesskey="u" rel="up">Stream Buffering</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h4 class="subsection" id="Controlling-Which-Kind-of-Buffering"><span>12.20.3 Controlling Which Kind of Buffering<a class="copiable-link" href="#Controlling-Which-Kind-of-Buffering"> &para;</a></span></h4>
+
+<p>After opening a stream (but before any other operations have been
+performed on it), you can explicitly specify what kind of buffering you
+want it to have using the <code class="code">setvbuf</code> function.
+<a class="index-entry-id" id="index-buffering_002c-controlling"></a>
+</p>
+<p>The facilities listed in this section are declared in the header
+file <samp class="file">stdio.h</samp>.
+<a class="index-entry-id" id="index-stdio_002eh-12"></a>
+</p>
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-setvbuf"><span class="category-def">Function: </span><span><code class="def-type">int</code> <strong class="def-name">setvbuf</strong> <code class="def-code-arguments">(FILE *<var class="var">stream</var>, char *<var class="var">buf</var>, int <var class="var">mode</var>, size_t <var class="var">size</var>)</code><a class="copiable-link" href="#index-setvbuf"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe 
+| AS-Unsafe corrupt
+| AC-Unsafe lock corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>This function is used to specify that the stream <var class="var">stream</var> should
+have the buffering mode <var class="var">mode</var>, which can be either <code class="code">_IOFBF</code>
+(for full buffering), <code class="code">_IOLBF</code> (for line buffering), or
+<code class="code">_IONBF</code> (for unbuffered input/output).
+</p>
+<p>If you specify a null pointer as the <var class="var">buf</var> argument, then <code class="code">setvbuf</code>
+allocates a buffer itself using <code class="code">malloc</code>.  This buffer will be freed
+when you close the stream.
+</p>
+<p>Otherwise, <var class="var">buf</var> should be a character array that can hold at least
+<var class="var">size</var> characters.  You should not free the space for this array as
+long as the stream remains open and this array remains its buffer.  You
+should usually either allocate it statically, or <code class="code">malloc</code>
+(see <a class="pxref" href="Unconstrained-Allocation.html">Unconstrained Allocation</a>) the buffer.  Using an automatic array
+is not a good idea unless you close the file before exiting the block
+that declares the array.
+</p>
+<p>While the array remains a stream buffer, the stream I/O functions will
+use the buffer for their internal purposes.  You shouldn&rsquo;t try to access
+the values in the array directly while the stream is using it for
+buffering.
+</p>
+<p>The <code class="code">setvbuf</code> function returns zero on success, or a nonzero value
+if the value of <var class="var">mode</var> is not valid or if the request could not
+be honored.
+</p></dd></dl>
+
+<dl class="first-deftypevr">
+<dt class="deftypevr" id="index-_005fIOFBF"><span class="category-def">Macro: </span><span><code class="def-type">int</code> <strong class="def-name">_IOFBF</strong><a class="copiable-link" href="#index-_005fIOFBF"> &para;</a></span></dt>
+<dd>
+<p>The value of this macro is an integer constant expression that can be
+used as the <var class="var">mode</var> argument to the <code class="code">setvbuf</code> function to
+specify that the stream should be fully buffered.
+</p></dd></dl>
+
+<dl class="first-deftypevr">
+<dt class="deftypevr" id="index-_005fIOLBF"><span class="category-def">Macro: </span><span><code class="def-type">int</code> <strong class="def-name">_IOLBF</strong><a class="copiable-link" href="#index-_005fIOLBF"> &para;</a></span></dt>
+<dd>
+<p>The value of this macro is an integer constant expression that can be
+used as the <var class="var">mode</var> argument to the <code class="code">setvbuf</code> function to
+specify that the stream should be line buffered.
+</p></dd></dl>
+
+<dl class="first-deftypevr">
+<dt class="deftypevr" id="index-_005fIONBF"><span class="category-def">Macro: </span><span><code class="def-type">int</code> <strong class="def-name">_IONBF</strong><a class="copiable-link" href="#index-_005fIONBF"> &para;</a></span></dt>
+<dd>
+<p>The value of this macro is an integer constant expression that can be
+used as the <var class="var">mode</var> argument to the <code class="code">setvbuf</code> function to
+specify that the stream should be unbuffered.
+</p></dd></dl>
+
+<dl class="first-deftypevr">
+<dt class="deftypevr" id="index-BUFSIZ"><span class="category-def">Macro: </span><span><code class="def-type">int</code> <strong class="def-name">BUFSIZ</strong><a class="copiable-link" href="#index-BUFSIZ"> &para;</a></span></dt>
+<dd>
+<p>The value of this macro is an integer constant expression that is good
+to use for the <var class="var">size</var> argument to <code class="code">setvbuf</code>.  This value is
+guaranteed to be at least <code class="code">256</code>.
+</p>
+<p>The value of <code class="code">BUFSIZ</code> is chosen on each system so as to make stream
+I/O efficient.  So it is a good idea to use <code class="code">BUFSIZ</code> as the size
+for the buffer when you call <code class="code">setvbuf</code>.
+</p>
+<p>Actually, you can get an even better value to use for the buffer size
+by means of the <code class="code">fstat</code> system call: it is found in the
+<code class="code">st_blksize</code> field of the file attributes.  See <a class="xref" href="Attribute-Meanings.html">The meaning of the File Attributes</a>.
+</p>
+<p>Sometimes people also use <code class="code">BUFSIZ</code> as the allocation size of
+buffers used for related purposes, such as strings used to receive a
+line of input with <code class="code">fgets</code> (see <a class="pxref" href="Character-Input.html">Character Input</a>).  There is no
+particular reason to use <code class="code">BUFSIZ</code> for this instead of any other
+integer, except that it might lead to doing I/O in chunks of an
+efficient size.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-setbuf"><span class="category-def">Function: </span><span><code class="def-type">void</code> <strong class="def-name">setbuf</strong> <code class="def-code-arguments">(FILE *<var class="var">stream</var>, char *<var class="var">buf</var>)</code><a class="copiable-link" href="#index-setbuf"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe 
+| AS-Unsafe corrupt
+| AC-Unsafe lock corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>If <var class="var">buf</var> is a null pointer, the effect of this function is
+equivalent to calling <code class="code">setvbuf</code> with a <var class="var">mode</var> argument of
+<code class="code">_IONBF</code>.  Otherwise, it is equivalent to calling <code class="code">setvbuf</code>
+with <var class="var">buf</var>, and a <var class="var">mode</var> of <code class="code">_IOFBF</code> and a <var class="var">size</var>
+argument of <code class="code">BUFSIZ</code>.
+</p>
+<p>The <code class="code">setbuf</code> function is provided for compatibility with old code;
+use <code class="code">setvbuf</code> in all new programs.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-setbuffer"><span class="category-def">Function: </span><span><code class="def-type">void</code> <strong class="def-name">setbuffer</strong> <code class="def-code-arguments">(FILE *<var class="var">stream</var>, char *<var class="var">buf</var>, size_t <var class="var">size</var>)</code><a class="copiable-link" href="#index-setbuffer"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe 
+| AS-Unsafe corrupt
+| AC-Unsafe lock corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>If <var class="var">buf</var> is a null pointer, this function makes <var class="var">stream</var> unbuffered.
+Otherwise, it makes <var class="var">stream</var> fully buffered using <var class="var">buf</var> as the
+buffer.  The <var class="var">size</var> argument specifies the length of <var class="var">buf</var>.
+</p>
+<p>This function is provided for compatibility with old BSD code.  Use
+<code class="code">setvbuf</code> instead.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-setlinebuf"><span class="category-def">Function: </span><span><code class="def-type">void</code> <strong class="def-name">setlinebuf</strong> <code class="def-code-arguments">(FILE *<var class="var">stream</var>)</code><a class="copiable-link" href="#index-setlinebuf"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe 
+| AS-Unsafe corrupt
+| AC-Unsafe lock corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>This function makes <var class="var">stream</var> be line buffered, and allocates the
+buffer for you.
+</p>
+<p>This function is provided for compatibility with old BSD code.  Use
+<code class="code">setvbuf</code> instead.
+</p></dd></dl>
+
+<p>It is possible to query whether a given stream is line buffered or not
+using a non-standard function introduced in Solaris and available in
+the GNU C Library.
+</p>
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-_005f_005fflbf"><span class="category-def">Function: </span><span><code class="def-type">int</code> <strong class="def-name">__flbf</strong> <code class="def-code-arguments">(FILE *<var class="var">stream</var>)</code><a class="copiable-link" href="#index-_005f_005fflbf"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe 
+| AS-Safe 
+| AC-Safe 
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>The <code class="code">__flbf</code> function will return a nonzero value in case the
+stream <var class="var">stream</var> is line buffered.  Otherwise the return value is
+zero.
+</p>
+<p>This function is declared in the <samp class="file">stdio_ext.h</samp> header.
+</p></dd></dl>
+
+<p>Two more extensions allow to determine the size of the buffer and how
+much of it is used.  These functions were also introduced in Solaris.
+</p>
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-_005f_005ffbufsize"><span class="category-def">Function: </span><span><code class="def-type">size_t</code> <strong class="def-name">__fbufsize</strong> <code class="def-code-arguments">(FILE *<var class="var">stream</var>)</code><a class="copiable-link" href="#index-_005f_005ffbufsize"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe race:stream
+| AS-Unsafe corrupt
+| AC-Safe 
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>The <code class="code">__fbufsize</code> function return the size of the buffer in the
+stream <var class="var">stream</var>.  This value can be used to optimize the use of the
+stream.
+</p>
+<p>This function is declared in the <samp class="file">stdio_ext.h</samp> header.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-_005f_005ffpending"><span class="category-def">Function: </span><span><code class="def-type">size_t</code> <strong class="def-name">__fpending</strong> <code class="def-code-arguments">(FILE *<var class="var">stream</var>)</code><a class="copiable-link" href="#index-_005f_005ffpending"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe race:stream
+| AS-Unsafe corrupt
+| AC-Safe 
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>The <code class="code">__fpending</code>
+function returns the number of bytes currently in the output buffer.
+For wide-oriented streams the measuring unit is wide characters.  This
+function should not be used on buffers in read mode or opened read-only.
+</p>
+<p>This function is declared in the <samp class="file">stdio_ext.h</samp> header.
+</p></dd></dl>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Previous: <a href="Flushing-Buffers.html">Flushing Buffers</a>, Up: <a href="Stream-Buffering.html">Stream Buffering</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

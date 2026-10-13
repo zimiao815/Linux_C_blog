@@ -1,0 +1,6 @@
+mode=r opened_size=3
+mode=r+ opened_size=3
+mode=w opened_size=0
+mode=w+ opened_size=0
+mode=a opened_size=3
+mode=a+ opened_size=3

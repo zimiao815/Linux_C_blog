@@ -1,0 +1,269 @@
+{
+  "system": "macOS-14.8.8-x86_64-i386-64bit-Mach-O",
+  "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+  "flags": [
+    "-std=c17",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wconversion",
+    "-Wshadow",
+    "-O0",
+    "-g"
+  ],
+  "builds": [
+    {
+      "command": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g",
+        "setvbuf_probe.c",
+        "-o",
+        "setvbuf_probe"
+      ],
+      "exit": 0,
+      "stderr": ""
+    },
+    {
+      "command": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g",
+        "invalid_mode.c",
+        "-o",
+        "invalid_mode"
+      ],
+      "exit": 0,
+      "stderr": ""
+    }
+  ],
+  "linux_runtime_tested": false,
+  "records": [
+    {
+      "target": "file",
+      "mode": "full",
+      "payload": "newline",
+      "command": [
+        "./setvbuf_probe",
+        "full",
+        "newline"
+      ],
+      "before_release": "",
+      "after_close": "ready\n",
+      "exit": 0,
+      "checkpoint": "[checkpoint] press Enter\n"
+    },
+    {
+      "target": "file",
+      "mode": "full",
+      "payload": "partial",
+      "command": [
+        "./setvbuf_probe",
+        "full",
+        "partial"
+      ],
+      "before_release": "",
+      "after_close": "ready> ",
+      "exit": 0,
+      "checkpoint": "[checkpoint] press Enter\n"
+    },
+    {
+      "target": "file",
+      "mode": "line",
+      "payload": "newline",
+      "command": [
+        "./setvbuf_probe",
+        "line",
+        "newline"
+      ],
+      "before_release": "ready\n",
+      "after_close": "ready\n",
+      "exit": 0,
+      "checkpoint": "[checkpoint] press Enter\n"
+    },
+    {
+      "target": "file",
+      "mode": "line",
+      "payload": "partial",
+      "command": [
+        "./setvbuf_probe",
+        "line",
+        "partial"
+      ],
+      "before_release": "",
+      "after_close": "ready> ",
+      "exit": 0,
+      "checkpoint": "[checkpoint] press Enter\n"
+    },
+    {
+      "target": "file",
+      "mode": "none",
+      "payload": "newline",
+      "command": [
+        "./setvbuf_probe",
+        "none",
+        "newline"
+      ],
+      "before_release": "ready\n",
+      "after_close": "ready\n",
+      "exit": 0,
+      "checkpoint": "[checkpoint] press Enter\n"
+    },
+    {
+      "target": "file",
+      "mode": "none",
+      "payload": "partial",
+      "command": [
+        "./setvbuf_probe",
+        "none",
+        "partial"
+      ],
+      "before_release": "ready> ",
+      "after_close": "ready> ",
+      "exit": 0,
+      "checkpoint": "[checkpoint] press Enter\n"
+    },
+    {
+      "target": "pipe",
+      "mode": "full",
+      "payload": "newline",
+      "command": [
+        "./setvbuf_probe",
+        "full",
+        "newline"
+      ],
+      "before_release": "",
+      "after_close": "ready\n",
+      "exit": 0,
+      "checkpoint": "[checkpoint] press Enter\n"
+    },
+    {
+      "target": "pipe",
+      "mode": "full",
+      "payload": "partial",
+      "command": [
+        "./setvbuf_probe",
+        "full",
+        "partial"
+      ],
+      "before_release": "",
+      "after_close": "ready> ",
+      "exit": 0,
+      "checkpoint": "[checkpoint] press Enter\n"
+    },
+    {
+      "target": "pipe",
+      "mode": "line",
+      "payload": "newline",
+      "command": [
+        "./setvbuf_probe",
+        "line",
+        "newline"
+      ],
+      "before_release": "ready\n",
+      "after_close": "ready\n",
+      "exit": 0,
+      "checkpoint": "[checkpoint] press Enter\n"
+    },
+    {
+      "target": "pipe",
+      "mode": "line",
+      "payload": "partial",
+      "command": [
+        "./setvbuf_probe",
+        "line",
+        "partial"
+      ],
+      "before_release": "",
+      "after_close": "ready> ",
+      "exit": 0,
+      "checkpoint": "[checkpoint] press Enter\n"
+    },
+    {
+      "target": "pipe",
+      "mode": "none",
+      "payload": "newline",
+      "command": [
+        "./setvbuf_probe",
+        "none",
+        "newline"
+      ],
+      "before_release": "ready\n",
+      "after_close": "ready\n",
+      "exit": 0,
+      "checkpoint": "[checkpoint] press Enter\n"
+    },
+    {
+      "target": "pipe",
+      "mode": "none",
+      "payload": "partial",
+      "command": [
+        "./setvbuf_probe",
+        "none",
+        "partial"
+      ],
+      "before_release": "ready> ",
+      "after_close": "ready> ",
+      "exit": 0,
+      "checkpoint": "[checkpoint] press Enter\n"
+    }
+  ],
+  "errors": [
+    {
+      "case": "stdin ended",
+      "command": [
+        "./setvbuf_probe",
+        "full",
+        "newline"
+      ],
+      "exit": 1,
+      "stderr": "[checkpoint] press Enter\nstdin ended before release\n"
+    },
+    {
+      "case": "unknown buffering mode",
+      "command": [
+        "./setvbuf_probe",
+        "invalid",
+        "newline"
+      ],
+      "exit": 1,
+      "stderr": "unknown buffering mode\n"
+    },
+    {
+      "case": "usage:",
+      "command": [
+        "./setvbuf_probe"
+      ],
+      "exit": 1,
+      "stderr": "usage: ./setvbuf_probe full|line|none newline|partial\n"
+    },
+    {
+      "case": "RLIMIT_FSIZE=0: full",
+      "exit": 1,
+      "stderr": "[checkpoint] press Enter\nfclose stdout: File too large\n"
+    },
+    {
+      "case": "RLIMIT_FSIZE=0: none",
+      "exit": 1,
+      "stderr": "fputs stdout: File too large\n"
+    },
+    {
+      "case": "setvbuf invalid mode (expected rejection)",
+      "exit": 0,
+      "stderr": "invalid mode rejected: yes\n"
+    }
+  ],
+  "checks_passed": true
+}

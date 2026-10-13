@@ -1,0 +1,6 @@
+mode=r+ opened_size=3
+XLD
+mode=w+ opened_size=0
+X
+mode=a+ opened_size=3
+OLDX

@@ -1,0 +1,205 @@
+stdin
+<<<
+Previous
+Home
+Next
+>>>
+The Open Group Base Specifications Issue 8
+IEEE Std 1003.1-2024
+Copyright © 2001-2024 The IEEE and The Open Group
+NAME
+stderr, stdin, stdout — standard I/O streams
+SYNOPSIS
+#include <
+stdio.h
+>
+extern FILE *stderr, *stdin, *stdout;
+DESCRIPTION
+[
+CX
+]
+The functionality described on this reference page is aligned with the ISO C standard. Any conflict between the
+requirements described here and the ISO C standard is unintentional. This volume of POSIX.1-2024 defers to the ISO C
+standard.
+A file with associated buffering is called a
+stream
+and is declared to be a pointer to a defined type
+FILE
+. The
+fopen
+()
+function shall create certain descriptive data for a stream and return a
+pointer to designate the stream in all further transactions. Normally, there are three open streams with constant pointers declared
+in the
+<stdio.h>
+header and associated with the standard open files.
+At program start-up, three streams shall be predefined and already open:
+stdin
+(standard input, for conventional input)
+for reading,
+stdout
+(standard output, for conventional output) for writing, and
+stderr
+(standard error, for
+diagnostic output) for writing. When opened,
+stderr
+shall not be fully buffered;
+stdin
+and
+stdout
+shall be
+fully buffered if and only if
+[
+CX
+]
+the file descriptor associated with the stream is determined not to be associated with an
+interactive device.
+[
+CX
+]
+The
+following symbolic values in
+<unistd.h>
+define the file descriptors that shall
+be associated with the C-language
+stdin
+,
+stdout
+, and
+stderr
+when the application is started:
+STDIN_FILENO
+Standard input value,
+stdin
+. Its value is 0.
+STDOUT_FILENO
+Standard output value,
+stdout
+. Its value is 1.
+STDERR_FILENO
+Standard error value,
+stderr
+. Its value is 2.
+These file descriptors are often all associated with a single open file description which has access mode O_RDWR (e.g., in the
+case of a terminal device for a login shell). However, the
+stderr
+,
+stdin
+, and
+stdout
+streams need not be
+opened for both reading and writing at program start-up in this case.
+RETURN VALUE
+None.
+ERRORS
+No errors are defined.
+The following sections are informative.
+EXAMPLES
+None.
+APPLICATION USAGE
+None.
+RATIONALE
+None.
+FUTURE DIRECTIONS
+None.
+SEE ALSO
+fclose
+()
+,
+feof
+()
+,
+ferror
+()
+,
+fileno
+()
+,
+fopen
+()
+,
+fprintf
+()
+,
+fread
+()
+,
+fscanf
+()
+,
+fseek
+()
+,
+getc
+()
+,
+isatty
+()
+,
+popen
+()
+,
+putc
+()
+,
+puts
+()
+,
+read
+()
+,
+setbuf
+()
+,
+setvbuf
+()
+,
+tmpfile
+()
+,
+ungetc
+()
+,
+vfprintf
+()
+XBD
+<stdio.h>
+,
+<unistd.h>
+CHANGE HISTORY
+First released in Issue 1.
+Issue 6
+Extensions beyond the ISO C standard are marked.
+A note that
+stderr
+is expected to be open for reading and writing is added to the DESCRIPTION.
+Issue 8
+Austin Group Defect 1347 is applied, clarifying the requirements for how
+stderr
+,
+stdin
+, and
+stdout
+are
+opened at program start-up.
+End of informative text.
+return to top of page
+UNIX® is a registered Trademark of The Open Group.
+POSIX™ is a Trademark of The IEEE.
+Copyright © 2001-2024 The IEEE and The Open Group, All Rights Reserved
+[
+Main Index
+|
+XBD
+|
+XSH
+|
+XCU
+|
+XRAT
+]
+<<<
+Previous
+Home
+Next
+>>>

@@ -1,0 +1,127 @@
+{
+  "system": "macOS-14.8.8-x86_64-i386-64bit",
+  "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+  "flags": [
+    "-std=c17",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wconversion",
+    "-Wshadow",
+    "-O0",
+    "-g"
+  ],
+  "compile_stderr": "",
+  "linux_runtime_tested": false,
+  "records": [
+    {
+      "target": "terminal",
+      "mode": "newline",
+      "checkpoint": "[checkpoint] press Enter\n",
+      "before_release": "ready\n",
+      "after_release": "ready\ndone\n",
+      "exit": 0,
+      "stderr_after_checkpoint": ""
+    },
+    {
+      "target": "terminal",
+      "mode": "partial",
+      "checkpoint": "[checkpoint] press Enter\n",
+      "before_release": "",
+      "after_release": "ready> done\n",
+      "exit": 0,
+      "stderr_after_checkpoint": ""
+    },
+    {
+      "target": "terminal",
+      "mode": "flush",
+      "checkpoint": "[checkpoint] press Enter\n",
+      "before_release": "ready\n",
+      "after_release": "ready\ndone\n",
+      "exit": 0,
+      "stderr_after_checkpoint": ""
+    },
+    {
+      "target": "file",
+      "mode": "newline",
+      "checkpoint": "[checkpoint] press Enter\n",
+      "before_release": "",
+      "after_release": "ready\ndone\n",
+      "exit": 0,
+      "stderr_after_checkpoint": ""
+    },
+    {
+      "target": "file",
+      "mode": "partial",
+      "checkpoint": "[checkpoint] press Enter\n",
+      "before_release": "",
+      "after_release": "ready> done\n",
+      "exit": 0,
+      "stderr_after_checkpoint": ""
+    },
+    {
+      "target": "file",
+      "mode": "flush",
+      "checkpoint": "[checkpoint] press Enter\n",
+      "before_release": "ready\n",
+      "after_release": "ready\ndone\n",
+      "exit": 0,
+      "stderr_after_checkpoint": ""
+    },
+    {
+      "target": "pipe",
+      "mode": "newline",
+      "checkpoint": "[checkpoint] press Enter\n",
+      "before_release": "",
+      "after_release": "ready\ndone\n",
+      "exit": 0,
+      "stderr_after_checkpoint": ""
+    },
+    {
+      "target": "pipe",
+      "mode": "partial",
+      "checkpoint": "[checkpoint] press Enter\n",
+      "before_release": "",
+      "after_release": "ready> done\n",
+      "exit": 0,
+      "stderr_after_checkpoint": ""
+    },
+    {
+      "target": "pipe",
+      "mode": "flush",
+      "checkpoint": "[checkpoint] press Enter\n",
+      "before_release": "ready\n",
+      "after_release": "ready\ndone\n",
+      "exit": 0,
+      "stderr_after_checkpoint": ""
+    }
+  ],
+  "errors": [
+    {
+      "case": "stdin EOF",
+      "exit": 1,
+      "stderr": "[checkpoint] press Enter\nstdin ended before release\n"
+    },
+    {
+      "case": "invalid argument",
+      "exit": 1,
+      "stderr": "usage: ./stdout_buffer newline|partial|flush\n"
+    },
+    {
+      "case": "file size limit: newline",
+      "exit": 1,
+      "stderr": "[checkpoint] press Enter\nfflush final: File too large\n"
+    },
+    {
+      "case": "file size limit: flush",
+      "exit": 1,
+      "stderr": "fflush checkpoint: File too large\nfflush final: File too large\n"
+    },
+    {
+      "case": "readonly stdout",
+      "exit": 1,
+      "stderr": "fflush checkpoint: Bad file descriptor\nfflush final: Bad file descriptor\n"
+    }
+  ],
+  "checks_passed": true
+}

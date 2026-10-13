@@ -1,0 +1,38 @@
+target | mode | before release | after release | exit
+terminal | newline | "ready\n" | "ready\ndone\n" | 0
+terminal | partial | "" | "ready> done\n" | 0
+terminal | flush | "ready\n" | "ready\ndone\n" | 0
+file | newline | "" | "ready\ndone\n" | 0
+file | partial | "" | "ready> done\n" | 0
+file | flush | "ready\n" | "ready\ndone\n" | 0
+pipe | newline | "" | "ready\ndone\n" | 0
+pipe | partial | "" | "ready> done\n" | 0
+pipe | flush | "ready\n" | "ready\ndone\n" | 0
+
+[
+  {
+    "case": "stdin EOF",
+    "exit": 1,
+    "stderr": "[checkpoint] press Enter\nstdin ended before release\n"
+  },
+  {
+    "case": "invalid argument",
+    "exit": 1,
+    "stderr": "usage: ./stdout_buffer newline|partial|flush\n"
+  },
+  {
+    "case": "file size limit: newline",
+    "exit": 1,
+    "stderr": "[checkpoint] press Enter\nfflush final: File too large\n"
+  },
+  {
+    "case": "file size limit: flush",
+    "exit": 1,
+    "stderr": "fflush checkpoint: File too large\nfflush final: File too large\n"
+  },
+  {
+    "case": "readonly stdout",
+    "exit": 1,
+    "stderr": "fflush checkpoint: Bad file descriptor\nfflush final: Bad file descriptor\n"
+  }
+]

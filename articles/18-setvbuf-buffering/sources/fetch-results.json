@@ -1,0 +1,52 @@
+[
+  {
+    "file": "posix-fclose.html",
+    "bytes": 14703,
+    "ok": true
+  },
+  {
+    "file": "posix-setvbuf.html",
+    "bytes": 7973,
+    "ok": true
+  },
+  {
+    "file": "glibc-buffering.html",
+    "bytes": 15038,
+    "ok": true
+  },
+  {
+    "file": "glibc-concepts.html",
+    "bytes": 4245,
+    "ok": true
+  },
+  {
+    "file": "glibc-iosetvbuf.c",
+    "bytes": 3064,
+    "ok": true
+  },
+  {
+    "file": "glibc-genops.c",
+    "bytes": 26778,
+    "ok": true
+  },
+  {
+    "file": "glibc-fileops.c",
+    "bytes": 41630,
+    "ok": true
+  },
+  {
+    "file": "glibc-struct_FILE.h",
+    "bytes": 4101,
+    "ok": true
+  },
+  {
+    "file": "kernel-fdtable.h",
+    "bytes": 3651,
+    "ok": true
+  },
+  {
+    "file": "kernel-fs.h",
+    "bytes": 114446,
+    "ok": true
+  }
+]

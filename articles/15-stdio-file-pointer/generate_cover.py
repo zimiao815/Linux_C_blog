@@ -1,0 +1,14 @@
+from pathlib import Path
+import json, subprocess
+art = Path(__file__).resolve().parent
+prompt = '''直接生成最终的 900×383 横向公众号技术文章封面，严格长宽比900:383。主题：C 标准 I/O 库的流对象与文件描述符。干净浅米白背景，深蓝色、青色、少量橙色，教材式精致扁平矢量质感，线条清晰，主体居中。中央构图：左边一个有三个小隔间的用户态流卡片，隔间以小字节方块、状态指示灯、编号小标签的无文字图形表达缓冲/状态/描述符；一条单向蓝色箭头从编号小标签指向右侧一列内核描述符槽位中高亮的一格，再从该格单向箭头连接到右边一个打开文件卡片。整幅画面只允许以下两处文字，禁止其他标题或标签：左下“标准 I/O 库 · 第1期”，右下“公众号·理解力笔记”。禁止放文章标题。直接生成全部文字和水印，不留后期叠字区域。主体离四周至少40像素，底部文字完整不裁切。'''
+name='cover-15-stdio-file-pointer'
+(art/'image-prompts.json').write_text(json.dumps({'name':name,'prompt':prompt},ensure_ascii=False,indent=2)+'\n')
+with (art/(name+'.log')).open('w') as log:
+ result=subprocess.run(['python3','/Users/zhaodan/.codex/skills/gpt-imagegen/scripts/image_api.py','generate','--json','--name',name,'--output',str(art/(name+'.png')),'--prompt',prompt],cwd=art.parents[2]/'linux_c_blog_workflow',stdout=log,stderr=subprocess.STDOUT)
+print('cover generation exit:',result.returncode)
+if result.returncode: raise SystemExit(result.returncode)
+from PIL import Image
+with Image.open(art/(name+'.png')) as im:
+ im.convert('RGB').resize((900,383), Image.Resampling.LANCZOS).save(art/(name+'-900.png'))
+print(art/(name+'-900.png'))

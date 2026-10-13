@@ -1,0 +1,12 @@
+{
+  "posix-fclose.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fclose.html",
+  "posix-setvbuf.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/setvbuf.html",
+  "glibc-buffering.html": "https://sourceware.org/glibc/manual/2.40/html_node/Controlling-Buffering.html",
+  "glibc-concepts.html": "https://sourceware.org/glibc/manual/2.40/html_node/Buffering-Concepts.html",
+  "glibc-iosetvbuf.c": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/iosetvbuf.c",
+  "glibc-genops.c": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/genops.c",
+  "glibc-fileops.c": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/fileops.c",
+  "glibc-struct_FILE.h": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/bits/types/struct_FILE.h",
+  "kernel-fdtable.h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fdtable.h",
+  "kernel-fs.h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fs.h"
+}

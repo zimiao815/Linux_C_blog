@@ -1,0 +1,14 @@
+{
+  "posix-stdin.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/stdin.html",
+  "posix-fflush.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fflush.html",
+  "posix-exit.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/exit.html",
+  "linux-stdio.3": "https://raw.githubusercontent.com/mkerrisk/man-pages/master/man3/stdio.3",
+  "glibc-filedoalloc.c": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/filedoalloc.c",
+  "glibc-stdfiles.c": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/stdfiles.c",
+  "glibc-fileops.c": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/fileops.c",
+  "glibc-struct_FILE.h": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/bits/types/struct_FILE.h",
+  "glibc-buffering.html": "https://sourceware.org/glibc/manual/2.40/html_node/Flushing-Buffers.html",
+  "kernel-fdtable.h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fdtable.h",
+  "kernel-fs.h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fs.h",
+  "glibc-concepts.html": "https://sourceware.org/glibc/manual/2.40/html_node/Buffering-Concepts.html"
+}

@@ -1,0 +1,2 @@
+{"job_id": "20261011-081803-1d66e8", "status": "running", "op": "generate", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/15-stdio-file-pointer/cover-15-stdio-file-pointer.png", "message": "Image API call in progress; may take 1–5+ minutes."}
+{"job_id": "20261011-081803-1d66e8", "status": "done", "op": "generate", "name": "cover-15-stdio-file-pointer", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/15-stdio-file-pointer/cover-15-stdio-file-pointer.png"}

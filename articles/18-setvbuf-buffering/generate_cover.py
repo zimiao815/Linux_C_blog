@@ -1,0 +1,14 @@
+from pathlib import Path
+import json, subprocess
+art = Path(__file__).resolve().parent
+prompt = '直接生成最终900×383横向技术公众号封面，比例900:383，浅米白底，深蓝、青色、少量橙色，精致扁平教学图。主体居中，画三个并排的可调节缓冲装置，每个装置左侧都有相同的几颗字节小方块进入：左边的大容器把方块积存起来，中央容器有一行方块排列整齐后从出口流出，右边只有直通管道让方块直接流出。上方是三个简洁的模式拨杆，表达通过配置选择积攒、按行发送、立即发送。不要画磁盘，不要显示容量数字，不要画复杂线路。只允许两处文字：左下“标准 I/O 库 · 第4期”，右下“公众号·理解力笔记”。不加文章标题，不加其他标签。文字和水印直接生成，不留后期叠字区域。边缘40像素留白，内容完整。'
+name='cover-18-setvbuf-buffering'
+(art/'image-prompts.json').write_text(json.dumps({'name':name,'prompt':prompt},ensure_ascii=False,indent=2)+'\n')
+with (art/(name+'.log')).open('w') as log:
+ result=subprocess.run(['python3','/Users/zhaodan/.codex/skills/gpt-imagegen/scripts/image_api.py','generate','--json','--name',name,'--output',str(art/(name+'.png')),'--prompt',prompt],cwd=art.parents[2]/'linux_c_blog_workflow',stdout=log,stderr=subprocess.STDOUT)
+print('cover generation exit:',result.returncode)
+if result.returncode: raise SystemExit(result.returncode)
+from PIL import Image
+with Image.open(art/(name+'.png')) as im:
+ im.convert('RGB').resize((900,383), Image.Resampling.LANCZOS).save(art/(name+'-900.png'))
+print(art/(name+'-900.png'))

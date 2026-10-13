@@ -1,0 +1,2 @@
+{"job_id": "20261013-031136-e3d26f", "status": "running", "op": "generate", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/18-setvbuf-buffering/cover-18-setvbuf-buffering.png", "message": "Image API call in progress; may take 1–5+ minutes."}
+{"job_id": "20261013-031136-e3d26f", "status": "done", "op": "generate", "name": "cover-18-setvbuf-buffering", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/18-setvbuf-buffering/cover-18-setvbuf-buffering.png"}

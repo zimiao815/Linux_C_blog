@@ -1,0 +1,59 @@
+target | mode | payload | before release | after close | exit
+file | full | newline | "" | "ready\n" | 0
+file | full | partial | "" | "ready> " | 0
+file | line | newline | "ready\n" | "ready\n" | 0
+file | line | partial | "" | "ready> " | 0
+file | none | newline | "ready\n" | "ready\n" | 0
+file | none | partial | "ready> " | "ready> " | 0
+pipe | full | newline | "" | "ready\n" | 0
+pipe | full | partial | "" | "ready> " | 0
+pipe | line | newline | "ready\n" | "ready\n" | 0
+pipe | line | partial | "" | "ready> " | 0
+pipe | none | newline | "ready\n" | "ready\n" | 0
+pipe | none | partial | "ready> " | "ready> " | 0
+
+[
+  {
+    "case": "stdin ended",
+    "command": [
+      "./setvbuf_probe",
+      "full",
+      "newline"
+    ],
+    "exit": 1,
+    "stderr": "[checkpoint] press Enter\nstdin ended before release\n"
+  },
+  {
+    "case": "unknown buffering mode",
+    "command": [
+      "./setvbuf_probe",
+      "invalid",
+      "newline"
+    ],
+    "exit": 1,
+    "stderr": "unknown buffering mode\n"
+  },
+  {
+    "case": "usage:",
+    "command": [
+      "./setvbuf_probe"
+    ],
+    "exit": 1,
+    "stderr": "usage: ./setvbuf_probe full|line|none newline|partial\n"
+  },
+  {
+    "case": "RLIMIT_FSIZE=0: full",
+    "exit": 1,
+    "stderr": "[checkpoint] press Enter\nfclose stdout: File too large\n"
+  },
+  {
+    "case": "RLIMIT_FSIZE=0: none",
+    "exit": 1,
+    "stderr": "fputs stdout: File too large\n"
+  },
+  {
+    "case": "setvbuf invalid mode (expected rejection)",
+    "exit": 0,
+    "stderr": "invalid mode rejected: yes\n"
+  }
+]
