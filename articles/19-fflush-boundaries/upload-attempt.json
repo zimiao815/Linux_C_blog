@@ -1,0 +1,12 @@
+{
+  "success": false,
+  "stage": "get_access_token",
+  "reason": "invalid ip, not in whitelist",
+  "outbound_ip": "124.126.128.72",
+  "attempted_at": "2026-10-15T01:09:36.588053+00:00",
+  "draft_created": false,
+  "resolved": true,
+  "resolution": "User added outbound IP to whitelist; retry created draft and passed API readback.",
+  "resolved_at": "2026-10-15T02:59:27.716930+00:00",
+  "successful_draft_id": "SJX3d8llAncCa7oc9Z2IAW7KxAnVufi_gHY8JP_IrpAFKKR2nRC1pi_ugxZECRJF"
+}

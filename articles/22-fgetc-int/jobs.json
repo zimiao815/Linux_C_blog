@@ -1,0 +1,16 @@
+{
+  "jobs": [
+    {
+      "id": "20261019-040147-20d0ce",
+      "status": "done",
+      "op": "generate",
+      "name": "fgetc-return-contract-v2",
+      "prompt_preview": "Create a clean educational technical diagram for a Chinese programming article about the C standard I/O function fgetc. Landscape 16:9, crisp high-contrast flat vector style, large readable labels. Show three horizontal stages with arrows:…",
+      "source_image": null,
+      "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/22-fgetc-int/imagegen-output/fgetc-return-contract-v2.png",
+      "started_at": "2026-10-19T04:01:47Z",
+      "finished_at": "2026-10-19T04:02:13Z",
+      "error": null
+    }
+  ]
+}

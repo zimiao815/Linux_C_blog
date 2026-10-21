@@ -1,0 +1,18 @@
+{
+  "posix-feof.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/feof.html",
+  "posix-ferror.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/ferror.html",
+  "posix-fgetc.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fgetc.html",
+  "posix-clearerr.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/clearerr.html",
+  "posix-fgets.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fgets.html",
+  "posix-fseek.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fseek.html",
+  "glibc-errors.html": "https://sourceware.org/glibc/manual/2.40/html_node/EOF-and-Errors.html",
+  "glibc-feof.c": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/feof.c",
+  "glibc-ferror.c": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/ferror.c",
+  "glibc-fileops.c": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/fileops.c",
+  "glibc-struct_FILE.h": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/bits/types/struct_FILE.h",
+  "kernel-fdtable.h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fdtable.h",
+  "kernel-fs.h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fs.h",
+  "posix-fread.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fread.html",
+  "posix-fputc.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fputc.html",
+  "posix-fflush.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fflush.html"
+}

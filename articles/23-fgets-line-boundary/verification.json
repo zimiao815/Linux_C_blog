@@ -1,0 +1,25 @@
+{
+  "environment": {
+    "system": "macOS-14.8.8-x86_64-i386-64bit-Mach-O",
+    "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+    "flags": [
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wshadow",
+      "-O0",
+      "-g"
+    ]
+  },
+  "outputs": {
+    "long_no_final_newline": "part=1 len=7 newline=0\npart=2 len=3 newline=1\npart=3 len=4 newline=0\ndone parts=3 eof=1\n",
+    "short_with_newline": "part=1 len=4 newline=1\ndone parts=1 eof=1\n",
+    "empty": "done parts=0 eof=1\n"
+  },
+  "directory_error": {
+    "exit": 1,
+    "stderr": "fgets: Is a directory\n"
+  }
+}

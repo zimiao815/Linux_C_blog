@@ -1,0 +1,2 @@
+{"job_id": "20261016-042338-6bb33a", "status": "running", "op": "generate", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/21-feof-read-loop/feof-timing-ai.png", "message": "Image API call in progress; may take 1–5+ minutes."}
+{"job_id": "20261016-042338-6bb33a", "status": "done", "op": "generate", "name": "feof-timing-ai", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/21-feof-read-loop/feof-timing-ai.png"}

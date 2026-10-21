@@ -1,0 +1,77 @@
+{
+  "environment": "macOS-14.8.8-x86_64-i386-64bit-Mach-O",
+  "flags": [
+    "-std=c17",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wconversion",
+    "-Wshadow",
+    "-O0",
+    "-g"
+  ],
+  "records": [
+    {
+      "case": "empty",
+      "exit": 0,
+      "stdout": "start: eof=0 error=0\nstop: EOF eof=1 error=0\n"
+    },
+    {
+      "case": "single",
+      "exit": 0,
+      "stdout": "start: eof=0 error=0\nbyte=65 eof=0 error=0\nstop: EOF eof=1 error=0\n"
+    },
+    {
+      "case": "newline",
+      "exit": 0,
+      "stdout": "start: eof=0 error=0\nbyte=65 eof=0 error=0\nbyte=10 eof=0 error=0\nstop: EOF eof=1 error=0\n"
+    },
+    {
+      "case": "binary",
+      "exit": 0,
+      "stdout": "start: eof=0 error=0\nbyte=0 eof=0 error=0\nbyte=255 eof=0 error=0\nstop: EOF eof=1 error=0\n"
+    }
+  ],
+  "copies": [
+    {
+      "case": "empty",
+      "exit": 0,
+      "exact_match": true,
+      "bytes": 0
+    },
+    {
+      "case": "all-bytes",
+      "exit": 0,
+      "exact_match": true,
+      "bytes": 256
+    }
+  ],
+  "failures": [
+    {
+      "program": "feof_short",
+      "case": "directory",
+      "exit": 1,
+      "stdout": "start: eof=0 error=0\nstop: EOF eof=0 error=1\n",
+      "stderr": "fgetc: Is a directory\n"
+    },
+    {
+      "program": "feof_short",
+      "case": "output-limit",
+      "exit": 1,
+      "stderr": "fflush: File too large\n"
+    },
+    {
+      "program": "copy",
+      "case": "directory",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "copy_stream: Is a directory\n"
+    },
+    {
+      "program": "copy",
+      "case": "output-limit",
+      "exit": 1,
+      "stderr": "copy_stream: File too large\n"
+    }
+  ]
+}

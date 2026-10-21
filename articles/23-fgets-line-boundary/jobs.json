@@ -1,0 +1,28 @@
+{
+  "jobs": [
+    {
+      "id": "20261019-122512-327089",
+      "status": "done",
+      "op": "generate",
+      "name": "cover-23-fgets-line-boundary",
+      "prompt_preview": "直接生成最终 900×383 横向技术公众号封面，主题是 C 标准 I/O 的 fgets 分段读取。简洁清晰的扁平教学插画，主体居中：一条写着 abcdefghi\\nlast 的长文本带从左向右进入一个容量较小的读取窗口，窗口分三次吐出 abcdefg、hi 换行、last，突出缓冲区边界而不是文件被切坏。深蓝、青色、少量橙色，留白充足，箭头清楚。只允许两处文字：左下“标准 I/O 库 · 第9期”，右下“公众号·理解力笔记”。不放文章标题，不放其他文字，不画复杂电脑、磁…",
+      "source_image": null,
+      "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/23-fgets-line-boundary/imagegen-cover/cover-23-fgets-line-boundary.png",
+      "started_at": "2026-10-19T12:25:12Z",
+      "finished_at": "2026-10-19T12:25:35Z",
+      "error": null
+    },
+    {
+      "id": "20261019-122616-178691",
+      "status": "done",
+      "op": "generate",
+      "name": "fgets-chunks-23",
+      "prompt_preview": "为中文 C 标准 I/O 教学文章制作一张清晰的技术示意图，1536×1024 横向，深蓝背景、白色和青色文字、少量橙色强调。只回答一个问题：fgets 如何受缓冲区容量限制，把一行分成多次读取。左侧显示一条长输入：abcdefghi 换行 last；中间显示容量为 8 的缓冲区，标注每次最多放 7 个可见字符并保留字符串结尾空间；右侧按时间顺序显示三个结果框：第一次“abcdefg，无换行”，第二次“hi 换行”，第三次“last，无换行”，底部显示“下一次 fgets …",
+      "source_image": null,
+      "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/23-fgets-line-boundary/imagegen-body/fgets-chunks-23.png",
+      "started_at": "2026-10-19T12:26:16Z",
+      "finished_at": "2026-10-19T12:26:44Z",
+      "error": null
+    }
+  ]
+}

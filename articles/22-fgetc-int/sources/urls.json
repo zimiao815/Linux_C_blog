@@ -1,0 +1,13 @@
+{
+  "posix-fgetc.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fgetc.html",
+  "posix-fputc.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fputc.html",
+  "posix-ferror.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/ferror.html",
+  "posix-stdio.html": "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/stdio.h.html",
+  "glibc-character-input.html": "https://sourceware.org/glibc/manual/2.40/html_node/Character-Input.html",
+  "glibc-errors.html": "https://sourceware.org/glibc/manual/2.40/html_node/EOF-and-Errors.html",
+  "glibc-iogetc.c": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/getc.c",
+  "glibc-fileops.c": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/fileops.c",
+  "glibc-struct_FILE.h": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/bits/types/struct_FILE.h",
+  "c-integer-conversion.html": "https://wiki.sei.cmu.edu/confluence/display/c/INT31-C.+Ensure+that+integer+conversions+do+not+result+in+lost+or+misinterpreted+data",
+  "clang-char-options.html": "https://clang.llvm.org/docs/ClangCommandLineReference.html"
+}

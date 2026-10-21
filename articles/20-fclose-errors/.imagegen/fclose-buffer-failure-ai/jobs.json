@@ -1,0 +1,16 @@
+{
+  "jobs": [
+    {
+      "id": "20261016-025008-888a27",
+      "status": "done",
+      "op": "generate",
+      "name": "fclose-buffer-failure-ai",
+      "prompt_preview": "为中文 C 编程公众号制作一张准确、易读的教学图，纯白背景，蓝色表示用户态，青色表示正常路径，橙红色表示失败。现代扁平矢量信息图风格，不画立体硬件，不用装饰性科技背景。横向画布约 1536×1024，四周留白，简体中文无衬线字体大而清晰，手机上也能读懂。所有文字必须严格按下列要求，英文函数名大小写正确。对象少，箭头不交叉，不穿过文字。右下角水印“公众号·理解力笔记”。标题“为什么写入成功，关闭却失败？”；副标题“文件大小上限为 0 的实验”。主体按上、下两个宽面板排列。 上…",
+      "source_image": null,
+      "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/20-fclose-errors/fclose-buffer-failure-ai.png",
+      "started_at": "2026-10-16T02:50:08Z",
+      "finished_at": "2026-10-16T02:50:44Z",
+      "error": null
+    }
+  ]
+}

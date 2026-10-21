@@ -1,0 +1,14 @@
+{
+  "posix-fflush.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fflush.html",
+  "posix-fsync.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fsync.html",
+  "posix-fclose.html": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fclose.html",
+  "glibc-flushing.html": "https://sourceware.org/glibc/manual/2.40/html_node/Flushing-Buffers.html",
+  "glibc-iofflush.c": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/iofflush.c",
+  "glibc-fileops.c": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/fileops.c",
+  "glibc-struct_FILE.h": "https://raw.githubusercontent.com/bminor/glibc/glibc-2.40/libio/bits/types/struct_FILE.h",
+  "kernel-fdtable.h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fdtable.h",
+  "kernel-fs.h": "https://raw.githubusercontent.com/torvalds/linux/v6.6/include/linux/fs.h",
+  "linux-fsync.html": "https://man7.org/linux/man-pages/man2/fsync.2.html",
+  "linux-fflush.html": "https://man7.org/linux/man-pages/man3/fflush.3.html",
+  "linux-write.html": "https://man7.org/linux/man-pages/man2/write.2.html"
+}

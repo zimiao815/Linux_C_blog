@@ -1,0 +1,434 @@
+fseek
+<<<
+Previous
+Home
+Next
+>>>
+The Open Group Base Specifications Issue 8
+IEEE Std 1003.1-2024
+Copyright © 2001-2024 The IEEE and The Open Group
+NAME
+fseek, fseeko — reposition a file-position indicator in a stream
+SYNOPSIS
+#include <
+stdio.h
+>
+int fseek(FILE *
+stream
+, long
+offset
+, int
+whence
+);
+[
+CX
+]
+int fseeko(FILE *
+stream
+, off_t
+offset
+, int
+whence
+);
+DESCRIPTION
+[
+CX
+]
+The functionality described on this reference page is aligned with the ISO C standard. Any conflict between the
+requirements described here and the ISO C standard is unintentional. This volume of POSIX.1-2024 defers to the ISO C
+standard.
+The
+fseek
+() function shall set the file-position indicator for the stream pointed to by
+stream
+. If a read or write
+error occurs, the error indicator for the stream shall be set and
+fseek
+() fails.
+The new position, measured in bytes from the beginning of the file,
+[
+CX
+]
+except in the case of streams opened with
+open_wmemstream
+()
+for which the position shall be measured in wide characters,
+shall be obtained by adding
+offset
+to the position specified
+by
+whence
+. The specified point is the beginning of the file for SEEK_SET, the current value of the file-position indicator
+for SEEK_CUR, or end-of-file for SEEK_END.
+If the stream is to be used with wide-character input/output functions, the application shall ensure that
+offset
+is
+either 0 or a value returned by an earlier call to
+ftell
+()
+on the same stream and
+whence
+is SEEK_SET.
+A successful call to
+fseek
+() shall clear the end-of-file indicator for the stream and undo any effects of
+ungetc
+()
+and
+ungetwc
+()
+on the same stream.
+After an
+fseek
+() call, the next operation on an update stream may be either input or output.
+[
+CX
+]
+If
+the most recent operation, other than
+ftell
+()
+, on a given stream is
+fflush
+()
+, the file offset in the underlying open file description shall be adjusted to
+reflect the location specified by
+fseek
+().
+The
+fseek
+() function shall allow the file-position indicator to be set beyond the end of existing data in the file. If
+data is later written at this point, subsequent reads of data in the gap shall return bytes with the value 0 until data is actually
+written into the gap.
+The behavior of
+fseek
+() on devices which are incapable of seeking is implementation-defined. The value of the file offset
+associated with such a device is undefined.
+If the stream has an underlying file description and is writable, and buffered data had not been written to the underlying file,
+fseek
+() shall cause the unwritten data to be written to the file and shall mark the last data modification and last file
+status change timestamps of the file for update. If the stream was created by
+fmemopen
+()
+,
+open_memstream
+()
+, or
+open_wmemstream
+()
+and the stream is writable, and if the stream is buffered
+and data in the stream's buffer has not been written to the underlying memory buffer,
+fseek
+() shall cause the unwritten data
+to be written to the underlying memory buffer.
+In a locale with state-dependent encoding, whether
+fseek
+() restores the stream's shift state is
+implementation-defined.
+The
+fseeko
+() function shall be equivalent to the
+fseek
+() function except that the
+offset
+argument is of
+type
+off_t
+.
+RETURN VALUE
+The
+fseek
+()
+[
+CX
+]
+and
+fseeko
+()
+functions
+shall return 0 if they succeed.
+[
+CX
+]
+Otherwise, they shall return -1 and set
+errno
+to indicate the error.
+ERRORS
+The
+fseek
+()
+[
+CX
+]
+and
+fseeko
+()
+functions shall fail if,
+[
+CX
+]
+either the
+stream
+is unbuffered or the
+stream
+'s buffer needed to be flushed, and
+the call to
+fseek
+() or
+fseeko
+() causes an underlying
+lseek
+()
+or
+write
+()
+to be invoked, and:
+[EAGAIN]
+[
+CX
+]
+The O_NONBLOCK flag is set for the file descriptor and the thread would be delayed in the write operation.
+[EBADF]
+[
+CX
+]
+The file descriptor underlying the stream file is not open for writing or the stream's buffer needed to be flushed and the file is
+not open.
+[EFBIG]
+[
+CX
+]
+An
+attempt was made to write a file that exceeds the maximum file size.
+[EFBIG]
+[
+CX
+]
+An
+attempt was made to write a file that exceeds the file size limit of the process.
+[
+XSI
+]
+A SIGXFSZ signal shall also be generated for the thread.
+[EFBIG]
+[
+CX
+]
+The file is a regular file and an attempt was made to write at or beyond the offset maximum associated with the corresponding
+stream.
+[EINTR]
+[
+CX
+]
+The write operation was terminated due to the receipt of a signal, and no data was transferred.
+[EINVAL]
+[
+CX
+]
+The
+whence
+argument is invalid, the resulting file-position indicator would be set to a negative value, or the stream was
+created by
+fmemopen
+()
+and the resulting file-position indicator would be beyond the
+end of the underlying memory buffer.
+[EIO]
+[
+CX
+]
+A
+physical I/O error has occurred, or the process is a member of a background process group attempting to perform a
+write
+()
+to its controlling terminal, TOSTOP is set, the calling thread is not blocking
+SIGTTOU, the process is not ignoring SIGTTOU, and the process group of the process is orphaned. This error may also be returned
+under implementation-defined conditions.
+[ENOMEM]
+[
+CX
+]
+The stream was created by
+open_memstream
+()
+or
+open_wmemstream
+()
+and insufficient memory is available.
+[ENOSPC]
+[
+CX
+]
+There was no free space remaining on the device containing the file or in the buffer used by the
+fmemopen
+()
+function.
+[EOVERFLOW]
+[
+CX
+]
+For
+fseek
+(), the resulting file offset would be a value which cannot be represented correctly in an object of type
+long
+.
+[EOVERFLOW]
+[
+CX
+]
+For
+fseeko
+(), the resulting file offset would be a value which cannot be represented correctly in an object of type
+off_t
+.
+[EPIPE]
+[
+CX
+]
+An
+attempt was made to write to a pipe or FIFO that is not open for reading by any process; a SIGPIPE signal shall also be sent to the
+thread.
+[ESPIPE]
+[
+CX
+]
+The file descriptor underlying
+stream
+is associated with a pipe, FIFO, or socket.
+The
+fseek
+()
+[
+CX
+]
+and
+fseeko
+()
+functions may fail if:
+[ENXIO]
+[
+CX
+]
+A
+request was made of a nonexistent device, or the request was outside the capabilities of the device.
+The following sections are informative.
+EXAMPLES
+None.
+APPLICATION USAGE
+None.
+RATIONALE
+When the stream was created by
+fmemopen
+()
+,
+fseek
+() fails if an attempt is
+made to seek beyond the end of the underlying memory buffer. This is different than
+fseek
+() on a file when a file size limit
+is in effect because the size specified to
+fmemopen
+()
+is a fixed, absolute limit
+whereas a file size limit is artificial and can be changed. With a file size limit, it is possible to seek past the limit, then
+raise the limit and successfully write at the new position; there is no equivalent possibility with the buffer size specified to
+fmemopen
+()
+.
+See also the rationale for
+ftell
+()
+.
+FUTURE DIRECTIONS
+None.
+SEE ALSO
+2.5 Standard I/O Streams
+,
+fopen
+()
+,
+fmemopen
+()
+,
+fsetpos
+()
+,
+ftell
+()
+,
+getrlimit
+()
+,
+lseek
+()
+,
+open_memstream
+()
+,
+rewind
+()
+,
+ungetc
+()
+,
+write
+()
+XBD
+<stdio.h>
+CHANGE HISTORY
+First released in Issue 1. Derived from Issue 1 of the SVID.
+Issue 5
+Normative text previously in the APPLICATION USAGE section is moved to the DESCRIPTION.
+Large File Summit extensions are added.
+Issue 6
+Extensions beyond the ISO C standard are marked.
+The following new requirements on POSIX implementations derive from alignment with the Single UNIX Specification:
+The
+fseeko
+() function is added.
+The [EFBIG], [EOVERFLOW], and [ENXIO] mandatory error conditions are added.
+The following change is incorporated for alignment with the FIPS requirements:
+The [EINTR] error is no longer an indication that the implementation does not report partial transfers.
+The normative text is updated to avoid use of the term "must" for application requirements.
+The DESCRIPTION is updated to explicitly state that
+fseek
+() sets the file-position indicator, and then on error the error
+indicator is set and
+fseek
+() fails. This is for alignment with the ISO/IEC 9899:1999 standard.
+IEEE Std 1003.1-2001/Cor 2-2004, item XSH/TC2/D6/42 is applied, updating the [EAGAIN] error in the ERRORS section
+from "the process would be delayed" to "the thread would be delayed".
+Issue 7
+Changes are made related to support for finegrained timestamps.
+POSIX.1-2008, Technical Corrigendum 1, XSH/TC1-2008/0188 [79], XSH/TC1-2008/0189 [122], XSH/TC1-2008/0190 [225], and
+XSH/TC1-2008/0191 [14] are applied.
+Issue 8
+Austin Group Defect 308 is applied, clarifying the handling of [EFBIG] errors.
+Austin Group Defect 1027 is applied, specifying that for streams opened with
+open_wmemstream
+()
+the position is measured in wide characters, not bytes.
+Austin Group Defect 1225 is applied, clarifying the behavior for memory streams.
+Austin Group Defect 1669 is applied, removing XSI shading from part of the [EFBIG] error relating to the file size limit for the
+process.
+End of informative text.
+return to top of page
+UNIX® is a registered Trademark of The Open Group.
+POSIX™ is a Trademark of The IEEE.
+Copyright © 2001-2024 The IEEE and The Open Group, All Rights Reserved
+[
+Main Index
+|
+XBD
+|
+XSH
+|
+XCU
+|
+XRAT
+]
+<<<
+Previous
+Home
+Next
+>>>

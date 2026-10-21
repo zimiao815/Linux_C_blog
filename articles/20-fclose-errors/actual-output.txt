@@ -1,0 +1,134 @@
+{
+  "environment": {
+    "system": "macOS-14.8.8-x86_64-i386-64bit-Mach-O",
+    "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+    "flags": [
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wshadow",
+      "-O0",
+      "-g"
+    ]
+  },
+  "records": [
+    {
+      "mode": "buffered",
+      "limit": null,
+      "exit": 0,
+      "content": "record=42\n",
+      "stdout": "",
+      "stderr": "fputs: accepted\nfclose: success\n"
+    },
+    {
+      "mode": "unbuffered",
+      "limit": null,
+      "exit": 0,
+      "content": "record=42\n",
+      "stdout": "",
+      "stderr": "fputs: accepted\nfclose: success\n"
+    },
+    {
+      "mode": "flush-first",
+      "limit": null,
+      "exit": 0,
+      "content": "record=42\n",
+      "stdout": "",
+      "stderr": "fputs: accepted\nfflush: success\nfclose: success\n"
+    },
+    {
+      "mode": "buffered",
+      "limit": 0,
+      "exit": 1,
+      "content": "",
+      "stdout": "",
+      "stderr": "fputs: accepted\nfclose: File too large\n"
+    },
+    {
+      "mode": "unbuffered",
+      "limit": 0,
+      "exit": 1,
+      "content": "",
+      "stdout": "",
+      "stderr": "fputs: File too large\nfclose: success\n"
+    },
+    {
+      "mode": "flush-first",
+      "limit": 0,
+      "exit": 1,
+      "content": "",
+      "stdout": "",
+      "stderr": "fputs: accepted\nfflush: File too large\nfclose: File too large\n"
+    },
+    {
+      "mode": "buffered",
+      "limit": 4,
+      "exit": 1,
+      "content": "reco",
+      "stdout": "",
+      "stderr": "fputs: accepted\nfclose: File too large\n"
+    },
+    {
+      "mode": "unbuffered",
+      "limit": 4,
+      "exit": 1,
+      "content": "reco",
+      "stdout": "",
+      "stderr": "fputs: File too large\nfclose: success\n"
+    },
+    {
+      "mode": "flush-first",
+      "limit": 4,
+      "exit": 1,
+      "content": "reco",
+      "stdout": "",
+      "stderr": "fputs: accepted\nfflush: File too large\nfclose: File too large\n"
+    }
+  ],
+  "rejected": [
+    {
+      "case": "missing-argument",
+      "exit": 1,
+      "stderr": "usage: fclose_probe buffered|unbuffered|flush-first NEW_FILE\n"
+    },
+    {
+      "case": "unknown-mode",
+      "exit": 1,
+      "stderr": "usage: fclose_probe buffered|unbuffered|flush-first NEW_FILE\n"
+    },
+    {
+      "case": "existing-file",
+      "exit": 1,
+      "stderr": "fopen: File exists\n"
+    },
+    {
+      "case": "missing-parent",
+      "exit": 1,
+      "stderr": "fopen: No such file or directory\n"
+    }
+  ],
+  "fd_checks": [
+    {
+      "limit": null,
+      "exit": 0,
+      "stdout": "fclose_failed=0 efbig=0 fd_is_ebadf=1\n"
+    },
+    {
+      "limit": 0,
+      "exit": 0,
+      "stdout": "fclose_failed=1 efbig=1 fd_is_ebadf=1\n"
+    },
+    {
+      "limit": 4,
+      "exit": 0,
+      "stdout": "fclose_failed=1 efbig=1 fd_is_ebadf=1\n"
+    }
+  ],
+  "launcher": {
+    "exit": 1,
+    "stdout": "exit=1\n",
+    "stderr": "fputs: accepted\nfclose: File too large\n"
+  }
+}

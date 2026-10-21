@@ -1,0 +1,14 @@
+{
+  "title": true,
+  "title_expected": true,
+  "body_images": true,
+  "remote_images": true,
+  "guide": true,
+  "mechanism": true,
+  "cover": true,
+  "code_preserved": true,
+  "launcher_preserved": true,
+  "environment_limit": true,
+  "failure_explained": true,
+  "single_footer": true
+}

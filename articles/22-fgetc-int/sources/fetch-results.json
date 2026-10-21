@@ -1,0 +1,57 @@
+[
+  {
+    "file": "posix-fgetc.html",
+    "bytes": 12554,
+    "ok": true
+  },
+  {
+    "file": "posix-fputc.html",
+    "bytes": 12475,
+    "ok": true
+  },
+  {
+    "file": "posix-ferror.html",
+    "bytes": 5821,
+    "ok": true
+  },
+  {
+    "file": "posix-stdio.html",
+    "bytes": 21620,
+    "ok": true
+  },
+  {
+    "file": "glibc-character-input.html",
+    "bytes": 17278,
+    "ok": true
+  },
+  {
+    "file": "glibc-errors.html",
+    "bytes": 9413,
+    "ok": true
+  },
+  {
+    "file": "glibc-iogetc.c",
+    "bytes": 1769,
+    "ok": true
+  },
+  {
+    "file": "glibc-fileops.c",
+    "bytes": 41630,
+    "ok": true
+  },
+  {
+    "file": "glibc-struct_FILE.h",
+    "bytes": 4101,
+    "ok": true
+  },
+  {
+    "file": "c-integer-conversion.html",
+    "bytes": 315745,
+    "ok": true
+  },
+  {
+    "file": "clang-char-options.html",
+    "bytes": 992843,
+    "ok": true
+  }
+]

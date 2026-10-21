@@ -1,0 +1,2 @@
+{"job_id": "20261015-010243-2e3256", "status": "running", "op": "generate", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/19-fflush-boundaries/cover-19-fflush-boundaries.png", "message": "Image API call in progress; may take 1–5+ minutes."}
+{"job_id": "20261015-010243-2e3256", "status": "done", "op": "generate", "name": "cover-19-fflush-boundaries", "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/19-fflush-boundaries/cover-19-fflush-boundaries.png"}

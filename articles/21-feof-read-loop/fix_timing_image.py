@@ -1,0 +1,14 @@
+from pathlib import Path
+import json,os,subprocess
+art=Path(__file__).resolve().parent
+name='feof-timing-ai-v2'
+prompt='''修改这张中文 C 教学图的两个表达问题，其他版式、颜色、字号、三个阶段、函数返回值、feof 数值和右下水印全部保留。
+修改一：中间“② 第一次读取”卡片当前把 A 从文件中移出、文件显示空白，这会误导读者以为读取会删除文件内容。请删除这个“字母飞出空文件”的插画，改为一个文件图标，图标内部仍然清晰写 A；在文件图标旁用小指针标记“读取位置到末尾”，在图标下方标注“文件内容不变”。这些文字不能与“fgetc 返回 65（A）”及“feof = 0”重叠，必要时缩小文件图标，不能缩小主要字体。请不要把 A 画成消失、被删除或从文件移走。
+修改二：把底部大说明栏中的“feof 记录已经发现的结束，不预测下一次读取。”替换为“feof 查询结束标志，不预测下一次读取。”。因为 feof 只是查询，结束标志由读取过程设置。
+其余精确保留：左卡片未读 feof=0，中卡片返回65(A)后feof=0，右卡片返回EOF后feof=1；本图只讨论正常读完，标志按0/1表示。不要添加其他说明，不要改变文件只有一个字节 A 的前提。'''
+(art/(name+'-prompt.json')).write_text(json.dumps({'name':name,'prompt':prompt,'source':str(art/'feof-timing-ai.png')},ensure_ascii=False,indent=2)+'\n')
+env=os.environ.copy();env['IMAGE_OUTPUT_DIR']=str(art/'.imagegen'/name/'outputs')
+with (art/(name+'.log')).open('w') as log:
+    p=subprocess.run(['python3','/Users/zhaodan/.codex/skills/gpt-imagegen/scripts/image_api.py','edit','--json','--name',name,'--image',str(art/'feof-timing-ai.png'),'--output',str(art/(name+'.png')),'--prompt',prompt],cwd=art.parents[2]/'linux_c_blog_workflow',env=env,stdout=log,stderr=subprocess.STDOUT,timeout=900)
+print('timing image correction exit:',p.returncode,flush=True)
+raise SystemExit(p.returncode)

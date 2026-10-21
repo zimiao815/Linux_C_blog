@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This is
+The GNU C Library Reference Manual, for version
+2.40.
+
+Copyright © 1993-2024 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version
+1.3 or any later version published by the Free
+Software Foundation; with the Invariant Sections being "Free Software
+Needs Free Documentation" and "GNU Lesser General Public License",
+the Front-Cover texts being "A GNU Manual", and with the Back-Cover
+Texts as in (a) below.  A copy of the license is included in the
+section entitled "GNU Free Documentation License".
+
+(a) The FSF's Back-Cover Text is: "You have the freedom to
+copy and modify this GNU manual.  Buying copies from the FSF
+supports it in developing GNU and promoting software freedom." -->
+<title>Character Input (The GNU C Library)</title>
+
+<meta name="description" content="Character Input (The GNU C Library)">
+<meta name="keywords" content="Character Input (The GNU C Library)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="I_002fO-on-Streams.html" rel="up" title="I/O on Streams">
+<link href="Line-Input.html" rel="next" title="Line Input">
+<link href="Simple-Output.html" rel="prev" title="Simple Output">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+div.example {margin-left: 3.2em}
+span.r {font-family: initial; font-weight: normal; font-style: normal}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="Character-Input">
+<div class="nav-panel">
+<p>
+Next: <a href="Line-Input.html" accesskey="n" rel="next">Line-Oriented Input</a>, Previous: <a href="Simple-Output.html" accesskey="p" rel="prev">Simple Output by Characters or Lines</a>, Up: <a href="I_002fO-on-Streams.html" accesskey="u" rel="up">Input/Output on Streams</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Character-Input-1"><span>12.8 Character Input<a class="copiable-link" href="#Character-Input-1"> &para;</a></span></h3>
+
+<a class="index-entry-id" id="index-reading-from-a-stream_002c-by-characters"></a>
+<p>This section describes functions for performing character-oriented
+input.  These narrow stream functions are declared in the header file
+<samp class="file">stdio.h</samp> and the wide character functions are declared in
+<samp class="file">wchar.h</samp>.
+<a class="index-entry-id" id="index-stdio_002eh-4"></a>
+<a class="index-entry-id" id="index-wchar_002eh-15"></a>
+</p>
+<p>These functions return an <code class="code">int</code> or <code class="code">wint_t</code> value (for narrow
+and wide stream functions respectively) that is either a character of
+input, or the special value <code class="code">EOF</code>/<code class="code">WEOF</code> (usually -1).  For
+the narrow stream functions it is important to store the result of these
+functions in a variable of type <code class="code">int</code> instead of <code class="code">char</code>, even
+when you plan to use it only as a character.  Storing <code class="code">EOF</code> in a
+<code class="code">char</code> variable truncates its value to the size of a character, so
+that it is no longer distinguishable from the valid character
+&lsquo;<samp class="samp">(char) -1</samp>&rsquo;.  So always use an <code class="code">int</code> for the result of
+<code class="code">getc</code> and friends, and check for <code class="code">EOF</code> after the call; once
+you&rsquo;ve verified that the result is not <code class="code">EOF</code>, you can be sure that
+it will fit in a &lsquo;<samp class="samp">char</samp>&rsquo; variable without loss of information.
+</p>
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-fgetc"><span class="category-def">Function: </span><span><code class="def-type">int</code> <strong class="def-name">fgetc</strong> <code class="def-code-arguments">(FILE *<var class="var">stream</var>)</code><a class="copiable-link" href="#index-fgetc"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe 
+| AS-Unsafe corrupt
+| AC-Unsafe lock corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>This function reads the next character as an <code class="code">unsigned char</code> from
+the stream <var class="var">stream</var> and returns its value, converted to an
+<code class="code">int</code>.  If an end-of-file condition or read error occurs,
+<code class="code">EOF</code> is returned instead.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-fgetwc"><span class="category-def">Function: </span><span><code class="def-type">wint_t</code> <strong class="def-name">fgetwc</strong> <code class="def-code-arguments">(FILE *<var class="var">stream</var>)</code><a class="copiable-link" href="#index-fgetwc"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe 
+| AS-Unsafe corrupt
+| AC-Unsafe lock corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>This function reads the next wide character from the stream <var class="var">stream</var>
+and returns its value.  If an end-of-file condition or read error
+occurs, <code class="code">WEOF</code> is returned instead.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-fgetc_005funlocked"><span class="category-def">Function: </span><span><code class="def-type">int</code> <strong class="def-name">fgetc_unlocked</strong> <code class="def-code-arguments">(FILE *<var class="var">stream</var>)</code><a class="copiable-link" href="#index-fgetc_005funlocked"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe race:stream
+| AS-Unsafe corrupt
+| AC-Unsafe corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>The <code class="code">fgetc_unlocked</code> function is equivalent to the <code class="code">fgetc</code>
+function except that it does not implicitly lock the stream.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-fgetwc_005funlocked"><span class="category-def">Function: </span><span><code class="def-type">wint_t</code> <strong class="def-name">fgetwc_unlocked</strong> <code class="def-code-arguments">(FILE *<var class="var">stream</var>)</code><a class="copiable-link" href="#index-fgetwc_005funlocked"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe race:stream
+| AS-Unsafe corrupt
+| AC-Unsafe corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>The <code class="code">fgetwc_unlocked</code> function is equivalent to the <code class="code">fgetwc</code>
+function except that it does not implicitly lock the stream.
+</p>
+<p>This function is a GNU extension.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-getc"><span class="category-def">Function: </span><span><code class="def-type">int</code> <strong class="def-name">getc</strong> <code class="def-code-arguments">(FILE *<var class="var">stream</var>)</code><a class="copiable-link" href="#index-getc"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe 
+| AS-Unsafe corrupt
+| AC-Unsafe lock corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>This is just like <code class="code">fgetc</code>, except that it is permissible (and
+typical) for it to be implemented as a macro that evaluates the
+<var class="var">stream</var> argument more than once.  <code class="code">getc</code> is often highly
+optimized, so it is usually the best function to use to read a single
+character.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-getwc"><span class="category-def">Function: </span><span><code class="def-type">wint_t</code> <strong class="def-name">getwc</strong> <code class="def-code-arguments">(FILE *<var class="var">stream</var>)</code><a class="copiable-link" href="#index-getwc"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe 
+| AS-Unsafe corrupt
+| AC-Unsafe lock corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>This is just like <code class="code">fgetwc</code>, except that it is permissible for it to
+be implemented as a macro that evaluates the <var class="var">stream</var> argument more
+than once.  <code class="code">getwc</code> can be highly optimized, so it is usually the
+best function to use to read a single wide character.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-getc_005funlocked"><span class="category-def">Function: </span><span><code class="def-type">int</code> <strong class="def-name">getc_unlocked</strong> <code class="def-code-arguments">(FILE *<var class="var">stream</var>)</code><a class="copiable-link" href="#index-getc_005funlocked"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe race:stream
+| AS-Unsafe corrupt
+| AC-Unsafe corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>The <code class="code">getc_unlocked</code> function is equivalent to the <code class="code">getc</code>
+function except that it does not implicitly lock the stream.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-getwc_005funlocked"><span class="category-def">Function: </span><span><code class="def-type">wint_t</code> <strong class="def-name">getwc_unlocked</strong> <code class="def-code-arguments">(FILE *<var class="var">stream</var>)</code><a class="copiable-link" href="#index-getwc_005funlocked"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe race:stream
+| AS-Unsafe corrupt
+| AC-Unsafe corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>The <code class="code">getwc_unlocked</code> function is equivalent to the <code class="code">getwc</code>
+function except that it does not implicitly lock the stream.
+</p>
+<p>This function is a GNU extension.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-getchar"><span class="category-def">Function: </span><span><code class="def-type">int</code> <strong class="def-name">getchar</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-getchar"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe 
+| AS-Unsafe corrupt
+| AC-Unsafe lock corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>The <code class="code">getchar</code> function is equivalent to <code class="code">getc</code> with <code class="code">stdin</code>
+as the value of the <var class="var">stream</var> argument.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-getwchar"><span class="category-def">Function: </span><span><code class="def-type">wint_t</code> <strong class="def-name">getwchar</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-getwchar"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe 
+| AS-Unsafe corrupt
+| AC-Unsafe lock corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>The <code class="code">getwchar</code> function is equivalent to <code class="code">getwc</code> with <code class="code">stdin</code>
+as the value of the <var class="var">stream</var> argument.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-getchar_005funlocked"><span class="category-def">Function: </span><span><code class="def-type">int</code> <strong class="def-name">getchar_unlocked</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-getchar_005funlocked"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Unsafe race:stdin
+| AS-Unsafe corrupt
+| AC-Unsafe corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>The <code class="code">getchar_unlocked</code> function is equivalent to the <code class="code">getchar</code>
+function except that it does not implicitly lock the stream.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-getwchar_005funlocked"><span class="category-def">Function: </span><span><code class="def-type">wint_t</code> <strong class="def-name">getwchar_unlocked</strong> <code class="def-code-arguments">(void)</code><a class="copiable-link" href="#index-getwchar_005funlocked"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Unsafe race:stdin
+| AS-Unsafe corrupt
+| AC-Unsafe corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>The <code class="code">getwchar_unlocked</code> function is equivalent to the <code class="code">getwchar</code>
+function except that it does not implicitly lock the stream.
+</p>
+<p>This function is a GNU extension.
+</p></dd></dl>
+
+<p>Here is an example of a function that does input using <code class="code">fgetc</code>.  It
+would work just as well using <code class="code">getc</code> instead, or using
+<code class="code">getchar ()</code> instead of <code class="code">fgetc&nbsp;(stdin)</code><!-- /@w -->.  The code would
+also work the same for the wide character stream functions.
+</p>
+<div class="example smallexample">
+<pre class="example-preformatted">int
+y_or_n_p (const char *question)
+{
+  fputs (question, stdout);
+  while (1)
+    {
+      int c, answer;
+      /* <span class="r">Write a space to separate answer from question.</span> */
+      fputc (' ', stdout);
+      /* <span class="r">Read the first character of the line.</span>
+	 <span class="r">This should be the answer character, but might not be.</span> */
+      c = tolower (fgetc (stdin));
+      answer = c;
+      /* <span class="r">Discard rest of input line.</span> */
+      while (c != '\n' &amp;&amp; c != EOF)
+	c = fgetc (stdin);
+      /* <span class="r">Obey the answer if it was valid.</span> */
+      if (answer == 'y')
+	return 1;
+      if (answer == 'n')
+	return 0;
+      /* <span class="r">Answer was invalid: ask for valid answer.</span> */
+      fputs (&quot;Please answer y or n:&quot;, stdout);
+    }
+}
+</pre></div>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-getw"><span class="category-def">Function: </span><span><code class="def-type">int</code> <strong class="def-name">getw</strong> <code class="def-code-arguments">(FILE *<var class="var">stream</var>)</code><a class="copiable-link" href="#index-getw"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe 
+| AS-Unsafe corrupt
+| AC-Unsafe lock corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>This function reads a word (that is, an <code class="code">int</code>) from <var class="var">stream</var>.
+It&rsquo;s provided for compatibility with SVID.  We recommend you use
+<code class="code">fread</code> instead (see <a class="pxref" href="Block-Input_002fOutput.html">Block Input/Output</a>).  Unlike <code class="code">getc</code>,
+any <code class="code">int</code> value could be a valid result.  <code class="code">getw</code> returns
+<code class="code">EOF</code> when it encounters end-of-file or an error, but there is no
+way to distinguish this from an input word with value -1.
+</p></dd></dl>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="Line-Input.html">Line-Oriented Input</a>, Previous: <a href="Simple-Output.html">Simple Output by Characters or Lines</a>, Up: <a href="I_002fO-on-Streams.html">Input/Output on Streams</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

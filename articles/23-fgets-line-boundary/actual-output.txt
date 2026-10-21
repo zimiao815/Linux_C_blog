@@ -1,0 +1,4 @@
+part=1 len=7 newline=0
+part=2 len=3 newline=1
+part=3 len=4 newline=0
+done parts=3 eof=1

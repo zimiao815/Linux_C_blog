@@ -1,0 +1,62 @@
+[
+  {
+    "file": "posix-fclose.html",
+    "bytes": 14703,
+    "ok": true
+  },
+  {
+    "file": "posix-fputs.html",
+    "bytes": 9262,
+    "ok": true
+  },
+  {
+    "file": "posix-getrlimit.html",
+    "bytes": 14595,
+    "ok": true
+  },
+  {
+    "file": "glibc-closing.html",
+    "bytes": 7271,
+    "ok": true
+  },
+  {
+    "file": "glibc-iofclose.c",
+    "bytes": 2695,
+    "ok": true
+  },
+  {
+    "file": "glibc-fileops.c",
+    "bytes": 41630,
+    "ok": true
+  },
+  {
+    "file": "glibc-genops.c",
+    "bytes": 26778,
+    "ok": true
+  },
+  {
+    "file": "kernel-fdtable.h",
+    "bytes": 3651,
+    "ok": true
+  },
+  {
+    "file": "kernel-fs.h",
+    "bytes": 114446,
+    "ok": true
+  },
+  {
+    "file": "linux-fclose.html",
+    "bytes": 11455,
+    "ok": true
+  },
+  {
+    "file": "linux-close.html",
+    "bytes": 18845,
+    "ok": true
+  },
+  {
+    "file": "posix-fopen.html",
+    "bytes": 33181,
+    "ok": true
+  }
+]

@@ -1,0 +1,117 @@
+{
+  "environment": {
+    "system": "macOS-14.8.8-x86_64-i386-64bit-Mach-O",
+    "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+    "flags": [
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wshadow",
+      "-O0",
+      "-g"
+    ]
+  },
+  "build_stderr": "",
+  "records": [
+    {
+      "destination": "file",
+      "mode": "buffered",
+      "before": "",
+      "after": "record=42\n",
+      "exit": 0,
+      "stderr": [
+        "fputs: accepted",
+        "checkpoint: inspect now"
+      ]
+    },
+    {
+      "destination": "file",
+      "mode": "flush",
+      "before": "record=42\n",
+      "after": "record=42\n",
+      "exit": 0,
+      "stderr": [
+        "fputs: accepted",
+        "checkpoint: inspect now"
+      ]
+    },
+    {
+      "destination": "file",
+      "mode": "sync-only",
+      "before": "",
+      "after": "record=42\n",
+      "exit": 0,
+      "stderr": [
+        "fputs: accepted",
+        "checkpoint: inspect now"
+      ]
+    },
+    {
+      "destination": "file",
+      "mode": "flush-sync",
+      "before": "record=42\n",
+      "after": "record=42\n",
+      "exit": 0,
+      "stderr": [
+        "fputs: accepted",
+        "checkpoint: inspect now"
+      ]
+    },
+    {
+      "destination": "pipe",
+      "mode": "buffered",
+      "readable_before_consumer_read": false,
+      "after": "record=42\n",
+      "exit": 0,
+      "stderr": [
+        "fputs: accepted",
+        "checkpoint: inspect now"
+      ]
+    },
+    {
+      "destination": "pipe",
+      "mode": "flush",
+      "readable_before_consumer_read": true,
+      "after": "record=42\n",
+      "exit": 0,
+      "stderr": [
+        "fputs: accepted",
+        "checkpoint: inspect now"
+      ]
+    }
+  ],
+  "failures": [
+    {
+      "case": "missing-argument",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "usage: fflush_probe buffered|flush|sync-only|flush-sync\n"
+    },
+    {
+      "case": "unknown-mode",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "usage: fflush_probe buffered|flush|sync-only|flush-sync\n"
+    },
+    {
+      "case": "stdin-eof",
+      "exit": 1,
+      "stdout": "record=42\n",
+      "stderr": "fputs: accepted\ncheckpoint: inspect now\nstdin ended before release\n"
+    },
+    {
+      "case": "fsync-pipe",
+      "exit": 1,
+      "stdout": "record=42\n",
+      "stderr": "fputs: accepted\nfsync stdout: Operation not supported\n"
+    },
+    {
+      "case": "file-size-limit-zero",
+      "exit": 1,
+      "file_bytes": 0,
+      "stderr": "fputs: accepted\nfflush stdout: File too large\nfclose stdout: File too large\n"
+    }
+  ]
+}

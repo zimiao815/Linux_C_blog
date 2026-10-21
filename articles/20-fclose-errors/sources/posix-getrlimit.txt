@@ -1,0 +1,257 @@
+getrlimit
+<<<
+Previous
+Home
+Next
+>>>
+The Open Group Base Specifications Issue 8
+IEEE Std 1003.1-2024
+Copyright © 2001-2024 The IEEE and The Open Group
+NAME
+getrlimit, setrlimit — control maximum resource consumption
+SYNOPSIS
+#include <
+sys/resource.h
+>
+int getrlimit(int
+resource
+, struct rlimit *
+rlp
+);
+int setrlimit(int
+resource
+, const struct rlimit *
+rlp
+);
+DESCRIPTION
+The
+getrlimit
+() function shall get, and the
+setrlimit
+() function shall set, limits on the consumption of a variety
+of resources.
+Each call to either
+getrlimit
+() or
+setrlimit
+() identifies a specific resource to be operated upon as well as a
+resource limit. A resource limit is represented by an
+rlimit
+structure. The
+rlim_cur
+member specifies the current or
+soft limit and the
+rlim_max
+member specifies the maximum or hard limit. Soft limits can be changed by a process to any value
+that is less than or equal to the hard limit. A process can (irreversibly) lower its hard limit to any value that is greater than
+or equal to the soft limit. Only a process with appropriate privileges can raise a hard limit. Both hard and soft limits can be
+changed in a single call to
+setrlimit
+() subject to the constraints described above.
+The value RLIM_INFINITY, defined in
+<sys/resource.h>
+, shall be
+considered to be larger than any other limit value. If a call to
+getrlimit
+() returns RLIM_INFINITY for a resource, it means
+the implementation shall not enforce limits on that resource. Specifying RLIM_INFINITY as any resource limit value on a successful
+call to
+setrlimit
+() shall inhibit enforcement of that resource limit.
+The following resources are defined:
+RLIMIT_CORE
+This is the maximum size of a file containing a core image, in bytes, that can be created by a process. A limit of 0 shall
+prevent the creation of such a file. If this limit is exceeded, the writing of a file containing a core image shall terminate at
+this size. Note that the production of such a file may be one of the implementation-defined actions for abnormal termination.
+RLIMIT_CPU
+[
+XSI
+]
+This is the maximum amount of CPU time, in seconds, used by a process. If this limit is exceeded, SIGXCPU shall be generated for
+the process. If the process is catching or ignoring SIGXCPU, or all threads belonging to that process are blocking SIGXCPU, the
+behavior is unspecified.
+RLIMIT_DATA
+This is the maximum size of a data segment of the process, in bytes. If this limit is exceeded, the
+malloc
+()
+function shall fail with
+errno
+set to [ENOMEM].
+RLIMIT_FSIZE
+This is the maximum size of a file, in bytes, that can be created by a process. If a write or truncate operation would cause
+this limit to be exceeded,
+[
+XSI
+]
+a SIGXFSZ shall be generated for the thread; if the thread is blocking, or the process is
+catching or ignoring SIGXFSZ,
+the operation shall fail with
+an [EFBIG] error.
+RLIMIT_NOFILE
+This is a number one greater than the maximum value that the system shall assign to a newly-created descriptor. If this limit
+is exceeded, functions that allocate a file descriptor shall fail with
+errno
+set to [EMFILE]. This limit constrains the
+number of file descriptors that a process can allocate.
+RLIMIT_STACK
+This is the maximum size of the initial thread's stack, in bytes. The implementation does not automatically grow the stack
+beyond this limit. If this limit is exceeded, SIGSEGV shall be generated for the thread. If the thread is blocking SIGSEGV, or the
+process is ignoring or catching SIGSEGV and has not made arrangements to use an alternate stack, the disposition of SIGSEGV shall
+be set to SIG_DFL before it is generated.
+RLIMIT_AS
+This is the maximum size of total available memory of the process, in bytes. If this limit is exceeded, the
+malloc
+()
+and
+mmap
+()
+functions shall fail with
+errno
+set to [ENOMEM]. In addition, the automatic stack growth fails with the effects outlined above.
+When using the
+getrlimit
+() function, if a resource limit can be represented correctly in an object of type
+rlim_t
+,
+then its representation is returned; otherwise, if the value of the resource limit is equal to that of the corresponding saved hard
+limit, the value returned shall be RLIM_SAVED_MAX; otherwise, the value returned shall be RLIM_SAVED_CUR.
+When using the
+setrlimit
+() function, if the requested new limit is RLIM_INFINITY, the new limit shall be "no limit";
+otherwise, if the requested new limit is RLIM_SAVED_MAX, the new limit shall be the corresponding saved hard limit; otherwise, if
+the requested new limit is RLIM_SAVED_CUR, the new limit shall be the corresponding saved soft limit; otherwise, the new limit
+shall be the requested value. In addition, if the corresponding saved limit can be represented correctly in an object of type
+rlim_t
+then it shall be overwritten with the new limit.
+The result of setting a limit to RLIM_SAVED_MAX or RLIM_SAVED_CUR is unspecified unless a previous call to
+getrlimit
+()
+returned that value as the soft or hard limit for the corresponding resource limit.
+The determination of whether a limit can be correctly represented in an object of type
+rlim_t
+is implementation-defined.
+For example, some implementations permit a limit whose value is greater than RLIM_INFINITY and others do not.
+The
+exec
+family of functions shall cause resource limits to be saved.
+RETURN VALUE
+Upon successful completion,
+getrlimit
+() and
+setrlimit
+() shall return 0. Otherwise, these functions shall return -1
+and set
+errno
+to indicate the error.
+ERRORS
+The
+getrlimit
+() and
+setrlimit
+() functions shall fail if:
+[EINVAL]
+An invalid
+resource
+was specified; or in a
+setrlimit
+() call, the new
+rlim_cur
+exceeds the new
+rlim_max
+.
+[EPERM]
+The limit specified to
+setrlimit
+() would have raised the maximum limit value, and the calling process does not have
+appropriate privileges.
+The
+setrlimit
+() function may fail if:
+[EINVAL]
+The limit specified cannot be lowered because current usage is already higher than the limit.
+The following sections are informative.
+EXAMPLES
+None.
+APPLICATION USAGE
+If a process attempts to set the hard limit or soft limit for RLIMIT_NOFILE to less than the value of {_POSIX_OPEN_MAX} from
+<limits.h>
+, unexpected behavior may occur.
+If a process attempts to set the hard limit or soft limit for RLIMIT_NOFILE to less than the highest currently open file
+descriptor +1, unexpected behavior may occur.
+RATIONALE
+These functions were previously part of the XSI option and have been moved to the Base so that portable shells, and other
+utilities that need to relay the wait status of a child process to a parent, can terminate themselves with the same signal that
+terminated the child but without overwriting a core image created by the child (through setting RLIMIT_CORE to zero, which disables
+core image creation). The RLIMIT_CPU and RLIMIT_FSIZE limits remain in the XSI option because they relate to other XSI
+functionality (SIGXCPU and SIGXFSZ).
+It should be noted that RLIMIT_STACK applies "at least" to the stack of the initial thread in the process, and not to the sum
+of all the stacks in the process, as that would be very limiting unless the value is so big as to provide no value at all with a
+single thread.
+FUTURE DIRECTIONS
+None.
+SEE ALSO
+exec
+,
+fork
+()
+,
+malloc
+()
+,
+open
+()
+,
+sigaltstack
+()
+,
+sysconf
+()
+XBD
+<sys/resource.h>
+XCU
+ulimit
+CHANGE HISTORY
+First released in Issue 4, Version 2.
+Issue 5
+Moved from X/OPEN UNIX extension to BASE.
+An APPLICATION USAGE section is added.
+Large File Summit extensions are added.
+Issue 6
+IEEE Std 1003.1-2001/Cor 1-2002, item XSH/TC1/D6/25 is applied, changing wording for RLIMIT_NOFILE in the
+DESCRIPTION related to functions that allocate a file descriptor failing with [EMFILE]. Text is added to the APPLICATION USAGE
+section noting the consequences of a process attempting to set the hard or soft limit for RLIMIT_NOFILE less than the highest
+currently open file descriptor +1.
+IEEE Std 1003.1-2001/Cor 2-2004, item XSH/TC2/D6/46 is applied, updating the definition of RLIMIT_STACK in the
+DESCRIPTION from "the maximum size of a process stack" to "the maximum size of the initial thread's stack". Text is added to
+the RATIONALE section.
+Issue 8
+Austin Group Defects 51 and 1669 are applied, moving the
+getrlimit
+() and
+setrlimit
+() functions, excluding the
+RLIMIT_CPU limit, from the XSI option to the Base.
+Austin Group Defect 1141 is applied, changing the description of RLIMIT_CORE.
+Austin Group Defect 1416 is applied, changing some uses of "may" to "can" and one to "shall".
+Austin Group Defect 1418 is applied, changing the SEE ALSO section.
+End of informative text.
+return to top of page
+UNIX® is a registered Trademark of The Open Group.
+POSIX™ is a Trademark of The IEEE.
+Copyright © 2001-2024 The IEEE and The Open Group, All Rights Reserved
+[
+Main Index
+|
+XBD
+|
+XSH
+|
+XCU
+|
+XRAT
+]
+<<<
+Previous
+Home
+Next
+>>>

@@ -1,0 +1,156 @@
+{
+  "environment": {
+    "system": "macOS-14.8.8-x86_64-i386-64bit-Mach-O",
+    "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+    "flags": [
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wshadow",
+      "-O0",
+      "-g"
+    ]
+  },
+  "limits": [
+    {
+      "mode": "default",
+      "output": "CHAR_BIT=8 UCHAR_MAX=255 INT_MAX=2147483647 CHAR_MIN=-128 EOF=-1\n"
+    },
+    {
+      "mode": "signed",
+      "output": "CHAR_BIT=8 UCHAR_MAX=255 INT_MAX=2147483647 CHAR_MIN=-128 EOF=-1\n"
+    },
+    {
+      "mode": "unsigned",
+      "output": "CHAR_BIT=8 UCHAR_MAX=255 INT_MAX=2147483647 CHAR_MIN=0 EOF=-1\n"
+    }
+  ],
+  "records": [
+    {
+      "mode": "default",
+      "input": "ff",
+      "exit": 0,
+      "stdout": "int=255 char=-1 eof=0\nint=-1 char=-1 eof=1\n"
+    },
+    {
+      "mode": "default",
+      "input": "ascii",
+      "exit": 0,
+      "stdout": "int=65 char=65 eof=0\nint=-1 char=-1 eof=1\n"
+    },
+    {
+      "mode": "default",
+      "input": "empty",
+      "exit": 0,
+      "stdout": "int=-1 char=-1 eof=1\nint=-1 char=-1 eof=1\n"
+    },
+    {
+      "mode": "signed",
+      "input": "ff",
+      "exit": 0,
+      "stdout": "int=255 char=-1 eof=0\nint=-1 char=-1 eof=1\n"
+    },
+    {
+      "mode": "signed",
+      "input": "ascii",
+      "exit": 0,
+      "stdout": "int=65 char=65 eof=0\nint=-1 char=-1 eof=1\n"
+    },
+    {
+      "mode": "signed",
+      "input": "empty",
+      "exit": 0,
+      "stdout": "int=-1 char=-1 eof=1\nint=-1 char=-1 eof=1\n"
+    },
+    {
+      "mode": "unsigned",
+      "input": "ff",
+      "exit": 0,
+      "stdout": "int=255 char=255 eof=0\nint=-1 char=255 eof=1\n"
+    },
+    {
+      "mode": "unsigned",
+      "input": "ascii",
+      "exit": 0,
+      "stdout": "int=65 char=65 eof=0\nint=-1 char=255 eof=1\n"
+    },
+    {
+      "mode": "unsigned",
+      "input": "empty",
+      "exit": 0,
+      "stdout": "int=-1 char=255 eof=1\nint=-1 char=255 eof=1\n"
+    }
+  ],
+  "copies": [
+    {
+      "mode": "default",
+      "input": "all-bytes",
+      "bytes": 256,
+      "exact_match": true,
+      "exit": 0
+    },
+    {
+      "mode": "default",
+      "input": "empty",
+      "bytes": 0,
+      "exact_match": true,
+      "exit": 0
+    },
+    {
+      "mode": "signed",
+      "input": "all-bytes",
+      "bytes": 256,
+      "exact_match": true,
+      "exit": 0
+    },
+    {
+      "mode": "signed",
+      "input": "empty",
+      "bytes": 0,
+      "exact_match": true,
+      "exit": 0
+    },
+    {
+      "mode": "unsigned",
+      "input": "all-bytes",
+      "bytes": 256,
+      "exact_match": true,
+      "exit": 0
+    },
+    {
+      "mode": "unsigned",
+      "input": "empty",
+      "bytes": 0,
+      "exact_match": true,
+      "exit": 0
+    }
+  ],
+  "failures": [
+    {
+      "program": "probe-default",
+      "case": "directory-input",
+      "exit": 1,
+      "stderr": "fgetc: Is a directory\n"
+    },
+    {
+      "program": "probe-default",
+      "case": "output-limit-zero",
+      "exit": 1,
+      "stderr": "fflush: File too large\n"
+    },
+    {
+      "program": "copy-default",
+      "case": "directory-input",
+      "exit": 1,
+      "stderr": "copy_bytes: Is a directory\n"
+    },
+    {
+      "program": "copy-default",
+      "case": "output-limit-zero",
+      "exit": 1,
+      "stderr": "copy_bytes: File too large\n"
+    }
+  ]
+}

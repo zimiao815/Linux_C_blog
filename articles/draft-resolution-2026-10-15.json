@@ -1,0 +1,10 @@
+{
+  "missing": [
+    "20-fclose-errors",
+    "21-feof-read-loop"
+  ],
+  "matches": {
+    "20-fclose-errors": [],
+    "21-feof-read-loop": []
+  }
+}

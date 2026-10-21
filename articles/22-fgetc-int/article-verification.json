@@ -1,0 +1,16 @@
+{
+  "title": true,
+  "source_matches_article": true,
+  "source_survives_html": true,
+  "actual_outputs_embedded": true,
+  "short_c_blocks": true,
+  "chinese_code_comments": true,
+  "four_h2": true,
+  "two_images": true,
+  "local_images_exist": true,
+  "no_kernel_expansion": true,
+  "no_placeholder": true,
+  "no_svg_refs": true,
+  "single_footer": true,
+  "experiment_limit_stated": true
+}

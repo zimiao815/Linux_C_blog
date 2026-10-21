@@ -1,0 +1,245 @@
+fread
+<<<
+Previous
+Home
+Next >>>
+The Open Group Base Specifications Issue 8
+IEEE Std 1003.1-2024
+Copyright © 2001-2024 The IEEE and The Open Group
+NAME
+fread — binary input
+SYNOPSIS
+#include <
+stdio.h
+>
+size_t fread(void *restrict
+ptr
+, size_t
+size
+, size_t
+nitems
+,
+FILE *restrict
+stream
+);
+DESCRIPTION
+[
+CX
+]
+The functionality described on this reference page is aligned with the ISO C standard. Any conflict between the
+requirements described here and the ISO C standard is unintentional. This volume of POSIX.1-2024 defers to the ISO C
+standard.
+The
+fread
+() function shall read into the array pointed to by
+ptr
+up to
+nitems
+elements whose size is
+specified by
+size
+in bytes, from the stream pointed to by
+stream
+. For each object,
+size
+calls shall be made to
+the
+fgetc
+()
+function and the results stored, in the order read, in an array of
+unsigned char
+exactly overlaying the object. The file position indicator for the stream (if defined) shall be advanced by
+the number of bytes successfully read. If an error occurs, the resulting value of the file position indicator for the stream is
+unspecified. If a partial element is read, its value is unspecified.
+[
+CX
+]
+The
+fread
+() function may mark the last data access timestamp of the file associated with
+stream
+for update. The last data
+access timestamp shall be marked for update by the first successful execution of
+fgetc
+()
+,
+fgets
+()
+,
+fread
+(),
+fscanf
+()
+,
+getc
+()
+,
+getchar
+()
+,
+getdelim
+()
+,
+getline
+()
+, or
+scanf
+()
+using
+stream
+that
+returns data not supplied by a prior call to
+ungetc
+()
+.
+RETURN VALUE
+The
+fread
+() function shall return the number of elements successfully read, which shall be less than
+nitems
+only
+if an error or end-of-file is encountered, or
+size
+is zero. If
+size
+or
+nitems
+is 0,
+fread
+() shall
+return 0 and the contents of the array and the state of the stream shall remain unchanged. Otherwise, if an error occurs, the error
+indicator for the stream shall be set,
+[
+CX
+]
+and
+errno
+shall be set to indicate the error.
+ERRORS
+Refer to
+fgetc
+()
+.
+The following sections are informative.
+EXAMPLES
+Reading from a Stream
+The following example transfers a single 100-byte fixed length record from the
+fp
+stream into the array pointed to by
+buf
+.
+#include <stdio.h>
+...
+size_t elements_read;
+char buf[100];
+FILE *fp;
+...
+elements_read = fread(buf, sizeof(buf), 1, fp);
+...
+If a read error occurs,
+elements_read
+will be zero but the number of bytes read from the stream could be anything from
+zero to
+sizeof
+(
+buf
+)-1.
+The following example reads multiple single-byte elements from the
+fp
+stream into the array pointed to by
+buf
+.
+#include <stdio.h>
+...
+size_t bytes_read;
+char buf[100];
+FILE *fp;
+...
+bytes_read = fread(buf, 1, sizeof(buf), fp);
+...
+If a read error occurs,
+bytes_read
+will contain the number of bytes read from the stream.
+APPLICATION USAGE
+The
+ferror
+()
+or
+feof
+()
+functions must
+be used to distinguish between an error condition and an end-of-file condition.
+Because of possible differences in element length and byte ordering, files written using
+fwrite
+()
+are application-dependent, and possibly cannot be read using
+fread
+() by a
+different application or by the same application on a different processor.
+RATIONALE
+None.
+FUTURE DIRECTIONS
+None.
+SEE ALSO
+2.5 Standard I/O Streams
+,
+feof
+()
+,
+ferror
+()
+,
+fgetc
+()
+,
+fopen
+()
+,
+fscanf
+()
+,
+getc
+()
+XBD
+<stdio.h>
+CHANGE HISTORY
+First released in Issue 1. Derived from Issue 1 of the SVID.
+Issue 6
+Extensions beyond the ISO C standard are marked.
+The following changes are made for alignment with the ISO/IEC 9899:1999 standard:
+The
+fread
+() prototype is updated.
+The DESCRIPTION is updated to describe how the bytes from a call to
+fgetc
+()
+are
+stored.
+Issue 7
+Changes are made related to support for finegrained timestamps.
+POSIX.1-2008, Technical Corrigendum 1, XSH/TC1-2008/0178 [232] and XSH/TC1-2008/0179 [14] are applied.
+POSIX.1-2008, Technical Corrigendum 2, XSH/TC2-2008/0129 [926] is applied.
+Issue 8
+Austin Group Defect 1196 is applied, clarifying the RETURN VALUE section.
+Austin Group Defect 1330 is applied, removing obsolescent interfaces.
+Austin Group Defect 1624 is applied, changing the RETURN VALUE section.
+End of informative text.
+return to top of page
+UNIX® is a registered Trademark of The Open Group.
+POSIX™ is a Trademark of The IEEE.
+Copyright © 2001-2024 The IEEE and The Open Group, All Rights Reserved
+[
+Main Index
+|
+XBD
+|
+XSH
+|
+XCU
+|
+XRAT
+]
+<<<
+Previous
+Home
+Next >>>

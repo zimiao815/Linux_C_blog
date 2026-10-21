@@ -1,0 +1,175 @@
+fsync
+<<<
+Previous
+Home
+Next
+>>>
+The Open Group Base Specifications Issue 8
+IEEE Std 1003.1-2024
+Copyright © 2001-2024 The IEEE and The Open Group
+NAME
+fsync — synchronize changes to a file
+SYNOPSIS
+[
+FSC
+]
+#include <
+unistd.h
+>
+int fsync(int
+fildes
+);
+DESCRIPTION
+The
+fsync
+() function shall request that all data for the open file descriptor named by
+fildes
+is to be transferred
+to the storage device associated with the file described by
+fildes
+. The nature of the transfer is implementation-defined.
+The
+fsync
+() function shall not return until the system has completed that action or until an error is detected.
+[
+SIO
+]
+If _POSIX_SYNCHRONIZED_IO is defined, the
+fsync
+() function shall force all currently queued I/O operations associated with
+the file indicated by file descriptor
+fildes
+to the synchronized I/O completion state. All I/O operations shall be completed
+as defined for synchronized I/O file integrity completion.
+RETURN VALUE
+Upon successful completion,
+fsync
+() shall return 0. Otherwise, -1 shall be returned and
+errno
+set to indicate the
+error. If the
+fsync
+() function fails, outstanding I/O operations are not guaranteed to have been completed.
+ERRORS
+The
+fsync
+() function shall fail if:
+[EBADF]
+The
+fildes
+argument is not a valid descriptor.
+[EINTR]
+The
+fsync
+() function was interrupted by a signal.
+[EINVAL]
+The
+fildes
+argument does not refer to a file on which this operation is possible.
+[EIO]
+An I/O error occurred while reading from or writing to the file system.
+In the event that any of the queued I/O operations fail,
+fsync
+() shall return the error conditions defined for
+read
+()
+and
+write
+()
+.
+The following sections are informative.
+EXAMPLES
+None.
+APPLICATION USAGE
+The
+fsync
+() function should be used by programs which require modifications to a file to be completed before continuing;
+for example, a program which contains a simple transaction facility might use it to ensure that all modifications to a file or
+files caused by a transaction are recorded.
+An application that modifies a directory, for example, by creating a file in the directory, can invoke
+fsync
+() on the
+directory to ensure that the directory's entries and file attributes are synchronized. For most applications, synchronizing the
+directory's entries should not be necessary (see XBD
+4.11 File System
+Cache
+).
+RATIONALE
+The
+fsync
+() function is intended to force a physical write of data from the buffer cache, and to assure that after a
+system crash or other failure that all data up to the time of the
+fsync
+() call is recorded on the disk. Since the concepts
+of "buffer cache", "system crash", "physical write", and "non-volatile storage" are not defined here, the wording has to be
+more abstract.
+If _POSIX_SYNCHRONIZED_IO is not defined, the wording relies heavily on the conformance document to tell the user what can be
+expected from the system. It is explicitly intended that a null implementation is permitted. This could be valid in the case where
+the system cannot assure non-volatile storage under any circumstances or when the system is highly fault-tolerant and the
+functionality is not required. In the middle ground between these extremes,
+fsync
+() might or might not actually cause data
+to be written where it is safe from a power failure. The conformance document should identify at least that one configuration
+exists (and how to obtain that configuration) where this can be assured for at least some files that the user can select to use for
+critical data. It is not intended that an exhaustive list is required, but rather sufficient information is provided so that if
+critical data needs to be saved, the user can determine how the system is to be configured to allow the data to be written to
+non-volatile storage.
+It is reasonable to assert that the key aspects of
+fsync
+() are unreasonable to test in a test suite. That does not make
+the function any less valuable, just more difficult to test. A formal conformance test should probably force a system crash (power
+shutdown) during the test for this condition, but it needs to be done in such a way that automated testing does not require this to
+be done except when a formal record of the results is being made. It would also not be unreasonable to omit testing for
+fsync
+(), allowing it to be treated as a quality-of-implementation issue.
+FUTURE DIRECTIONS
+None.
+SEE ALSO
+sync
+()
+XBD
+<unistd.h>
+CHANGE HISTORY
+First released in Issue 3.
+Issue 5
+Aligned with
+fsync
+() in the POSIX Realtime Extension. Specifically, the DESCRIPTION and RETURN VALUE sections are much
+expanded, and the ERRORS section is updated to indicate that
+fsync
+() can return the error conditions defined for
+read
+()
+and
+write
+()
+.
+Issue 6
+This function is marked as part of the File Synchronization option.
+The following new requirements on POSIX implementations derive from alignment with the Single UNIX Specification:
+The [EINVAL] and [EIO] mandatory error conditions are added.
+IEEE Std 1003.1-2001/Cor 2-2004, item XSH/TC2/D6/44 is applied, applying an editorial rewording of the
+DESCRIPTION. No change in meaning is intended.
+Issue 8
+Austin Group Defect 672 is applied, changing the APPLICATION USAGE section.
+End of informative text.
+return to top of page
+UNIX® is a registered Trademark of The Open Group.
+POSIX™ is a Trademark of The IEEE.
+Copyright © 2001-2024 The IEEE and The Open Group, All Rights Reserved
+[
+Main Index
+|
+XBD
+|
+XSH
+|
+XCU
+|
+XRAT
+]
+<<<
+Previous
+Home
+Next
+>>>

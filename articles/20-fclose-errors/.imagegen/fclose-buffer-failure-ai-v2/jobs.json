@@ -1,0 +1,16 @@
+{
+  "jobs": [
+    {
+      "id": "20261016-025421-ab43fb",
+      "status": "done",
+      "op": "edit",
+      "name": "fclose-buffer-failure-ai-v2",
+      "prompt_preview": "只修正这张教学图中的数据字节数，保留整张图的版式、标题、字体、所有箭头、用户态和内核态边界、所有其他文字和右下水印。 必须修正：C 字符串 record=42 后带一个换行，实际总共 10 字节，不是 9 字节。将顶部“暂存 9 字节”改成“暂存 10 字节”。上下两个输出缓冲区都改画为 10 个小格，依次写 r、e、c、o、r、d、=、4、2、LF；其中最后一格 LF 表示一个换行字节。不能保留 a 到 i，不要把 LF 分成两个格。适当增宽容器以容纳十格，格内字符居中，…",
+      "source_image": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/20-fclose-errors/fclose-buffer-failure-ai.png",
+      "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/20-fclose-errors/fclose-buffer-failure-ai-v2.png",
+      "started_at": "2026-10-16T02:54:21Z",
+      "finished_at": "2026-10-16T02:55:21Z",
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+fputs
+<<<
+Previous
+Home
+Next
+>>>
+The Open Group Base Specifications Issue 8
+IEEE Std 1003.1-2024
+Copyright © 2001-2024 The IEEE and The Open Group
+NAME
+fputs — put a string on a stream
+SYNOPSIS
+#include <
+stdio.h
+>
+int fputs(const char *restrict
+s
+, FILE *restrict
+stream
+);
+DESCRIPTION
+[
+CX
+]
+The functionality described on this reference page is aligned with the ISO C standard. Any conflict between the
+requirements described here and the ISO C standard is unintentional. This volume of POSIX.1-2024 defers to the ISO C
+standard.
+The
+fputs
+() function shall write the null-terminated string pointed to by
+s
+to the stream pointed to by
+stream
+. The terminating null byte shall not be written.
+[
+CX
+]
+The
+last data modification and last file status change timestamps of the file shall be marked for update between the successful
+execution of
+fputs
+() and the next successful completion of a call to
+fflush
+()
+or
+fclose
+()
+on the same stream or a call to
+exit
+()
+or
+abort
+()
+.
+RETURN VALUE
+Upon successful completion,
+fputs
+() shall return a non-negative number. Otherwise, it shall return EOF, set an error
+indicator for the stream,
+[
+CX
+]
+and set
+errno
+to indicate the error.
+ERRORS
+Refer to
+fputc
+()
+.
+The following sections are informative.
+EXAMPLES
+Printing to Standard Output
+The following example gets the current time, converts it to a string using
+localtime
+()
+and
+asctime
+()
+, and prints it to
+standard output using
+fputs
+(). It then prints the number of minutes to an event for which it is waiting.
+#include <time.h>
+#include <stdio.h>
+...
+time_t now;
+int minutes_to_event;
+...
+time(&now);
+printf("The time is ");
+fputs(asctime(localtime(&now)), stdout);
+printf("There are still %d minutes to the event.\n",
+    minutes_to_event);
+...
+APPLICATION USAGE
+The
+puts
+()
+function appends a <newline> while
+fputs
+() does not.
+This volume of POSIX.1-2024 requires that successful completion simply return a non-negative integer. There are at least three
+known different implementation conventions for this requirement:
+Return a constant value.
+Return the last character written.
+Return the number of bytes written. Note that this implementation convention cannot be adhered to for strings longer than
+{INT_MAX} bytes as the value would not be representable in the return type of the function. For backwards-compatibility,
+implementations can return the number of bytes for strings of up to {INT_MAX} bytes, and return {INT_MAX} for all longer
+strings.
+RATIONALE
+The
+fputs
+() function is one whose source code was specified in the referenced
+The C Programming Language
+. In the
+original edition, the function had no defined return value, yet many practical implementations would, as a side-effect, return the
+value of the last character written as that was the value remaining in the accumulator used as a return value. In the second
+edition of the book, either the fixed value 0 or EOF would be returned depending upon the return value of
+ferror
+()
+; however, for compatibility with extant implementations, several implementations
+would, upon success, return a positive value representing the last byte written.
+FUTURE DIRECTIONS
+None.
+SEE ALSO
+2.5 Standard I/O Streams
+,
+fopen
+()
+,
+putc
+()
+,
+puts
+()
+XBD
+<stdio.h>
+CHANGE HISTORY
+First released in Issue 1. Derived from Issue 1 of the SVID.
+Issue 6
+Extensions beyond the ISO C standard are marked.
+The
+fputs
+() prototype is updated for alignment with the ISO/IEC 9899:1999 standard.
+Issue 7
+Changes are made related to support for finegrained timestamps.
+POSIX.1-2008, Technical Corrigendum 1, XSH/TC1-2008/0170 [174,412], XSH/TC1-2008/0171 [412], and XSH/TC1-2008/0172 [14] are
+applied.
+End of informative text.
+return to top of page
+UNIX® is a registered Trademark of The Open Group.
+POSIX™ is a Trademark of The IEEE.
+Copyright © 2001-2024 The IEEE and The Open Group, All Rights Reserved
+[
+Main Index
+|
+XBD
+|
+XSH
+|
+XCU
+|
+XRAT
+]
+<<<
+Previous
+Home
+Next
+>>>

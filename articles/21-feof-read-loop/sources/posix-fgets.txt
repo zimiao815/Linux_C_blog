@@ -1,0 +1,226 @@
+fgets
+<<<
+Previous
+Home
+Next
+>>>
+The Open Group Base Specifications Issue 8
+IEEE Std 1003.1-2024
+Copyright © 2001-2024 The IEEE and The Open Group
+NAME
+fgets — get a string from a stream
+SYNOPSIS
+#include <
+stdio.h
+>
+char *fgets(char *restrict
+s
+, int
+n
+, FILE *restrict
+stream
+);
+DESCRIPTION
+[
+CX
+]
+The functionality described on this reference page is aligned with the ISO C standard. Any conflict between the
+requirements described here and the ISO C standard is unintentional. This volume of POSIX.1-2024 defers to the ISO C
+standard.
+The
+fgets
+() function shall read bytes from
+stream
+into the array pointed to by
+s
+until
+n
+-1 bytes are
+read, or a <newline> is read and transferred to
+s
+, or an end-of-file condition is encountered. A null byte shall be
+written immediately after the last byte read into the array. If the end-of-file condition is encountered before any bytes are read,
+the contents of the array pointed to by
+s
+shall not be changed.
+[
+CX
+]
+The
+fgets
+() function may mark the last data access timestamp of the file associated with
+stream
+for update. The last data
+access timestamp shall be marked for update by the first successful execution of
+fgetc
+()
+,
+fgets
+(),
+fread
+()
+,
+fscanf
+()
+,
+getc
+()
+,
+getchar
+()
+,
+getdelim
+()
+,
+getline
+()
+, or
+scanf
+()
+using
+stream
+that
+returns data not supplied by a prior call to
+ungetc
+()
+.
+RETURN VALUE
+Upon successful completion,
+fgets
+() shall return
+s
+. If the stream is at end-of-file, the end-of-file indicator for
+the stream shall be set and
+fgets
+() shall return a null pointer. If an error occurs, the error indicator for the stream
+shall be set,
+fgets
+() shall return a null pointer,
+[
+CX
+]
+and shall set
+errno
+to indicate the error.
+ERRORS
+Refer to
+fgetc
+()
+.
+The following sections are informative.
+EXAMPLES
+Reading Input
+The following example uses
+fgets
+() to read lines of input. It assumes that the file it is reading is a text file and that
+lines in this text file are no longer than 16384 (or {LINE_MAX} if it is less than 16384 on the implementation where it is running)
+bytes long. (Note that the standard utilities have no line length limit if
+sysconf
+(_SC_LINE_MAX) returns -1 without setting
+errno
+. This example assumes that
+sysconf
+(_SC_LINE_MAX) will not fail.)
+#include <limits.h>
+#include <stdio.h>
+#include <unistd.h>
+#define MYLIMIT 16384
+char *line;
+int line_max;
+if (LINE_MAX >= MYLIMIT) {
+    // Use maximum line size of MYLIMIT. If LINE_MAX is
+    // bigger than our limit, sysconf() cannot report a
+    // smaller limit.
+    line_max = MYLIMIT;
+} else {
+    long limit = sysconf(_SC_LINE_MAX);
+    line_max = (limit < 0 || limit > MYLIMIT) ? MYLIMIT : (int)limit;
+}
+// line_max + 1 leaves room for the null byte added by fgets().
+line = malloc(line_max + 1);
+if (line == NULL) {
+    // out of space
+    ...
+    return error;
+}
+while (fgets(line, line_max + 1, fp) != NULL) {
+    // Verify that a full line has been read ...
+    // If not, report an error or prepare to treat the
+    // next time through the loop as a read of a
+    // continuation of the current line.
+    ...
+    // Process line ...
+    ...
+}
+free(line);
+...
+APPLICATION USAGE
+None.
+RATIONALE
+None.
+FUTURE DIRECTIONS
+None.
+SEE ALSO
+2.5 Standard I/O Streams
+,
+fgetc
+()
+,
+fopen
+()
+,
+fread
+()
+,
+fscanf
+()
+,
+getc
+()
+,
+getchar
+()
+,
+getdelim
+()
+,
+ungetc
+()
+XBD
+<stdio.h>
+CHANGE HISTORY
+First released in Issue 1. Derived from Issue 1 of the SVID.
+Issue 6
+Extensions beyond the ISO C standard are marked.
+The prototype for
+fgets
+() is changed for alignment with the ISO/IEC 9899:1999 standard.
+Issue 7
+Austin Group Interpretation 1003.1-2001 #051 is applied, updating the list of functions that mark the last data access timestamp
+for update.
+POSIX.1-2008, Technical Corrigendum 1, XSH/TC1-2008/0134 [182] and XSH/TC1-2008/0135 [14] are applied.
+POSIX.1-2008, Technical Corrigendum 2, XSH/TC2-2008/0114 [468] is applied.
+Issue 8
+Austin Group Defect 1330 is applied, removing obsolescent interfaces.
+Austin Group Defect 1624 is applied, changing the RETURN VALUE section.
+End of informative text.
+return to top of page
+UNIX® is a registered Trademark of The Open Group.
+POSIX™ is a Trademark of The IEEE.
+Copyright © 2001-2024 The IEEE and The Open Group, All Rights Reserved
+[
+Main Index
+|
+XBD
+|
+XSH
+|
+XCU
+|
+XRAT
+]
+<<<
+Previous
+Home
+Next
+>>>

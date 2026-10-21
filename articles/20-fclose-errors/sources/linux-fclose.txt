@@ -1,0 +1,212 @@
+fclose(3) - Linux manual page
+man7.org
+> Linux >
+man-pages
+Linux/UNIX system programming training
+fclose(3) — Linux manual page
+NAME
+|
+LIBRARY
+|
+SYNOPSIS
+|
+DESCRIPTION
+|
+RETURN VALUE
+|
+ERRORS
+|
+ATTRIBUTES
+|
+STANDARDS
+|
+HISTORY
+|
+NOTES
+|
+SEE ALSO
+|
+COLOPHON
+fclose
+(3)                Library Functions Manual
+fclose
+(3)
+NAME
+top
+fclose - close a stream
+LIBRARY
+top
+Standard C library (
+libc
+,
+-lc
+)
+SYNOPSIS
+top
+#include <stdio.h>
+int fclose(FILE *
+stream
+);
+DESCRIPTION
+top
+The
+fclose
+() function flushes the stream pointed to by
+stream
+(writing any buffered output data using
+fflush(3)
+) and closes the
+       underlying file descriptor.
+RETURN VALUE
+top
+Upon successful completion, 0 is returned.  Otherwise,
+EOF
+is
+       returned and
+errno
+is set to indicate the error.  In either case,
+       any further access (including another call to
+fclose
+()) to the
+       stream results in undefined behavior.
+ERRORS
+top
+EBADF
+The file descriptor underlying
+stream
+is not valid.
+
+       The
+fclose
+() function may also fail and set
+errno
+for any of the
+       errors specified for the routines
+close(2)
+,
+write(2)
+, or
+fflush(3)
+.
+ATTRIBUTES
+top
+For an explanation of the terms used in this section, see
+attributes(7)
+.
+       ┌──────────────────────────────────────┬───────────────┬─────────┐
+       │
+Interface
+│
+Attribute
+│
+Value
+│
+       ├──────────────────────────────────────┼───────────────┼─────────┤
+       │
+fclose
+()                             │ Thread safety │ MT-Safe │
+       └──────────────────────────────────────┴───────────────┴─────────┘
+STANDARDS
+top
+C11, POSIX.1-2008.
+HISTORY
+top
+C89, POSIX.1-2001.
+NOTES
+top
+Note that
+fclose
+() flushes only the user-space buffers provided by
+       the C library.  To ensure that the data is physically stored on
+       disk the kernel buffers must be flushed too, for example, with
+sync(2)
+or
+fsync(2)
+.
+SEE ALSO
+top
+close(2)
+,
+fcloseall(3)
+,
+fflush(3)
+,
+fileno(3)
+,
+fopen(3)
+,
+setbuf(3)
+COLOPHON
+top
+This page is part of the
+man-pages
+(Linux kernel and C library
+       user-space interface documentation) project.  Information about
+       the project can be found at 
+       ⟨
+https://www.kernel.org/doc/man-pages/
+⟩.  If you have a bug report
+       for this manual page, see
+       ⟨
+https://git.kernel.org/pub/scm/docs/man-pages/man-pages.git/tree/CONTRIBUTING
+⟩.
+       This page was obtained from the tarball man-pages-6.19.tar.gz
+       fetched from
+       ⟨
+https://mirrors.edge.kernel.org/pub/linux/docs/man-pages/
+⟩ on
+       2026-09-09.  If you discover any rendering problems in this HTML
+       version of the page, or you believe there is a better or more up-
+       to-date source for the page, or you have corrections or
+       improvements to the information in this COLOPHON (which is
+not
+part of the original manual page), send a mail to
+       man-pages@man7.org
+Linux man-pages 6.19            2025-09-21
+fclose
+(3)
+Pages that refer to this page:
+close(2)
+,
+abort(3)
+,
+fcloseall(3)
+,
+fflush(3)
+,
+FILE(3type)
+,
+fileno(3)
+,
+fmemopen(3)
+,
+fopen(3)
+,
+fopencookie(3)
+,
+getmntent(3)
+,
+open_memstream(3)
+,
+popen(3)
+,
+setbuf(3)
+,
+stdio(3)
+,
+xdr(3)
+HTML rendering created 2026-09-09
+            by
+Michael Kerrisk
+,
+            author of
+The Linux Programming Interface
+.
+For details of in-depth
+Linux/UNIX system programming training courses
+that I teach, look
+here
+.
+Hosting by
+jambit GmbH
+.

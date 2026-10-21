@@ -1,0 +1,16 @@
+[
+  {
+    "shell": "bash",
+    "exit": 1,
+    "stdout": "",
+    "stderr": "fputs: accepted\nfclose: File too large\n",
+    "file_bytes": 0
+  },
+  {
+    "shell": "zsh",
+    "exit": 1,
+    "stdout": "",
+    "stderr": "fputs: accepted\nfclose: File too large\n",
+    "file_bytes": 0
+  }
+]

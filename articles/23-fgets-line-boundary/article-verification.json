@@ -1,0 +1,17 @@
+{
+  "title": true,
+  "source_matches_article": true,
+  "source_survives_html": true,
+  "actual_output_embedded": true,
+  "short_code": true,
+  "three_h2": true,
+  "two_images": true,
+  "local_images_exist": true,
+  "cover_dimensions": true,
+  "body_dimensions": true,
+  "no_placeholder": true,
+  "no_svg_refs": true,
+  "single_footer": true,
+  "environment_limit_stated": true,
+  "no_upload": true
+}

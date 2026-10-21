@@ -1,0 +1,70 @@
+{
+  "environment": "macOS-14.8.8-x86_64-i386-64bit-Mach-O",
+  "flags": [
+    "-std=c17",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wconversion",
+    "-Wshadow",
+    "-O0",
+    "-g"
+  ],
+  "records": [
+    {
+      "limit": null,
+      "exit": 0,
+      "stderr": "fputs: accepted\nfclose: success\n",
+      "content": "record=42\n"
+    },
+    {
+      "limit": 0,
+      "exit": 1,
+      "stderr": "fputs: accepted\nfclose: File too large\n",
+      "content": ""
+    },
+    {
+      "limit": 4,
+      "exit": 1,
+      "stderr": "fputs: accepted\nfclose: File too large\n",
+      "content": "reco"
+    }
+  ],
+  "saves": [
+    {
+      "limit": null,
+      "exit": 0,
+      "stderr": "",
+      "content": "record=42\n"
+    },
+    {
+      "limit": 0,
+      "exit": 1,
+      "stderr": "save_record: File too large\n",
+      "content": ""
+    },
+    {
+      "limit": 4,
+      "exit": 1,
+      "stderr": "save_record: File too large\n",
+      "content": "reco"
+    }
+  ],
+  "failures": [
+    {
+      "case": "existing",
+      "exit": 1,
+      "stderr": "save_record: File exists\n"
+    },
+    {
+      "case": "missing-parent",
+      "exit": 1,
+      "stderr": "save_record: No such file or directory\n"
+    }
+  ],
+  "launcher": {
+    "exit": 1,
+    "stdout": "exit=1\n",
+    "stderr": "fputs: accepted\nfclose: File too large\n"
+  }
+}

@@ -1,0 +1,229 @@
+fflush(3) - Linux manual page
+man7.org
+> Linux >
+man-pages
+Linux/UNIX system programming training
+fflush(3) — Linux manual page
+NAME
+|
+LIBRARY
+|
+SYNOPSIS
+|
+DESCRIPTION
+|
+RETURN VALUE
+|
+ERRORS
+|
+ATTRIBUTES
+|
+STANDARDS
+|
+HISTORY
+|
+NOTES
+|
+SEE ALSO
+|
+COLOPHON
+fflush
+(3)                Library Functions Manual
+fflush
+(3)
+NAME
+top
+fflush - flush a stream
+LIBRARY
+top
+Standard C library (
+libc
+,
+-lc
+)
+SYNOPSIS
+top
+#include <stdio.h>
+int fflush(FILE *_Nullable
+stream
+);
+DESCRIPTION
+top
+For output streams,
+fflush
+() forces a write of all user-space
+       buffered data for the given output or update
+stream
+via the
+       stream's underlying write function.
+
+       For input streams associated with seekable files (e.g., disk
+       files, but not pipes or terminals),
+fflush
+() discards any buffered
+       data that has been fetched from the underlying file, but has not
+       been consumed by the application.
+
+       The open status of the stream is unaffected.
+
+       If the
+stream
+argument is NULL,
+fflush
+() flushes
+all
+open output
+       streams.
+
+       For a nonlocking counterpart, see
+unlocked_stdio(3)
+.
+RETURN VALUE
+top
+Upon successful completion 0 is returned.  Otherwise,
+EOF
+is
+       returned and
+errno
+is set to indicate the error.
+ERRORS
+top
+EBADF
+stream
+is not an open stream, or is not open for writing.
+
+       The function
+fflush
+() may also fail and set
+errno
+for any of the
+       errors specified for
+write(2)
+.
+ATTRIBUTES
+top
+For an explanation of the terms used in this section, see
+attributes(7)
+.
+       ┌──────────────────────────────────────┬───────────────┬─────────┐
+       │
+Interface
+│
+Attribute
+│
+Value
+│
+       ├──────────────────────────────────────┼───────────────┼─────────┤
+       │
+fflush
+()                             │ Thread safety │ MT-Safe │
+       └──────────────────────────────────────┴───────────────┴─────────┘
+STANDARDS
+top
+C11, POSIX.1-2008.
+HISTORY
+top
+C89, POSIX.1-2001, POSIX.1-2008.
+
+       POSIX.1-2001 did not specify the behavior for flushing of input
+       streams, but the behavior is specified in POSIX.1-2008.
+NOTES
+top
+Note that
+fflush
+() flushes only the user-space buffers provided by
+       the C library.  To ensure that the data is physically stored on
+       disk the kernel buffers must be flushed too, for example, with
+sync(2)
+or
+fsync(2)
+.
+SEE ALSO
+top
+fsync(2)
+,
+sync(2)
+,
+write(2)
+,
+fclose(3)
+,
+fileno(3)
+,
+fopen(3)
+,
+fpurge(3)
+,
+setbuf(3)
+,
+unlocked_stdio(3)
+COLOPHON
+top
+This page is part of the
+man-pages
+(Linux kernel and C library
+       user-space interface documentation) project.  Information about
+       the project can be found at 
+       ⟨
+https://www.kernel.org/doc/man-pages/
+⟩.  If you have a bug report
+       for this manual page, see
+       ⟨
+https://git.kernel.org/pub/scm/docs/man-pages/man-pages.git/tree/CONTRIBUTING
+⟩.
+       This page was obtained from the tarball man-pages-6.19.tar.gz
+       fetched from
+       ⟨
+https://mirrors.edge.kernel.org/pub/linux/docs/man-pages/
+⟩ on
+       2026-09-09.  If you discover any rendering problems in this HTML
+       version of the page, or you believe there is a better or more up-
+       to-date source for the page, or you have corrections or
+       improvements to the information in this COLOPHON (which is
+not
+part of the original manual page), send a mail to
+       man-pages@man7.org
+Linux man-pages 6.19            2025-05-17
+fflush
+(3)
+Pages that refer to this page:
+fsync(2)
+,
+fclose(3)
+,
+fcloseall(3)
+,
+fmemopen(3)
+,
+fopen(3)
+,
+fpurge(3)
+,
+fseek(3)
+,
+open_memstream(3)
+,
+popen(3)
+,
+setbuf(3)
+,
+stdin(3)
+,
+stdio(3)
+,
+xdr(3)
+HTML rendering created 2026-09-09
+            by
+Michael Kerrisk
+,
+            author of
+The Linux Programming Interface
+.
+For details of in-depth
+Linux/UNIX system programming training courses
+that I teach, look
+here
+.
+Hosting by
+jambit GmbH
+.

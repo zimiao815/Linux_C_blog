@@ -1,0 +1,16 @@
+{
+  "jobs": [
+    {
+      "id": "20261016-042338-10eff9",
+      "status": "done",
+      "op": "generate",
+      "name": "feof-return-ai",
+      "prompt_preview": "为中文 C 编程公众号制作一张简洁清晰的技术教学图，1536×1024 横向画布，纯白背景，深蓝标题，蓝色表示用户态，青色表示正常状态，橙红色表示错误。大号简体中文无衬线字，保持充足留白，扁平矢量图风格。严格按指定文字写，不额外发明代码或标签。箭头不相交、不穿文字。右下角必须有水印“公众号·理解力笔记”。不要画装饰性电脑或磁盘插画。标题“同样返回 EOF，停止原因可能不同”；副标题“新打开的普通文件流：首次遇到结束或读取错误”。 主体做成两行、三列的技术关系图，列标题从左到…",
+      "source_image": null,
+      "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/21-feof-read-loop/feof-return-ai.png",
+      "started_at": "2026-10-16T04:23:38Z",
+      "finished_at": "2026-10-16T04:24:09Z",
+      "error": null
+    }
+  ]
+}

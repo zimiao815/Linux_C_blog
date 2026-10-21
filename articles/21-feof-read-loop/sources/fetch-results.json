@@ -1,0 +1,82 @@
+[
+  {
+    "file": "posix-feof.html",
+    "bytes": 5825,
+    "ok": true
+  },
+  {
+    "file": "posix-ferror.html",
+    "bytes": 5821,
+    "ok": true
+  },
+  {
+    "file": "posix-fgetc.html",
+    "bytes": 12554,
+    "ok": true
+  },
+  {
+    "file": "posix-clearerr.html",
+    "bytes": 5567,
+    "ok": true
+  },
+  {
+    "file": "posix-fgets.html",
+    "bytes": 10062,
+    "ok": true
+  },
+  {
+    "file": "posix-fseek.html",
+    "bytes": 20324,
+    "ok": true
+  },
+  {
+    "file": "glibc-errors.html",
+    "bytes": 9413,
+    "ok": true
+  },
+  {
+    "file": "glibc-feof.c",
+    "bytes": 1668,
+    "ok": true
+  },
+  {
+    "file": "glibc-ferror.c",
+    "bytes": 1684,
+    "ok": true
+  },
+  {
+    "file": "glibc-fileops.c",
+    "bytes": 41630,
+    "ok": true
+  },
+  {
+    "file": "glibc-struct_FILE.h",
+    "bytes": 4101,
+    "ok": true
+  },
+  {
+    "file": "kernel-fdtable.h",
+    "bytes": 3651,
+    "ok": true
+  },
+  {
+    "file": "kernel-fs.h",
+    "bytes": 114446,
+    "ok": true
+  },
+  {
+    "file": "posix-fread.html",
+    "bytes": 10516,
+    "ok": true
+  },
+  {
+    "file": "posix-fputc.html",
+    "bytes": 12475,
+    "ok": true
+  },
+  {
+    "file": "posix-fflush.html",
+    "bytes": 14814,
+    "ok": true
+  }
+]
