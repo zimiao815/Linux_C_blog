@@ -1,0 +1,6 @@
+same_fd=1 first=a
+closed_fd=1
+content=Xbc closed_fd=1
+device_write=ok
+injected_failure rc=-1 errno_preserved=1 closed_fd=1
+write_failure rc=-1 epipe=1 closed_fd=1

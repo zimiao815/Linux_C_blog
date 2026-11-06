@@ -1,0 +1,4 @@
+first=1 value=42
+second=0 value=42
+blocked=x
+recovered=1 value=7

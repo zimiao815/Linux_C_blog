@@ -1,0 +1,79 @@
+{
+  "environment": "macOS-14.8.8-x86_64-i386-64bit-Mach-O",
+  "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+  "linux_tested": false,
+  "records": [
+    {
+      "case": "ownership",
+      "sources": [
+        "fdopen_probe.c"
+      ],
+      "flags": [
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow"
+      ],
+      "exit": 0,
+      "stdout": "same_fd=1 first=a\nclosed_fd=1\n",
+      "stderr": ""
+    },
+    {
+      "case": "normal",
+      "sources": [
+        "save_fd.c",
+        "save_fd_test.c"
+      ],
+      "flags": [
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow"
+      ],
+      "exit": 0,
+      "stdout": "content=Xbc closed_fd=1\ndevice_write=ok\n",
+      "stderr": ""
+    },
+    {
+      "case": "allocation_failure_injected",
+      "sources": [
+        "save_fd.c",
+        "failure_test.c"
+      ],
+      "flags": [
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-Dfdopen=fail_fdopen"
+      ],
+      "exit": 0,
+      "stdout": "injected_failure rc=-1 errno_preserved=1 closed_fd=1\n",
+      "stderr": ""
+    },
+    {
+      "case": "write_failure",
+      "sources": [
+        "save_fd.c",
+        "flush_failure_test.c"
+      ],
+      "flags": [
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow"
+      ],
+      "exit": 0,
+      "stdout": "write_failure rc=-1 epipe=1 closed_fd=1\n",
+      "stderr": ""
+    }
+  ]
+}

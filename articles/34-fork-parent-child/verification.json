@@ -1,0 +1,272 @@
+{
+  "passed": true,
+  "environment": {
+    "system": "macOS-14.8.8-x86_64-i386-64bit-Mach-O",
+    "mac_ver": "14.8.8",
+    "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+    "flags": [
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wshadow",
+      "-O0",
+      "-g"
+    ],
+    "linux_executed": false
+  },
+  "observed_orders": {
+    "parent-first": 20,
+    "child-first": 0
+  },
+  "scope": "20 captured runs; regular-file redirection; injected EAGAIN/EINTR/ECHILD; stdout failure",
+  "records": [
+    {
+      "command": [
+        "cc",
+        "--version"
+      ],
+      "exit": 0,
+      "stdout": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g",
+        "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/34-fork-parent-child/fork_demo.c",
+        "-o",
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "cc",
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g",
+        "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/34-fork-parent-child/fault_injection.c",
+        "-o",
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fault-test"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35439\nafter: self=35439 fork_return=35440\nafter: self=35440 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35441\nafter: self=35441 fork_return=35442\nafter: self=35442 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35443\nafter: self=35443 fork_return=35444\nafter: self=35444 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35445\nafter: self=35445 fork_return=35446\nafter: self=35446 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35447\nafter: self=35447 fork_return=35448\nafter: self=35448 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35449\nafter: self=35449 fork_return=35451\nafter: self=35451 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35452\nafter: self=35452 fork_return=35453\nafter: self=35453 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35454\nafter: self=35454 fork_return=35455\nafter: self=35455 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35456\nafter: self=35456 fork_return=35457\nafter: self=35457 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35458\nafter: self=35458 fork_return=35459\nafter: self=35459 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35460\nafter: self=35460 fork_return=35461\nafter: self=35461 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35462\nafter: self=35462 fork_return=35463\nafter: self=35463 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35464\nafter: self=35464 fork_return=35465\nafter: self=35465 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35466\nafter: self=35466 fork_return=35467\nafter: self=35467 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35468\nafter: self=35468 fork_return=35469\nafter: self=35469 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35470\nafter: self=35470 fork_return=35471\nafter: self=35471 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35472\nafter: self=35472 fork_return=35473\nafter: self=35473 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35474\nafter: self=35474 fork_return=35475\nafter: self=35475 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35476\nafter: self=35476 fork_return=35477\nafter: self=35477 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35478\nafter: self=35478 fork_return=35479\nafter: self=35479 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "case": "regular-file-redirection",
+      "exit": 0,
+      "stdout": "before: self=35480\nafter: self=35480 fork_return=35481\nafter: self=35481 fork_return=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fault-test"
+      ],
+      "exit": 1,
+      "stdout": "before: self=35482\n",
+      "stderr": "fork: Resource temporarily unavailable\n",
+      "injected_fault": "fork_eagain"
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fault-test"
+      ],
+      "exit": 0,
+      "stdout": "before: self=35483\nafter: self=35483 fork_return=35484\nafter: self=35484 fork_return=0\ninjected EINTR: retried and reaped\n",
+      "stderr": "",
+      "injected_fault": "wait_eintr"
+    },
+    {
+      "command": [
+        "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fault-test"
+      ],
+      "exit": 0,
+      "stdout": "injected ECHILD: propagated, no retry\n",
+      "stderr": "",
+      "injected_fault": "wait_echild"
+    },
+    {
+      "case": "stdout-read-only",
+      "exit": 1,
+      "stdout": "",
+      "stderr": "printf before: Bad file descriptor\n"
+    }
+  ]
+}

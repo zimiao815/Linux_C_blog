@@ -1,0 +1,186 @@
+{"command": ["cc", "--version"], "exit": 0}
+stdout:
+Apple clang version 16.0.0 (clang-1600.0.26.6)
+Target: x86_64-apple-darwin23.6.0
+Thread model: posix
+InstalledDir: /Library/Developer/CommandLineTools/usr/bin
+stderr:
+
+{"command": ["cc", "-std=c17", "-Wall", "-Wextra", "-Wpedantic", "-Wconversion", "-Wshadow", "-O0", "-g", "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/34-fork-parent-child/fork_demo.c", "-o", "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+stderr:
+
+{"command": ["cc", "-std=c17", "-Wall", "-Wextra", "-Wpedantic", "-Wconversion", "-Wshadow", "-O0", "-g", "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/34-fork-parent-child/fault_injection.c", "-o", "/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fault-test"], "exit": 0}
+stdout:
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35439
+after: self=35439 fork_return=35440
+after: self=35440 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35441
+after: self=35441 fork_return=35442
+after: self=35442 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35443
+after: self=35443 fork_return=35444
+after: self=35444 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35445
+after: self=35445 fork_return=35446
+after: self=35446 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35447
+after: self=35447 fork_return=35448
+after: self=35448 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35449
+after: self=35449 fork_return=35451
+after: self=35451 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35452
+after: self=35452 fork_return=35453
+after: self=35453 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35454
+after: self=35454 fork_return=35455
+after: self=35455 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35456
+after: self=35456 fork_return=35457
+after: self=35457 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35458
+after: self=35458 fork_return=35459
+after: self=35459 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35460
+after: self=35460 fork_return=35461
+after: self=35461 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35462
+after: self=35462 fork_return=35463
+after: self=35463 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35464
+after: self=35464 fork_return=35465
+after: self=35465 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35466
+after: self=35466 fork_return=35467
+after: self=35467 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35468
+after: self=35468 fork_return=35469
+after: self=35469 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35470
+after: self=35470 fork_return=35471
+after: self=35471 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35472
+after: self=35472 fork_return=35473
+after: self=35473 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35474
+after: self=35474 fork_return=35475
+after: self=35475 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35476
+after: self=35476 fork_return=35477
+after: self=35477 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fork-demo"], "exit": 0}
+stdout:
+before: self=35478
+after: self=35478 fork_return=35479
+after: self=35479 fork_return=0
+stderr:
+
+{"case": "regular-file-redirection", "exit": 0}
+stdout:
+before: self=35480
+after: self=35480 fork_return=35481
+after: self=35481 fork_return=0
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fault-test"], "exit": 1, "injected_fault": "fork_eagain"}
+stdout:
+before: self=35482
+stderr:
+fork: Resource temporarily unavailable
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fault-test"], "exit": 0, "injected_fault": "wait_eintr"}
+stdout:
+before: self=35483
+after: self=35483 fork_return=35484
+after: self=35484 fork_return=0
+injected EINTR: retried and reaped
+stderr:
+
+{"command": ["/var/folders/n7/l1s9y9rd2851jcttr5rf3k080000gn/T/fork-article34-n_7_4o94/fault-test"], "exit": 0, "injected_fault": "wait_echild"}
+stdout:
+injected ECHILD: propagated, no retry
+stderr:
+
+{"case": "stdout-read-only", "exit": 1}
+stdout:
+stderr:
+printf before: Bad file descriptor

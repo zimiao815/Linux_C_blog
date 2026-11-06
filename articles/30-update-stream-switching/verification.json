@@ -1,0 +1,12 @@
+{
+  "environment": {
+    "system": "macOS 14.8.8 x86_64",
+    "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)",
+    "flags": ["-std=c17", "-Wall", "-Wextra", "-Wpedantic", "-Wconversion", "-Wshadow", "-O0", "-g"]
+  },
+  "stdout": "write_then_read=a\nread_then_write=abcX\n",
+  "cases": {
+    "write_then_read": "a",
+    "read_then_write": "abcX"
+  }
+}

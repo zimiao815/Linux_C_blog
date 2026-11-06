@@ -1,0 +1,3 @@
+small ret=11 text=value=1 truncated=1
+exact ret=7 text=1234567 truncated=0
+probe ret=11

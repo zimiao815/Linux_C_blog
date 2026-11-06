@@ -1,0 +1,12 @@
+{
+  "c_fragments_match_sources": true,
+  "c_fragments_survive_html": true,
+  "short_c_blocks": true,
+  "actual_outputs_embedded": true,
+  "two_images": true,
+  "local_images_exist": true,
+  "cover_size": true,
+  "single_footer": true,
+  "no_placeholder": true,
+  "title": true
+}

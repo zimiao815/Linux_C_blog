@@ -1,0 +1,26 @@
+[
+  {
+    "id": "20261027-090915-35020c",
+    "status": "done",
+    "op": "generate",
+    "name": "cover-31-fdopen",
+    "prompt_preview": "公众号技术封面，横向 900x383。主题 fdopen 给已有文件描述符添加 FILE 缓冲接口，只有一份底层资源。干净的蓝青扁平插画：一个卡片被套入一个透明接口外壳，连接同一个文件；不要画复制资源。仅文字：左下 标准 I/O 库 · 第17期，右下 公众号·理解力笔记。",
+    "source_image": null,
+    "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/31-fdopen-ownership/cover-original.png",
+    "started_at": "2026-10-27T09:09:15Z",
+    "finished_at": "2026-10-27T09:09:40Z",
+    "error": null
+  },
+  {
+    "id": "20261027-090958-ae1f32",
+    "status": "done",
+    "op": "generate",
+    "name": "fdopen-ownership-31",
+    "prompt_preview": "中文 C 编程教学图，1536x1024。一个问题：fdopen 后谁关闭 fd？深蓝底、青色、橙色，文字少且大。上方调用 fdopen(fd, \"w\")，向下分成两条分支。左边成功 FILE *：标注 不复制 fd，FILE → 同一个 fd → 文件；最后 fclose(fp)，标注 关闭流及关联 fd。右边失败 NULL：标注 fd 仍由调用者持有，最后 close(fd)。底部一句：成功后不要再 close 原 fd。右下水印 公众号·理解力笔记。不要画两份底层文件…",
+    "source_image": null,
+    "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/31-fdopen-ownership/fdopen-ownership.png",
+    "started_at": "2026-10-27T09:09:58Z",
+    "finished_at": "2026-10-27T09:10:24Z",
+    "error": null
+  }
+]

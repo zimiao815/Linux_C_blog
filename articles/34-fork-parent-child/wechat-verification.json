@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checks": {
+    "title": true,
+    "body_matches_local": true,
+    "two_remote_images": true,
+    "cover_present": true,
+    "code_preserved": true,
+    "environment_limit": true,
+    "single_footer": true
+  },
+  "verified_at": "2026-11-06T08:00:33.859850+00:00"
+}

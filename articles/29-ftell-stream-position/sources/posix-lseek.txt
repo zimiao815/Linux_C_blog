@@ -1,0 +1,617 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+lseek
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<<<
+Previous
+
+
+Home
+
+
+Next
+>>>
+
+
+
+
+
+
+
+
+
+
+The Open Group Base Specifications Issue 8
+
+IEEE Std 1003.1-2024
+
+Copyright © 2001-2024 The IEEE and The Open Group
+
+
+
+
+ 
+ 
+
+
+NAME
+
+
+lseek — move the read/write file offset
+
+
+SYNOPSIS
+
+
+
+
+#include <
+unistd.h
+>
+
+
+
+off_t lseek(int
+ 
+fildes
+, off_t
+ 
+offset
+, int
+ 
+whence
+);
+
+
+
+
+DESCRIPTION
+
+
+
+
+The 
+lseek
+() function shall set the file offset for the open file description associated with the file descriptor
+
+fildes,
+ as follows:
+
+
+
+
+
+
+If 
+whence
+ is SEEK_SET, the file offset shall be set to 
+offset
+ bytes.
+
+
+
+
+
+
+If 
+whence
+ is SEEK_CUR, the file offset shall be set to its current location plus 
+offset
+.
+
+
+
+
+
+
+If 
+whence
+ is SEEK_END, the file offset shall be set to the size of the file plus 
+offset
+.
+
+
+
+
+
+
+If 
+whence
+ is SEEK_HOLE, the file offset shall be set to the smallest location of a byte within a hole and not less than
+
+offset
+, except that if 
+offset
+ falls beyond the last byte not within a hole, then the file offset may be set to the
+file size instead. It shall be an error if 
+offset
+ is greater than or equal to the size of the file.
+
+
+
+
+
+
+If 
+whence
+ is SEEK_DATA, the file offset shall be set to the smallest location of a byte not within a hole and not less
+than 
+offset
+. It shall be an error if no such byte exists.
+
+
+
+
+
+
+The symbolic constants SEEK_SET, SEEK_CUR, SEEK_END, SEEK_HOLE, and SEEK_DATA are defined in 
+<unistd.h>
+.
+
+
+A hole is a contiguous region of bytes within a file, all having the value of zero. Not all bytes with the value zero need
+belong to a hole; however, all seekable files shall have a virtual hole starting at the current size of the file, whether or not
+the file is sparse.
+
+
+The behavior of 
+lseek
+() on devices which are incapable of seeking is implementation-defined. The value of the file offset
+associated with such a device is undefined.
+
+
+The 
+lseek
+() function shall allow the file offset to be set beyond the end of the existing data in the file. If data is
+later written at this point, subsequent reads of data in the gap shall return bytes with the value 0 until data is actually written
+into the gap.
+
+
+The 
+lseek
+() function shall not, by itself, extend the size of a file.
+
+
+[
+SHM
+]
+ 
+
+If 
+fildes
+ refers to a shared memory object, the result of the 
+lseek
+() function is unspecified. 
+
+
+[
+TYM
+]
+ 
+
+If 
+fildes
+ refers to a typed memory object, the result of the 
+lseek
+() function is unspecified. 
+
+
+
+
+RETURN VALUE
+
+
+
+
+Upon successful completion, the resulting offset, as measured in bytes from the beginning of the file, shall be returned.
+Otherwise, -1 shall be returned, 
+errno
+ shall be set to indicate the error, and the file offset shall remain unchanged.
+
+
+
+
+ERRORS
+
+
+
+
+The 
+lseek
+() function shall fail if:
+
+
+
+
+
+
+[EBADF]
+
+
+The 
+fildes
+ argument is not an open file descriptor.
+
+
+[EINVAL]
+
+
+The 
+whence
+ argument is not a proper value, or the resulting file offset would be negative for a regular file, block
+special file, or directory.
+
+
+[ENXIO]
+
+
+The 
+whence
+ argument is SEEK_HOLE or SEEK_DATA, and 
+offset
+ is greater than or equal to the file size; or the
+
+whence
+ argument is SEEK_DATA and the offset falls beyond the last byte not within a hole.
+
+
+[EOVERFLOW]
+
+
+The resulting file offset would be a value which cannot be represented correctly in an object of type 
+off_t
+.
+
+
+[ESPIPE]
+
+
+The 
+fildes
+ argument is associated with a pipe, FIFO, or socket.
+
+
+
+
+
+
+
+
+The following sections are informative.
+
+
+EXAMPLES
+
+
+
+
+None.
+
+
+
+
+APPLICATION USAGE
+
+
+
+
+None.
+
+
+
+
+RATIONALE
+
+
+
+
+The ISO C standard includes the functions 
+fgetpos
+()
+ and 
+fsetpos
+()
+, which work on very large files by use of a special positioning type.
+
+
+Although 
+lseek
+() may position the file offset beyond the end of the file, this function does not itself extend the size
+of the file. While the only function in POSIX.1-2024 that may directly extend the size of the file is 
+write
+()
+, 
+truncate
+()
+, and 
+ftruncate
+()
+, several functions originally derived from the ISO C standard, such as
+
+fwrite
+()
+, 
+fprintf
+()
+, and so on, may do
+so (by causing calls on 
+write
+()
+).
+
+
+An invalid file offset that would cause [EINVAL] to be returned may be both implementation-defined and device-dependent (for
+example, memory may have few invalid values). A negative file offset may be valid for some devices in some implementations.
+
+
+The POSIX.1-1990 standard did not specifically prohibit 
+lseek
+() from returning a negative offset. Therefore, an
+application was required to clear 
+errno
+ prior to the call and check 
+errno
+ upon return to determine whether a return
+value of (
+off_t
+)-1 is a negative offset or an indication of an error condition. The standard developers did not wish to
+require this action on the part of a conforming application, and chose to require that 
+errno
+ be set to [EINVAL] when the
+resulting file offset would be negative for a regular file, block special file, or directory.
+
+
+Not all file systems support holes, and even where sparse files are supported, not all contiguous blocks of zero bytes are
+required to be recognized as a hole. However, since all files are required to have a virtual hole starting at the current file
+size, application writers can use SEEK_HOLE and SEEK_DATA to optimize algorithms that can run faster when it is known that a block
+of bytes is all zeros, because a non-sparse file will correctly report the entire file as a single non-hole. A trivial recursive
+implementation for these two constants would be as follows, however, for file systems that support sparse files, implementations
+are encouraged to do better.
+
+
+
+
+off_t lseek(int fildes, off_t offset, int whence)
+{
+    off_t cur, end;
+    switch (whence)
+    {
+    case SEEK_HOLE:
+    case SEEK_DATA:
+        cur = lseek(fildes, 0, SEEK_CUR);
+        if (cur < 0)
+            return cur;
+        end = lseek(fildes, 0, SEEK_END);
+        if (end < 0)
+            return end;
+        if (offset < end)
+            return whence == SEEK_HOLE ?
+                end : lseek(fildes, offset, SEEK_SET);
+        lseek(fildes, cur, SEEK_SET);
+        errno = ENXIO;
+        return -1;
+    default:
+        ... /* Existing implementation */
+    }
+}
+
+
+
+Note that although the above looks like user-space code, 
+lseek
+() cannot be implemented with recursive calls in user space
+because this would not conform to the atomicity requirements in 
+2.9.7 Thread
+Interactions with File Operations
+.
+
+
+
+
+FUTURE DIRECTIONS
+
+
+
+
+None.
+
+
+
+
+SEE ALSO
+
+
+
+
+open
+()
+
+
+XBD 
+<sys/types.h>
+, 
+<unistd.h>
+
+
+
+
+CHANGE HISTORY
+
+
+
+
+First released in Issue 1. Derived from Issue 1 of the SVID.
+
+
+
+
+Issue 5
+
+
+
+
+The DESCRIPTION is updated for alignment with the POSIX Realtime Extension.
+
+
+Large File Summit extensions are added.
+
+
+
+
+Issue 6
+
+
+
+
+In the SYNOPSIS, the optional include of the 
+<sys/types.h>
+ header is
+removed.
+
+
+The following new requirements on POSIX implementations derive from alignment with the Single UNIX Specification:
+
+
+
+
+
+
+The requirement to include 
+<sys/types.h>
+ has been removed. Although
+
+<sys/types.h>
+ was required for conforming implementations of previous POSIX
+specifications, it was not required for UNIX applications.
+
+
+
+
+
+
+The [EOVERFLOW] error condition is added. This change is to support large files.
+
+
+
+
+
+
+An additional [ESPIPE] error condition is added for sockets.
+
+
+The DESCRIPTION is updated for alignment with IEEE Std 1003.1j-2000 by specifying that 
+lseek
+() results are
+unspecified for typed memory objects.
+
+
+
+
+Issue 7
+
+
+
+
+POSIX.1-2008, Technical Corrigendum 1, XSH/TC1-2008/0366 [421] is applied.
+
+
+
+
+Issue 8
+
+
+
+
+Austin Group Defect 415 is applied, adding SEEK_HOLE and SEEK_DATA.
+
+
+
+
+End of informative text.
+
+
+
+
+ 
+
+
+return to top of page
+
+
+
+
+UNIX® is a registered Trademark of The Open Group.
+
+POSIX™ is a Trademark of The IEEE.
+
+Copyright © 2001-2024 The IEEE and The Open Group, All Rights Reserved
+
+[ 
+Main Index
+ | 
+XBD
+ | 
+XSH
+ | 
+XCU
+ | 
+XRAT
+
+]
+
+
+
+
+
+
+
+
+
+
+<<<
+Previous
+
+
+Home
+
+
+Next
+>>>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+{
+  "status": "draft_created_and_verified",
+  "published": false,
+  "title": "fork 之后，父子进程从哪里继续执行？",
+  "verified_at": "2026-11-06T08:01:39.724591+00:00",
+  "local_article": "正文.md",
+  "draft_record": "wechat-draft.json",
+  "readback_record": "wechat-verification.json",
+  "experiment_platform": "macOS 14.8.8 x86_64 / Apple clang 16.0.0",
+  "linux_executed": false
+}

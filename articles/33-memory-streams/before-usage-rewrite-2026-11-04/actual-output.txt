@@ -1,0 +1,11 @@
+fixed=count=3
+flushed len=5 text=hello
+closed len=8 text=hello, C
+fixed cap=16 success=1 bounds=ok
+fixed cap=9 success=1 bounds=ok
+fixed cap=8 success=0 bounds=ok
+fixed cap=4 success=0 bounds=ok
+fixed cap=0 success=0 bounds=ok
+dynamic bytes=0 final_len=1 content=ok
+dynamic bytes=8 final_len=9 content=ok
+dynamic bytes=20000 final_len=20001 content=ok

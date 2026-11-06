@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<!-- Created by GNU Texinfo 7.1, https://www.gnu.org/software/texinfo/ -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- This is
+The GNU C Library Reference Manual, for version
+2.40.
+
+Copyright © 1993-2024 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version
+1.3 or any later version published by the Free
+Software Foundation; with the Invariant Sections being "Free Software
+Needs Free Documentation" and "GNU Lesser General Public License",
+the Front-Cover texts being "A GNU Manual", and with the Back-Cover
+Texts as in (a) below.  A copy of the license is included in the
+section entitled "GNU Free Documentation License".
+
+(a) The FSF's Back-Cover Text is: "You have the freedom to
+copy and modify this GNU manual.  Buying copies from the FSF
+supports it in developing GNU and promoting software freedom." -->
+<title>Block Input/Output (The GNU C Library)</title>
+
+<meta name="description" content="Block Input/Output (The GNU C Library)">
+<meta name="keywords" content="Block Input/Output (The GNU C Library)">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="makeinfo">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<link href="index.html" rel="start" title="Top">
+<link href="Concept-Index.html" rel="index" title="Concept Index">
+<link href="index.html#SEC_Contents" rel="contents" title="Table of Contents">
+<link href="I_002fO-on-Streams.html" rel="up" title="I/O on Streams">
+<link href="Formatted-Output.html" rel="next" title="Formatted Output">
+<link href="Unreading.html" rel="prev" title="Unreading">
+<style type="text/css">
+<!--
+a.copiable-link {visibility: hidden; text-decoration: none; line-height: 0em}
+span:hover a.copiable-link {visibility: visible}
+strong.def-name {font-family: monospace; font-weight: bold; font-size: larger}
+-->
+</style>
+
+
+</head>
+
+<body lang="en">
+<div class="section-level-extent" id="Block-Input_002fOutput">
+<div class="nav-panel">
+<p>
+Next: <a href="Formatted-Output.html" accesskey="n" rel="next">Formatted Output</a>, Previous: <a href="Unreading.html" accesskey="p" rel="prev">Unreading</a>, Up: <a href="I_002fO-on-Streams.html" accesskey="u" rel="up">Input/Output on Streams</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+<hr>
+<h3 class="section" id="Block-Input_002fOutput-1"><span>12.11 Block Input/Output<a class="copiable-link" href="#Block-Input_002fOutput-1"> &para;</a></span></h3>
+
+<p>This section describes how to do input and output operations on blocks
+of data.  You can use these functions to read and write binary data, as
+well as to read and write text in fixed-size blocks instead of by
+characters or lines.
+<a class="index-entry-id" id="index-binary-I_002fO-to-a-stream"></a>
+<a class="index-entry-id" id="index-block-I_002fO-to-a-stream"></a>
+<a class="index-entry-id" id="index-reading-from-a-stream_002c-by-blocks"></a>
+<a class="index-entry-id" id="index-writing-to-a-stream_002c-by-blocks"></a>
+</p>
+<p>Binary files are typically used to read and write blocks of data in the
+same format as is used to represent the data in a running program.  In
+other words, arbitrary blocks of memory&mdash;not just character or string
+objects&mdash;can be written to a binary file, and meaningfully read in
+again by the same program.
+</p>
+<p>Storing data in binary form is often considerably more efficient than
+using the formatted I/O functions.  Also, for floating-point numbers,
+the binary form avoids possible loss of precision in the conversion
+process.  On the other hand, binary files can&rsquo;t be examined or modified
+easily using many standard file utilities (such as text editors), and
+are not portable between different implementations of the language, or
+different kinds of computers.
+</p>
+<p>These functions are declared in <samp class="file">stdio.h</samp>.
+<a class="index-entry-id" id="index-stdio_002eh-5"></a>
+</p>
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-fread"><span class="category-def">Function: </span><span><code class="def-type">size_t</code> <strong class="def-name">fread</strong> <code class="def-code-arguments">(void *<var class="var">data</var>, size_t <var class="var">size</var>, size_t <var class="var">count</var>, FILE *<var class="var">stream</var>)</code><a class="copiable-link" href="#index-fread"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe 
+| AS-Unsafe corrupt
+| AC-Unsafe lock corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>This function reads up to <var class="var">count</var> objects of size <var class="var">size</var> into
+the array <var class="var">data</var>, from the stream <var class="var">stream</var>.  It returns the
+number of objects actually read, which might be less than <var class="var">count</var> if
+a read error occurs or the end of the file is reached.  This function
+returns a value of zero (and doesn&rsquo;t read anything) if either <var class="var">size</var>
+or <var class="var">count</var> is zero.
+</p>
+<p>If <code class="code">fread</code> encounters end of file in the middle of an object, it
+returns the number of complete objects read, and discards the partial
+object.  Therefore, the stream remains at the actual end of the file.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-fread_005funlocked"><span class="category-def">Function: </span><span><code class="def-type">size_t</code> <strong class="def-name">fread_unlocked</strong> <code class="def-code-arguments">(void *<var class="var">data</var>, size_t <var class="var">size</var>, size_t <var class="var">count</var>, FILE *<var class="var">stream</var>)</code><a class="copiable-link" href="#index-fread_005funlocked"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe race:stream
+| AS-Unsafe corrupt
+| AC-Unsafe corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>The <code class="code">fread_unlocked</code> function is equivalent to the <code class="code">fread</code>
+function except that it does not implicitly lock the stream.
+</p>
+<p>This function is a GNU extension.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-fwrite"><span class="category-def">Function: </span><span><code class="def-type">size_t</code> <strong class="def-name">fwrite</strong> <code class="def-code-arguments">(const void *<var class="var">data</var>, size_t <var class="var">size</var>, size_t <var class="var">count</var>, FILE *<var class="var">stream</var>)</code><a class="copiable-link" href="#index-fwrite"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe 
+| AS-Unsafe corrupt
+| AC-Unsafe lock corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>This function writes up to <var class="var">count</var> objects of size <var class="var">size</var> from
+the array <var class="var">data</var>, to the stream <var class="var">stream</var>.  The return value is
+normally <var class="var">count</var>, if the call succeeds.  Any other value indicates
+some sort of error, such as running out of space.
+</p></dd></dl>
+
+<dl class="first-deftypefn first-deftypefun-alias-first-deftypefn">
+<dt class="deftypefn deftypefun-alias-deftypefn" id="index-fwrite_005funlocked"><span class="category-def">Function: </span><span><code class="def-type">size_t</code> <strong class="def-name">fwrite_unlocked</strong> <code class="def-code-arguments">(const void *<var class="var">data</var>, size_t <var class="var">size</var>, size_t <var class="var">count</var>, FILE *<var class="var">stream</var>)</code><a class="copiable-link" href="#index-fwrite_005funlocked"> &para;</a></span></dt>
+<dd>
+<p>Preliminary:
+| MT-Safe race:stream
+| AS-Unsafe corrupt
+| AC-Unsafe corrupt
+| See <a class="xref" href="POSIX-Safety-Concepts.html">POSIX Safety Concepts</a>.
+</p>
+
+<p>The <code class="code">fwrite_unlocked</code> function is equivalent to the <code class="code">fwrite</code>
+function except that it does not implicitly lock the stream.
+</p>
+<p>This function is a GNU extension.
+</p></dd></dl>
+
+</div>
+<hr>
+<div class="nav-panel">
+<p>
+Next: <a href="Formatted-Output.html">Formatted Output</a>, Previous: <a href="Unreading.html">Unreading</a>, Up: <a href="I_002fO-on-Streams.html">Input/Output on Streams</a> &nbsp; [<a href="index.html#SEC_Contents" title="Table of contents" rel="contents">Contents</a>][<a href="Concept-Index.html" title="Index" rel="index">Index</a>]</p>
+</div>
+
+
+
+</body>
+</html>

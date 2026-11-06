@@ -1,0 +1,21 @@
+{
+  "environment": {
+    "system": "macOS 14.8.8 x86_64",
+    "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)",
+    "flags": [
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wshadow",
+      "-O0",
+      "-g"
+    ]
+  },
+  "stdout": "read=a ftell=1 fd_offset=26\nafter_fseek=k ftell=11 fd_offset=26\n",
+  "cases": {
+    "read_char": "read=a ftell=1 fd_offset=26",
+    "after_fseek": "after_fseek=k ftell=11 fd_offset=26"
+  }
+}

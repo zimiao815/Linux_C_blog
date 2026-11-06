@@ -1,0 +1,62 @@
+{
+  "environment": "macOS-14.8.8-x86_64-i386-64bit-Mach-O",
+  "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+  "linux_tested": false,
+  "records": [
+    {
+      "case": "sequence",
+      "sources": [
+        "read_one.c",
+        "mixing_probe.c"
+      ],
+      "flags": [
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow"
+      ],
+      "exit": 0,
+      "stdout": "fread=a pos=1\nread=b pos=2\nfread_again=c pos=3\n",
+      "stderr": ""
+    },
+    {
+      "case": "boundaries",
+      "sources": [
+        "read_one.c",
+        "read_one_test.c"
+      ],
+      "flags": [
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow"
+      ],
+      "exit": 0,
+      "stdout": "length=0 exact=1 eof=1\nlength=1 exact=1 eof=1\nlength=26 exact=1 eof=1\nlength=10000 exact=1 eof=1\n",
+      "stderr": ""
+    },
+    {
+      "case": "injected_errors",
+      "sources": [
+        "read_one.c",
+        "error_test.c"
+      ],
+      "flags": [
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-Dread=test_read"
+      ],
+      "exit": 0,
+      "stdout": "injected_eintr retry=ok byte=b\ninjected_eio result=-1 errno_preserved=1\n",
+      "stderr": ""
+    }
+  ]
+}

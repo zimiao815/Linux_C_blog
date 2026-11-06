@@ -1,0 +1,74 @@
+[
+  {
+    "id": "20261028-072550-fa6f43",
+    "status": "done",
+    "op": "generate",
+    "name": "cover-33-memory-streams",
+    "prompt_preview": "中文技术公众号封面 900x383，主题标准I/O内存流。深蓝青橙简洁扁平插画，同一个输出接口把文字送进内存容器：一个固定大小盒子，一个可扩展盒子。无磁盘图标，不暗示写文件。只放两处中文：左下 标准 I/O 库 · 第19期；右下 公众号·理解力笔记。留白干净。",
+    "source_image": null,
+    "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/33-memory-streams/cover-original.png",
+    "started_at": "2026-10-28T07:25:50Z",
+    "finished_at": "2026-10-28T07:26:17Z",
+    "error": null
+  },
+  {
+    "id": "20261028-072551-5177ab",
+    "status": "failed",
+    "op": "generate",
+    "name": "memory-streams-33",
+    "prompt_preview": "中文C教学图 1536x1024，深蓝青橙，两栏少字大字号。标题 内存流：相同的FILE接口，不同的内存归属。左栏 fmemopen：调用者提供数组 → FILE写入固定容量数组 → fclose关闭流，数组仍由调用者持有。右栏 open_memstream：库动态分配并扩容 → fflush成功后获取指针和长度 → fclose成功后结果保留 → 调用者free。右栏小提示：继续写入后，旧指针可能失效；长度不含结尾空字符。不要画文件描述符或磁盘。右下 公众号·理解力笔记。",
+    "source_image": null,
+    "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/33-memory-streams/memory-streams.png",
+    "started_at": "2026-10-28T07:25:51Z",
+    "finished_at": "2026-10-28T07:26:23Z",
+    "error": "API request failed"
+  },
+  {
+    "id": "20261028-073132-4e8bf4",
+    "status": "done",
+    "op": "generate",
+    "name": "memory-streams-33-retry",
+    "prompt_preview": "简洁中文内存流教学图。蓝青两栏，大字少标签。左 fmemopen：调用者的固定数组，fclose后数组仍在。右 open_memstream：库分配可扩容内存，fflush成功获取指针与长度，fclose成功后调用者free。右栏提醒：继续写入可能换地址。无磁盘无fd，右下水印 公众号·理解力笔记。",
+    "source_image": null,
+    "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/33-memory-streams/memory-streams.png",
+    "started_at": "2026-10-28T07:31:32Z",
+    "finished_at": "2026-10-28T07:32:02Z",
+    "error": null
+  },
+  {
+    "id": "20261028-075051-5f6ffb",
+    "status": "done",
+    "op": "edit",
+    "name": "cover-33-memory-streams-corrected",
+    "prompt_preview": "精确修正这张 C 语言标准 I/O 技术文章封面：将左侧输出接口上错误的 std::ostream 标签完全删除，替换为清晰正确的 FILE *。这是 C 语言的 FILE 指针接口，不是 C++。保持其他构图、蓝橙配色、箭头、内存容器、中文期号与右下角署名完全不变。不要添加其他文字或标题。",
+    "source_image": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/33-memory-streams/cover-original.png",
+    "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/33-memory-streams/cover-corrected-original.png",
+    "started_at": "2026-10-28T07:50:51Z",
+    "finished_at": "2026-10-28T07:51:44Z",
+    "error": null
+  },
+  {
+    "id": "20261104-111638-9c6b01",
+    "status": "failed",
+    "op": "generate",
+    "name": "memory-streams-33-usage-rewrite",
+    "prompt_preview": "生成中文 C 语言教程步骤图，1536x1024，白底深蓝文字，清晰大字，简洁横向方框箭头，无装饰插画。标题：两个函数，怎样得到字符串。上半区标题 fmemopen，严格三步由左向右：1 自备数组 buf[16]；2 fprintf 写入 hello；3 fclose 成功后读取 buf。下半区标题 open_memstream，严格四步由左向右：1 库分配内存；2 fprintf 写入 hello；3 fclose 成功后获取 text 和 len=5；4 用完 free…",
+    "source_image": null,
+    "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/33-memory-streams/memory-usage.png",
+    "started_at": "2026-11-04T11:16:38Z",
+    "finished_at": "2026-11-04T11:17:09Z",
+    "error": "API request failed"
+  },
+  {
+    "id": "20261104-111921-304ea6",
+    "status": "done",
+    "op": "generate",
+    "name": "memory-streams-33-usage-rewrite-retry",
+    "prompt_preview": "中文C教程步骤图，白底蓝字，大字号，极简，两条水平流程。标题：把 hello 写进内存。上排 fmemopen：自备 buf[16] → fprintf 写入 → fclose 成功 → 使用 buf。下排 open_memstream：库分配内存 → fprintf 写入 → fclose 成功 → 使用 text，len=5 → free(text)。底部：上排容量固定，下排按需扩容。右下角：公众号·理解力笔记。只画成功路径；不要磁盘图标。函数名拼写精确。",
+    "source_image": null,
+    "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/33-memory-streams/memory-usage.png",
+    "started_at": "2026-11-04T11:19:21Z",
+    "finished_at": "2026-11-04T11:19:41Z",
+    "error": null
+  }
+]

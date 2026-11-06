@@ -1,0 +1,503 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ftell
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<<<
+Previous
+
+
+Home
+
+
+Next >>>
+
+
+
+
+
+
+
+
+
+
+The Open Group Base Specifications Issue 8
+
+IEEE Std 1003.1-2024
+
+Copyright © 2001-2024 The IEEE and The Open Group
+
+
+
+
+ 
+ 
+
+
+NAME
+
+
+ftell, ftello — return a file offset in a stream
+
+
+SYNOPSIS
+
+
+
+
+#include <
+stdio.h
+>
+
+
+
+long ftell(FILE *
+stream
+);
+
+
+[
+CX
+]
+ 
+ off_t ftello(FILE *
+stream
+); 
+
+
+
+
+DESCRIPTION
+
+
+
+
+[
+CX
+]
+ 
+ The functionality described on this reference page is aligned with the ISO C standard. Any conflict between the
+requirements described here and the ISO C standard is unintentional. This volume of POSIX.1-2024 defers to the ISO C
+standard. 
+
+
+The 
+ftell
+() function shall obtain the current value of the file-position indicator for the stream pointed to by
+
+stream
+.
+
+
+The 
+ftell
+() function shall not change the setting of 
+errno
+ if successful.
+
+
+[
+CX
+]
+ 
+ The
+
+ftello
+() function shall be equivalent to 
+ftell
+(), except that the return value is of type 
+off_t
+ and the
+
+ftello
+() function may change the setting of 
+errno
+ if successful. 
+
+
+
+
+RETURN VALUE
+
+
+
+
+Upon successful completion, 
+ftell
+() 
+[
+CX
+]
+ 
+  and 
+ftello
+() 
+  shall return the current value of the file-position indicator for the stream measured in bytes
+from the beginning of the file, 
+[
+CX
+]
+ 
+  except in the case of streams opened with 
+open_wmemstream
+()
+ for which the position shall be measured in wide characters.
+
+
+
+Otherwise, 
+ftell
+() and 
+ftello
+() shall return -1, and set 
+errno
+ to indicate the error.
+
+
+
+
+ERRORS
+
+
+
+
+The 
+ftell
+() 
+[
+CX
+]
+ 
+  and 
+ftello
+() 
+ functions
+shall fail if:
+
+
+
+
+
+
+[EBADF]
+
+
+[
+CX
+]
+ 
+
+The file descriptor underlying 
+stream
+ is not an open file descriptor. 
+
+
+[EOVERFLOW]
+
+
+[
+CX
+]
+ 
+
+For 
+ftell
+(), the current file offset cannot be represented correctly in an object of type 
+long
+. 
+
+
+[EOVERFLOW]
+
+
+[
+CX
+]
+ 
+
+For 
+ftello
+(), the current file offset cannot be represented correctly in an object of type 
+off_t
+. 
+
+
+[ESPIPE]
+
+
+[
+CX
+]
+ 
+
+The file descriptor underlying 
+stream
+ is associated with a pipe, FIFO, or socket. 
+
+
+
+
+
+
+
+
+The following sections are informative.
+
+
+EXAMPLES
+
+
+
+
+None.
+
+
+
+
+APPLICATION USAGE
+
+
+
+
+None.
+
+
+
+
+RATIONALE
+
+
+
+
+For all streams other than those opened by 
+open_wmemstream
+()
+,
+
+ftell
+() and 
+fseek
+()
+ operate on byte offsets. The behavior with 
+open_wmemstream
+()
+ streams is intentionally different—
+ftell
+()
+ and 
+fseek
+()
+ operate on wide character
+offsets. This is because those streams are unique in that the backing storage is not a multibyte representation but a wide
+character array, and it is useful to be able to use the output of 
+ftell
+() to index into that array.
+
+
+
+
+FUTURE DIRECTIONS
+
+
+
+
+None.
+
+
+
+
+SEE ALSO
+
+
+
+
+2.5 Standard I/O Streams
+, 
+fgetpos
+()
+, 
+fopen
+()
+, 
+fseek
+()
+, 
+lseek
+()
+, 
+open_memstream
+()
+
+
+XBD 
+<stdio.h>
+
+
+
+
+CHANGE HISTORY
+
+
+
+
+First released in Issue 1. Derived from Issue 1 of the SVID.
+
+
+
+
+Issue 5
+
+
+
+
+Large File Summit extensions are added.
+
+
+
+
+Issue 6
+
+
+
+
+Extensions beyond the ISO C standard are marked.
+
+
+The following new requirements on POSIX implementations derive from alignment with the Single UNIX Specification:
+
+
+
+
+
+
+The 
+ftello
+() function is added.
+
+
+
+
+
+
+The [EOVERFLOW] error conditions are added.
+
+
+
+
+
+
+An additional [ESPIPE] error condition is added for sockets.
+
+
+
+
+Issue 7
+
+
+
+
+POSIX.1-2008, Technical Corrigendum 1, XSH/TC1-2008/0204 [105], XSH/TC1-2008/0205 [421], XSH/TC1-2008/0206 [122],
+XSH/TC1-2008/0207 [122], and XSH/TC1-2008/0208 [14] are applied.
+
+
+
+
+Issue 8
+
+
+
+
+Austin Group Defect 1027 is applied, specifying that for streams opened with 
+open_wmemstream
+()
+ the position is measured in wide characters, not bytes.
+
+
+
+
+End of informative text.
+
+
+
+
+ 
+
+
+return to top of page
+
+
+
+
+UNIX® is a registered Trademark of The Open Group.
+
+POSIX™ is a Trademark of The IEEE.
+
+Copyright © 2001-2024 The IEEE and The Open Group, All Rights Reserved
+
+[ 
+Main Index
+ | 
+XBD
+ | 
+XSH
+ | 
+XCU
+ | 
+XRAT
+
+]
+
+
+
+
+
+
+
+
+
+
+<<<
+Previous
+
+
+Home
+
+
+Next >>>
+
+
+
+
+
+
+
+
+
+
+

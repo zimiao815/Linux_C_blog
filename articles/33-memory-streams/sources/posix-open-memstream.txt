@@ -1,0 +1,44 @@
+open_memstream <<<
+Previous Home Next
+>>> The Open Group Base Specifications Issue 8 IEEE Std 1003.1-2024 Copyright © 2001-2024 The IEEE and The Open Group NAME open_memstream, open_wmemstream — open a dynamic memory buffer stream SYNOPSIS [ CX ] #include < stdio.h > FILE *open_memstream(char ** bufp , size_t * sizep ); #include < wchar.h > FILE *open_wmemstream(wchar_t ** bufp , size_t * sizep ); DESCRIPTION The open_memstream () and open_wmemstream () functions shall create an I/O stream associated with a dynamically
+allocated memory buffer. The stream shall be opened for writing and shall be seekable. The stream associated with a call to open_memstream () shall be byte-oriented. The stream associated with a call to open_wmemstream () shall be wide-oriented. The stream shall maintain a current position in the allocated buffer and a current buffer length. The position shall be
+initially set to zero (the start of the buffer). Each write to the stream shall start at the current position and move this
+position by the number of successfully written bytes for open_memstream () or the number of successfully written wide
+characters for open_wmemstream (). The length shall be initially set to zero. If a write moves the position to a value larger
+than the current length, the current length shall be set to this position. In this case a null character for open_memstream () or a null wide character for open_wmemstream () shall be appended to the current buffer. For both
+functions the terminating null is not included in the calculation of the buffer length. After a successful fflush () or fclose () , the pointer referenced by bufp shall contain the address of the buffer, and
+the variable pointed to by sizep shall contain the smaller of the current buffer length and the number of bytes for open_memstream (), or the number of wide characters for open_wmemstream (), between the beginning of the buffer and the
+current file position indicator. The fseek () and fseeko () functions
+can be used to set the file position beyond the current buffer length. It is implementation-defined whether this extends the buffer
+to the new length. If it extends the buffer, the added buffer contents shall be set to null bytes for open_memstream (), or
+null wide characters for open_wmemstream (); if it does not extend the buffer, then if data is later written at this point,
+the buffer contents in the gap shall be set to null bytes for open_memstream (), or null wide characters for open_wmemstream (). If fseek () or fseeko () is called with SEEK_END as the whence argument, it is implementation-defined
+whether the file position is adjusted relative to the current buffer length or relative to the buffer size that would be set by an fflush () call made immediately before the fseek () or fseeko () call. After a successful fflush () the pointer referenced by bufp and the variable
+referenced by sizep remain valid only until the next write operation on the stream or a call to fclose () . After a successful fclose () , the pointer referenced by bufp can be passed
+to free () . RETURN VALUE Upon successful completion, these functions shall return a pointer to the object controlling the stream. Otherwise, a null
+pointer shall be returned, and errno shall be set to indicate the error. ERRORS These functions shall fail if: [EMFILE] {STREAM_MAX} streams are currently open in the calling process. These functions may fail if: [EINVAL] bufp or sizep are NULL. [EMFILE] {FOPEN_MAX} streams are currently open in the calling process. [ENOMEM] Memory for the stream or the buffer could not be allocated. The following sections are informative. EXAMPLES #include <stdio.h>
+#include <stdlib.h> int
+main (void)
+{
+    FILE *stream;
+    char *buf;
+    size_t len;
+    off_t eob; stream = open_memstream (&buf, &len);
+    if (stream == NULL)
+        /* handle error */ ;
+    fprintf (stream, "hello my world");
+    fflush (stream);
+    printf ("buf=%s, len=%zu\n", buf, len);
+    eob = ftello(stream);
+    fseeko (stream, 0, SEEK_SET);
+    fprintf (stream, "good-bye");
+    fseeko (stream, eob, SEEK_SET);
+    fclose (stream);
+    printf ("buf=%s, len=%zu\n", buf, len);
+    free (buf);
+    return 0;
+} This program produces the following output: buf=hello my world, len=14
+buf=good-bye world, len=14 APPLICATION USAGE The buffer created by these functions should be freed by the application after closing the stream, by means of a call to free () . RATIONALE These functions are similar to fmemopen () except that the memory is always
+allocated dynamically by the function, and the stream is opened only for output. FUTURE DIRECTIONS None. SEE ALSO fclose () , fdopen () , fflush () , fmemopen () , fopen () , free () , freopen () XBD <stdio.h> , <wchar.h> CHANGE HISTORY First released in Issue 7. POSIX.1-2008, Technical Corrigendum 2, XSH/TC2-2008/0244 [588] and XSH/TC2-2008/0245 [586] are applied. Issue 8 Austin Group Defect 1406 is applied, clarifying the behavior of fseek () and fseeko () on streams created by open_memstream () and open_wmemstream (). End of informative text. return to top of page UNIX® is a registered Trademark of The Open Group. POSIX™ is a Trademark of The IEEE. Copyright © 2001-2024 The IEEE and The Open Group, All Rights Reserved [ Main Index | XBD | XSH | XCU | XRAT ] <<<
+Previous Home Next
+>>>

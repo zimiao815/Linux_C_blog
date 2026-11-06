@@ -1,0 +1,37 @@
+[
+  {
+    "url": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/fork.html",
+    "file": "sources/fork-posix.md",
+    "retrieved_at": "2026-11-06T07:55:20.272255+00:00",
+    "method": "read skill fetch.sh local extractor",
+    "sha256": "725b45a5d880f678a2dbac741ad9f21e267667301aa5514f43eaf3632a481c3c"
+  },
+  {
+    "url": "https://man7.org/linux/man-pages/man2/fork.2.html",
+    "file": "sources/fork-linux.md",
+    "retrieved_at": "2026-11-06T07:55:20.274781+00:00",
+    "method": "read skill fetch.sh local extractor",
+    "sha256": "68732637353f428bbb90a22c5b274b871e17f055668f057ee4efe634777d5556"
+  },
+  {
+    "url": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/waitpid.html",
+    "file": "sources/waitpid-posix.md",
+    "retrieved_at": "2026-11-06T07:55:20.276468+00:00",
+    "method": "read skill fetch.sh local extractor",
+    "sha256": "55fa39c27d759a3266f01e62b23177f87085fb6152d12554e68d50addd3faac2"
+  },
+  {
+    "url": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/_exit.html",
+    "file": "sources/exit-posix.md",
+    "retrieved_at": "2026-11-06T07:55:20.278519+00:00",
+    "method": "read skill fetch.sh local extractor",
+    "sha256": "ffbd7e7880d343b168621c59cda242cef9ac21964ab38d90d825ec7ce14ab55d"
+  },
+  {
+    "url": "https://pubs.opengroup.org/onlinepubs/9799919799/functions/V2_chap02.html",
+    "file": "sources/handles-posix.md",
+    "retrieved_at": "2026-11-06T07:55:20.279952+00:00",
+    "method": "read skill fetch.sh local extractor",
+    "sha256": "c140ba38f73601bbff812940481af6149d98765dc928202f9b24e37b445a6bfa"
+  }
+]

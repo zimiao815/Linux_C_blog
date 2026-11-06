@@ -1,0 +1,16 @@
+{
+  "jobs": [
+    {
+      "id": "20261106-074910-3007a8",
+      "status": "done",
+      "op": "generate",
+      "name": "cover-34-fork",
+      "prompt_preview": "为中文技术公众号生成一张最终封面，输出 PNG，画幅精确 900×383 像素（宽高比约 2.35:1）。主题是 Linux C 的 fork：同一条执行路线在一个明确的分叉点分成两条独立的执行路线。主体居中，上方一张简洁的程序卡片，箭头向下分成左蓝右橙两张程序卡片；两条路线平等，不表示左边先执行。深藏蓝底色，细腻纸感，蓝色与柔和橙色，编辑设计风格，结构清楚，避免装饰性电路、齿轮和代码雨。分叉图占画面中部，四周留白。 封面只允许出现这两处文字，必须由你直接绘制完整，不能遗漏…",
+      "source_image": null,
+      "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/34-fork-parent-child/cover-34-fork.png",
+      "started_at": "2026-11-06T07:49:10Z",
+      "finished_at": "2026-11-06T07:49:31Z",
+      "error": null
+    }
+  ]
+}

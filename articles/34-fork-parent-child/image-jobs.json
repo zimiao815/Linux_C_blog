@@ -1,0 +1,47 @@
+{
+  "jobs": [
+    {
+      "id": "20261106-074911-7f77e9",
+      "status": "failed",
+      "op": "generate",
+      "name": "img-fork-branches",
+      "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/34-fork-parent-child/img-fork-branches.png",
+      "started_at": "2026-11-06T07:49:11Z",
+      "finished_at": "2026-11-06T07:49:42Z",
+      "error": "API request failed"
+    },
+    {
+      "id": "20261106-075146-19bdf3",
+      "status": "failed",
+      "op": "generate",
+      "name": "img-fork-branches",
+      "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/34-fork-parent-child/img-fork-branches.png",
+      "started_at": "2026-11-06T07:51:46Z",
+      "finished_at": "2026-11-06T07:52:17Z",
+      "error": "API request failed"
+    },
+    {
+      "id": "20261106-075520-d7be44",
+      "status": "failed",
+      "op": "generate",
+      "name": "img-fork-branches",
+      "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/34-fork-parent-child/img-fork-branches.png",
+      "started_at": "2026-11-06T07:55:20Z",
+      "finished_at": "2026-11-06T07:55:51Z",
+      "error": "API request failed"
+    },
+    {
+      "id": "20261106-074910-3007a8",
+      "status": "done",
+      "op": "generate",
+      "name": "cover-34-fork",
+      "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/34-fork-parent-child/cover-34-fork.png",
+      "started_at": "2026-11-06T07:49:10Z",
+      "finished_at": "2026-11-06T07:49:31Z",
+      "error": null
+    }
+  ],
+  "final_cover": "cover-34-fork.png",
+  "final_diagram": "img-fork-branches.png",
+  "diagram_method": "Pillow fallback after three upstream HTTP 504 errors"
+}

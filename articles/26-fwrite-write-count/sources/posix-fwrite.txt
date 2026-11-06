@@ -1,0 +1,420 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+fwrite
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<<<
+Previous
+
+
+Home
+
+
+Next
+>>>
+
+
+
+
+
+
+
+
+
+
+The Open Group Base Specifications Issue 8
+
+IEEE Std 1003.1-2024
+
+Copyright © 2001-2024 The IEEE and The Open Group
+
+
+
+
+ 
+ 
+
+
+NAME
+
+
+fwrite — binary output
+
+
+SYNOPSIS
+
+
+
+
+#include <
+stdio.h
+>
+
+
+
+size_t fwrite(const void *restrict
+ 
+ptr
+, size_t
+ 
+size
+, size_t
+ 
+nitems
+,
+
+       FILE *restrict
+ 
+stream
+);
+
+
+
+
+DESCRIPTION
+
+
+
+
+[
+CX
+]
+ 
+ The functionality described on this reference page is aligned with the ISO C standard. Any conflict between the
+requirements described here and the ISO C standard is unintentional. This volume of POSIX.1-2024 defers to the ISO C
+standard. 
+
+
+The 
+fwrite
+() function shall write, from the array pointed to by 
+ptr
+, up to 
+nitems
+ elements whose size is
+specified by 
+size
+, to the stream pointed to by 
+stream
+. For each object, 
+size
+ calls shall be made to the
+
+fputc
+()
+ function, taking the values (in order) from an array of 
+unsigned char
+
+exactly overlaying the object. The file-position indicator for the stream (if defined) shall be advanced by the number of bytes
+successfully written. If an error occurs, the resulting value of the file-position indicator for the stream is unspecified.
+
+
+[
+CX
+]
+ 
+ The
+last data modification and last file status change timestamps of the file shall be marked for update between the successful
+execution of 
+fwrite
+() and the next successful completion of a call to 
+fflush
+()
+
+or 
+fclose
+()
+ on the same stream, or a call to 
+exit
+()
+ or 
+abort
+()
+. 
+
+
+
+
+RETURN VALUE
+
+
+
+
+The 
+fwrite
+() function shall return the number of elements successfully written, which shall be less than 
+nitems
+
+only if a write error is encountered. If 
+size
+ or 
+nitems
+ is 0, 
+fwrite
+() shall return 0 and the state of the
+stream remains unchanged. Otherwise, if a write error occurs, the error indicator for the stream shall be set, 
+[
+CX
+]
+ 
+  and
+
+errno
+ shall be set to indicate the error. 
+
+
+
+
+ERRORS
+
+
+
+
+Refer to 
+fputc
+()
+.
+
+
+
+
+
+
+The following sections are informative.
+
+
+EXAMPLES
+
+
+
+
+None.
+
+
+
+
+APPLICATION USAGE
+
+
+
+
+Because of possible differences in element length and byte ordering, files written using 
+fwrite
+() are
+application-dependent, and possibly cannot be read using 
+fread
+()
+ by a different
+application or by the same application on a different processor.
+
+
+
+
+RATIONALE
+
+
+
+
+None.
+
+
+
+
+FUTURE DIRECTIONS
+
+
+
+
+None.
+
+
+
+
+SEE ALSO
+
+
+
+
+2.5 Standard I/O Streams
+, 
+ferror
+()
+, 
+fopen
+()
+, 
+fprintf
+()
+, 
+putc
+()
+, 
+puts
+()
+, 
+write
+()
+
+
+XBD 
+<stdio.h>
+
+
+
+
+CHANGE HISTORY
+
+
+
+
+First released in Issue 1. Derived from Issue 1 of the SVID.
+
+
+
+
+Issue 6
+
+
+
+
+Extensions beyond the ISO C standard are marked.
+
+
+The following changes are made for alignment with the ISO/IEC 9899:1999 standard:
+
+
+
+
+
+
+The 
+fwrite
+() prototype is updated.
+
+
+
+
+
+
+The DESCRIPTION is updated to clarify how the data is written out using 
+fputc
+()
+.
+
+
+
+
+
+
+
+
+Issue 7
+
+
+
+
+Changes are made related to support for finegrained timestamps.
+
+
+POSIX.1-2008, Technical Corrigendum 1, XSH/TC1-2008/0228 [14] is applied.
+
+
+
+
+Issue 8
+
+
+
+
+Austin Group Defect 1196 is applied, clarifying the RETURN VALUE section.
+
+
+
+
+End of informative text.
+
+
+
+
+ 
+
+
+return to top of page
+
+
+
+
+UNIX® is a registered Trademark of The Open Group.
+
+POSIX™ is a Trademark of The IEEE.
+
+Copyright © 2001-2024 The IEEE and The Open Group, All Rights Reserved
+
+[ 
+Main Index
+ | 
+XBD
+ | 
+XSH
+ | 
+XCU
+ | 
+XRAT
+
+]
+
+
+
+
+
+
+
+
+
+
+<<<
+Previous
+
+
+Home
+
+
+Next
+>>>
+
+
+
+
+
+
+
+
+
+
+

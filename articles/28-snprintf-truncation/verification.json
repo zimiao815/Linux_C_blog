@@ -1,0 +1,24 @@
+{
+  "environment": {
+    "system": "macOS 14.8.8 x86_64",
+    "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)",
+    "flags": [
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wshadow",
+      "-O0",
+      "-g"
+    ]
+  },
+  "stdout": "small ret=11 text=value=1 truncated=1\nexact ret=7 text=1234567 truncated=0\nprobe ret=11\n",
+  "cases": {
+    "small_return": 11,
+    "small_truncated": true,
+    "exact_return": 7,
+    "exact_truncated": false,
+    "probe_return": 11
+  }
+}

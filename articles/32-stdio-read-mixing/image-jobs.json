@@ -1,0 +1,38 @@
+[
+  {
+    "id": "20261028-024149-cff4f3",
+    "status": "done",
+    "op": "generate",
+    "name": "cover-32-stdio-mixing",
+    "prompt_preview": "中文 C 编程公众号横向封面，900x383。蓝青色简洁扁平图，两条不同入口共同指向一个文件读取位置，一个入口带透明预读盒，另一个直接通向文件，位置交接用橙色箭头表示。不要复杂小字，不写代码。左下仅文字 标准 I/O 库 · 第18期，右下 公众号·理解力笔记。",
+    "source_image": null,
+    "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/32-stdio-read-mixing/cover-original.png",
+    "started_at": "2026-10-28T02:41:49Z",
+    "finished_at": "2026-10-28T02:43:05Z",
+    "error": null
+  },
+  {
+    "id": "20261028-024150-92a057",
+    "status": "failed",
+    "op": "generate",
+    "name": "stdio-mixing-32",
+    "prompt_preview": "中文技术教学信息图 1536x1024 深蓝青橙，字号大。标题：fread 与 read，共享偏移，不共享缓冲。只画预读解释，不画修复代码。场景标注 示例：假设一次预读 26 字节。顶部用户态 FILE 缓冲：a 已交给程序，b 到 z 尚未消费；程序逻辑位置=1。底部内核态 打开文件描述，当前偏移=26，连到普通文件 abcdefghijklmnopqrstuvwxyz。右侧 fd 的 read 路径直接指向内核偏移，绕开 FILE 缓冲。必须准确：fd 与 FILE 关…",
+    "source_image": null,
+    "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/32-stdio-read-mixing/stdio-mixing.png",
+    "started_at": "2026-10-28T02:41:50Z",
+    "finished_at": "2026-10-28T02:42:24Z",
+    "error": "API request failed"
+  },
+  {
+    "id": "20261028-024934-29b860",
+    "status": "failed",
+    "op": "generate",
+    "name": "stdio-mixing-32-retry",
+    "prompt_preview": "简洁中文教学图，深蓝青橙配色。标题 fread 与 read：共享偏移，不共享缓冲。左边用户态 FILE 缓冲中 a 已消费、b-z 待消费，标注流位置1。下面内核打开文件描述偏移26，右边read(fd)指向它而不经过FILE缓冲。角落写 假设一次预读26字节，仅作机制示意。底部写 混用前必须按POSIX协调。不要额外代码。大字清晰，右下 公众号·理解力笔记。",
+    "source_image": null,
+    "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/32-stdio-read-mixing/stdio-mixing.png",
+    "started_at": "2026-10-28T02:49:34Z",
+    "finished_at": "2026-10-28T02:50:07Z",
+    "error": "API request failed"
+  }
+]

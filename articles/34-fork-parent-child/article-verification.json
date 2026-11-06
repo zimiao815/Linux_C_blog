@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "checks": {
+    "compilation_and_runs_passed": true,
+    "four_c_blocks_match_source": true,
+    "code_survives_html": true,
+    "actual_output_matches": true,
+    "environment_limit_present": true,
+    "five_h2_sections": true,
+    "two_images_exist": true,
+    "cover_size": true,
+    "inline_token_color": true,
+    "no_pygments_classes": true,
+    "no_style_blocks": true,
+    "single_guide": true,
+    "single_footer": true,
+    "no_placeholders": true
+  },
+  "sha256": {
+    "正文.md": "8d477460def44a6847171a6720cb07c02cce98ac164219cd88b0d4d0e04cfd5c",
+    "wechat.html": "af06ffeb1d03d71390019078ef8d34e70f643b4fc2defac445d9328c97fe236e",
+    "fork_demo.c": "8f08ed6e0ef1147b0b394945865ac0b45c3325b947ae610b519ffb34e28386d8",
+    "cover-34-fork.png": "6ce386803c06d0cb6e1b45c907ec5faef57762ac9f354ba7268f0c0e22a01dae",
+    "img-fork-branches.png": "2085923c34d2671db79e49ca39aac5462050f670f75462053968c7820549de9b"
+  }
+}

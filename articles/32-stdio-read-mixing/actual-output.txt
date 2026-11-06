@@ -1,0 +1,9 @@
+fread=a pos=1
+read=b pos=2
+fread_again=c pos=3
+length=0 exact=1 eof=1
+length=1 exact=1 eof=1
+length=26 exact=1 eof=1
+length=10000 exact=1 eof=1
+injected_eintr retry=ok byte=b
+injected_eio result=-1 errno_preserved=1

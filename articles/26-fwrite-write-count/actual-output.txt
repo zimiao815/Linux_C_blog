@@ -1,0 +1,2 @@
+normal returned=3 requested=3 bytes=12 flush=0 pos=12 error=0
+readonly returned=0 requested=3 error=1

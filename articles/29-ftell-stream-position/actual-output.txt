@@ -1,0 +1,2 @@
+read=a ftell=1 fd_offset=26
+after_fseek=k ftell=11 fd_offset=26

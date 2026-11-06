@@ -1,0 +1,32 @@
+{
+  "environment": {
+    "system": "macOS 14.8.8 x86_64",
+    "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)",
+    "flags": [
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wshadow",
+      "-O0",
+      "-g"
+    ]
+  },
+  "records": [
+    {
+      "case": "size-4-elements",
+      "input_bytes": 10,
+      "size": 4,
+      "nmemb": 3,
+      "stdout": "size=4 nmemb=3 returned=2 complete_bytes=8 pos=10 eof=1\n"
+    },
+    {
+      "case": "size-1-bytes",
+      "input_bytes": 10,
+      "size": 1,
+      "nmemb": 10,
+      "stdout": "size=1 nmemb=10 returned=10 complete_bytes=10 pos=10 eof=0\n"
+    }
+  ]
+}

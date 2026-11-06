@@ -1,0 +1,3 @@
+before: self=35439
+after: self=35439 fork_return=35440
+after: self=35440 fork_return=0

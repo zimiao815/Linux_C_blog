@@ -1,0 +1,40 @@
+{
+  "jobs": [
+    {
+      "id": "20261106-074911-7f77e9",
+      "status": "failed",
+      "op": "generate",
+      "name": "img-fork-branches",
+      "prompt_preview": "生成一张中文技术教学流程图，PNG，约 1400×1100，适合缩小到手机正文宽度阅读。米白背景，深蓝文字，蓝色父进程，橙色子进程，红色失败分支；干净的二维矢量式排版，边界清楚，所有中文必须清晰正确。此图解释 fork 用户可见的执行路径，不画内核实现，不画线程、文件和内存。 顶部标题「fork 之后，从调用返回处继续」。上方居中一个浅灰框，文字「原进程」「pid = fork();」。从它向下分出两条互斥情况：左侧较宽的成功区域，右侧较窄的失败区域。 左侧成功区域上方写「…",
+      "source_image": null,
+      "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/34-fork-parent-child/img-fork-branches.png",
+      "started_at": "2026-11-06T07:49:11Z",
+      "finished_at": "2026-11-06T07:49:42Z",
+      "error": "API request failed"
+    },
+    {
+      "id": "20261106-075146-19bdf3",
+      "status": "failed",
+      "op": "generate",
+      "name": "img-fork-branches",
+      "prompt_preview": "生成一张中文技术教学流程图，PNG，约 1400×1100，适合缩小到手机正文宽度阅读。米白背景，深蓝文字，蓝色父进程，橙色子进程，红色失败分支；干净的二维矢量式排版，边界清楚，所有中文必须清晰正确。此图解释 fork 用户可见的执行路径，不画内核实现，不画线程、文件和内存。 顶部标题「fork 之后，从调用返回处继续」。上方居中一个浅灰框，文字「原进程」「pid = fork();」。从它向下分出两条互斥情况：左侧较宽的成功区域，右侧较窄的失败区域。 左侧成功区域上方写「…",
+      "source_image": null,
+      "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/34-fork-parent-child/img-fork-branches.png",
+      "started_at": "2026-11-06T07:51:46Z",
+      "finished_at": "2026-11-06T07:52:17Z",
+      "error": "API request failed"
+    },
+    {
+      "id": "20261106-075520-d7be44",
+      "status": "failed",
+      "op": "generate",
+      "name": "img-fork-branches",
+      "prompt_preview": "中文教学流程图，浅米白背景，深蓝文字，清楚简洁，PNG，横向1400×900。标题：fork 的三种返回结果。顶端一个框「pid = fork();」，向下分三条箭头。左侧蓝色框「创建成功：父进程」「pid = 子进程 PID」；中间橙色框「创建成功：子进程」「pid = 0」；右侧红色框「创建失败：原进程」「pid = -1」「没有子进程」。左侧和中间框各向下指向文字「从调用返回处继续」，右侧框向下指向「处理错误」。左侧与中间用同一个浅蓝底色分组，组名「成功时，两条路径都…",
+      "source_image": null,
+      "output_path": "/Users/zhaodan/my_obsidian/linux_c/linux_c_blog/articles/34-fork-parent-child/img-fork-branches.png",
+      "started_at": "2026-11-06T07:55:20Z",
+      "finished_at": "2026-11-06T07:55:51Z",
+      "error": "API request failed"
+    }
+  ]
+}

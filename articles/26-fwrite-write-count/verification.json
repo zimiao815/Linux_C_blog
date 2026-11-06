@@ -1,0 +1,26 @@
+{
+  "environment": {
+    "system": "macOS 14.8.8 x86_64",
+    "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)",
+    "flags": [
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wshadow",
+      "-O0",
+      "-g"
+    ]
+  },
+  "records": [
+    {
+      "case": "normal-file",
+      "stdout": "normal returned=3 requested=3 bytes=12 flush=0 pos=12 error=0\n"
+    },
+    {
+      "case": "readonly-stream",
+      "stdout": "readonly returned=0 requested=3 error=1\n"
+    }
+  ]
+}

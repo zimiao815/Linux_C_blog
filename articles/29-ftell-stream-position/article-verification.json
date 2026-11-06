@@ -1,0 +1,18 @@
+{
+  "title": true,
+  "source_matches_article": true,
+  "source_survives_html": true,
+  "actual_outputs_embedded": true,
+  "short_real_c_code": true,
+  "stream_position_explained": true,
+  "read_ahead_observed": true,
+  "active_handle_boundary_stated": true,
+  "ai_images_used": true,
+  "four_h2": true,
+  "two_images": true,
+  "local_images_exist": true,
+  "no_placeholder": true,
+  "no_svg_refs": true,
+  "single_footer": true,
+  "experiment_limit_stated": true
+}

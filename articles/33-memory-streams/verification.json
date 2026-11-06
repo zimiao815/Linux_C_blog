@@ -1,0 +1,145 @@
+{
+  "environment": "macOS-14.8.8-x86_64-i386-64bit-Mach-O",
+  "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)\nTarget: x86_64-apple-darwin23.6.0\nThread model: posix\nInstalledDir: /Library/Developer/CommandLineTools/usr/bin\n",
+  "linux_tested": false,
+  "records": [
+    {
+      "name": "fixed",
+      "sources": [
+        "fixed_example.c"
+      ],
+      "flags": [
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g"
+      ],
+      "exit": 0,
+      "stdout": "hello\n",
+      "stderr": ""
+    },
+    {
+      "name": "dynamic",
+      "sources": [
+        "dynamic_example.c"
+      ],
+      "flags": [
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g"
+      ],
+      "exit": 0,
+      "stdout": "text=hello, len=5\n",
+      "stderr": ""
+    },
+    {
+      "name": "probe",
+      "sources": [
+        "report.c",
+        "memory_probe.c"
+      ],
+      "flags": [
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g"
+      ],
+      "exit": 0,
+      "stdout": "fixed=count=3\nflushed len=5 text=hello\nclosed len=8 text=hello, C\n",
+      "stderr": ""
+    },
+    {
+      "name": "boundaries",
+      "sources": [
+        "report.c",
+        "memory_test.c"
+      ],
+      "flags": [
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g"
+      ],
+      "exit": 0,
+      "stdout": "fixed cap=16 success=1 bounds=ok\nfixed cap=9 success=1 bounds=ok\nfixed cap=8 success=0 bounds=ok\nfixed cap=4 success=0 bounds=ok\nfixed cap=0 success=0 bounds=ok\ndynamic bytes=0 final_len=1 content=ok\ndynamic bytes=8 final_len=9 content=ok\ndynamic bytes=20000 final_len=20001 content=ok\n",
+      "stderr": ""
+    },
+    {
+      "name": "fixed-cap-6",
+      "sources": [
+        "fixed_example.c"
+      ],
+      "variation": "buf[6]",
+      "flags": [
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g"
+      ],
+      "exit": 0,
+      "stdout": "hello\n",
+      "stderr": ""
+    },
+    {
+      "name": "fixed-cap-5",
+      "sources": [
+        "fixed_example.c"
+      ],
+      "variation": "buf[5]",
+      "flags": [
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "fixed-cap-4",
+      "sources": [
+        "fixed_example.c"
+      ],
+      "variation": "buf[4]",
+      "flags": [
+        "-std=c17",
+        "-Wall",
+        "-Wextra",
+        "-Wpedantic",
+        "-Wconversion",
+        "-Wshadow",
+        "-O0",
+        "-g"
+      ],
+      "exit": 1,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

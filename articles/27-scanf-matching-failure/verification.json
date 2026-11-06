@@ -1,0 +1,25 @@
+{
+  "environment": {
+    "system": "macOS 14.8.8 x86_64",
+    "compiler": "Apple clang version 16.0.0 (clang-1600.0.26.6)",
+    "flags": [
+      "-std=c17",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-Wconversion",
+      "-Wshadow",
+      "-O0",
+      "-g"
+    ]
+  },
+  "input": "42x\\n7\\n",
+  "stdout": "first=1 value=42\nsecond=0 value=42\nblocked=x\nrecovered=1 value=7\n",
+  "cases": {
+    "first_match": 1,
+    "second_match": 0,
+    "blocked_character": "x",
+    "recovered_match": 1,
+    "recovered_value": 7
+  }
+}
